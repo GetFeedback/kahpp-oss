@@ -1,0 +1,38 @@
+kahpp:
+  group: http
+  name: handle-by-status-code-route-400
+  topics:
+    source: foo
+    defaultError: default
+    routeError: error
+    routeSuccess: success
+  streamsConfig:
+    bootstrapServers:
+      - kafka:9092
+  apis:
+    status-code-api:
+      basePath: http://status-code-api
+      options:
+        connection:
+          connectTimeoutMillis: 200
+          socketTimeoutMs: 500
+  steps:
+    - name: shouldRouteToTheRightTopic
+      type: dev.vox.platform.kahpp.configuration.http.HandleByStatusCode
+      config:
+        api: status-code-api
+        path: /action
+        topic: defaultError
+        responseHandlers:
+          - statusCodeStart: 410
+            statusCodeInclusiveEnd: 410
+            responseHandler:
+              type: RECORD_ROUTE
+              topics:
+                - routeError
+          - statusCodeStart: 200
+            statusCodeInclusiveEnd: 200
+            responseHandler:
+              type: RECORD_ROUTE
+              topics:
+                - routeSuccess

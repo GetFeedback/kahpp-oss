@@ -1,0 +1,24 @@
+kahpp:
+  group: test
+  name: dynamic-routing
+  topics:
+    source: kahpp-input
+    foo: kahpp-output-foo
+    bar: kahpp-output-bar
+    error: kahpp-output-error
+  streamsConfig:
+    bootstrapServers:
+    - kafka:9092
+    properties:
+      "num.stream.threads": 1
+      "commit.interval.ms": 0
+  steps:
+  - name: produceRecordToDynamicSinkTopic
+    type: dev.vox.platform.kahpp.configuration.topic.ProduceToTopicByRoute
+    config:
+      errorTopic: error
+      routes:
+        - jmesPath: value.route == 'route to foo'
+          topic: foo
+        - jmesPath: value.route == 'route to bar'
+          topic: bar

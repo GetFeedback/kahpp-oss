@@ -1,0 +1,10 @@
+{
+  "key": {"id":  "ec82001d-49c6-45ee-8cee-b3b44280dcb1"},
+  "value": {"date_time" : "2020-08-02T10:00:01.000+0000", "provokeError": false},
+  "recordTime": 1596362401000,
+  "headers": [
+    {
+      "kahpp.test.basic-transformations.httpDoWhatever": {"timestamp":1596362400000,"version":1,"status":"SUCCESS","context":{}}
+    }
+  ]
+}

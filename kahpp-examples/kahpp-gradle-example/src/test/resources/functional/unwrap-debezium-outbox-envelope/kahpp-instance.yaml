@@ -1,0 +1,19 @@
+kahpp:
+  group: transform
+  name: unwrap-debezium-outbox-envelope
+  topics:
+    source: foo
+    sink: bar
+  streamsConfig:
+    bootstrapServers:
+      - kafka:9092
+  apis: {}
+  steps:
+    - name: unwrapDebeziumOutboxEnvelope
+      type: dev.vox.platform.kahpp.configuration.transform.UnwrapDebeziumOutboxEnvelopeTransform
+      config:
+        copyEnvelopeFieldsToHeaders: true
+    - name: produceRecordToSinkTopic
+      type: dev.vox.platform.kahpp.configuration.topic.ProduceToTopic
+      config:
+        topic: sink

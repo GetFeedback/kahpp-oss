@@ -1,0 +1,39 @@
+{
+  "key": {
+    "id": "143ef572-226f-444e-acd2-8fccf72dc287"
+  },
+  "value": {
+    "id": "143ef572-226f-444e-acd2-8fccf72dc287",
+    "email": "uitestautomation+e11xiu8r65@getfeedback.com"
+  },
+  "headers": [
+    {
+      "vox.outbox.schema.keyGid": 5
+    },
+    {
+      "vox.outbox.schema.keyGidString": "5"
+    },
+    {
+      "vox.outbox.schema.valueGid": 9
+    },
+    {
+      "vox.outbox.schema.valueGidString": "9"
+    },
+    {
+      "vox.outbox.event": "user-updated"
+    },
+    {
+      "vox.outbox.aggregateId": "143ef572-226f-444e-acd2-8fccf72dc287"
+    },
+    {
+      "vox.outbox.aggregateType": "user"
+    },
+    {
+      "vox.outbox.metaVersion": 2
+    },
+    {
+      "kahpp.transform.unwrap-debezium-outbox-envelope.unwrapDebeziumOutboxEnvelope": {"timestamp":1596362400000,"version":1,"status":"SUCCESS","context":{}}
+    }
+  ],
+  "recordTime": 1614438235000
+}

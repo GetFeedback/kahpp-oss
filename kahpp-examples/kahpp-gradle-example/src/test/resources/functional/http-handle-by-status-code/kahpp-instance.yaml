@@ -1,0 +1,41 @@
+kahpp:
+  group: http
+  name: handle-by-status-code
+  topics:
+    source: foo
+    sink: bar
+    error: err
+  streamsConfig:
+    bootstrapServers:
+    - kafka:9092
+  apis:
+    status-code-api:
+      basePath: http://status-code-api
+      options:
+        connection:
+          connectTimeoutMillis: 200
+          socketTimeoutMs: 500
+  steps:
+  - name: shouldTerminateOn410
+    type: dev.vox.platform.kahpp.configuration.http.HandleByStatusCode
+    config:
+      api: status-code-api
+      path: /action
+      topic: error # In case no handler matches, the record is sent to the Error topic
+      responseHandlers:
+      - statusCodeStart: 410
+        statusCodeInclusiveEnd: 410
+        responseHandler:
+          type: RECORD_TERMINATE
+      - statusCodeStart: 200
+        statusCodeInclusiveEnd: 200
+        responseHandler:
+          type: RECORD_VALUE_REPLACE
+      - statusCodeStart: 204
+        statusCodeInclusiveEnd: 204
+        responseHandler:
+          type: RECORD_FORWARD_AS_IS
+  - name: produceRecordToSinkTopic
+    type: dev.vox.platform.kahpp.configuration.topic.ProduceToTopic
+    config:
+      topic: sink

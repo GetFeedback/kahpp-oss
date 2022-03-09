@@ -1,0 +1,26 @@
+kahpp:
+  group: transform
+  name: unwrap-debezium-outbox-envelope
+  topics:
+    source: foo
+    sinkOnlyAggregateTypeBar1: bar1
+    sinkOnlyFooBar2: bar2
+    error: error
+  streamsConfig:
+    bootstrapServers:
+      - kafka:9092
+  apis: {}
+  steps:
+    - name: unwrapDebeziumOutboxEnvelope
+      type: dev.vox.platform.kahpp.configuration.transform.UnwrapDebeziumOutboxEnvelopeTransform
+      config:
+        copyEnvelopeFieldsToHeaders: true
+    - name: produceRecordToSinkTopic
+      type: dev.vox.platform.kahpp.configuration.topic.ProduceToTopicByRoute
+      config:
+        errorTopic: error
+        routes:
+          - jmesPath: headers[]."vox.outbox.aggregateType" | [0] == 'bar-1'
+            topic: sinkOnlyAggregateTypeBar1
+          - jmesPath: headers[].foo | [0] == 'bar-2'
+            topic: sinkOnlyFooBar2

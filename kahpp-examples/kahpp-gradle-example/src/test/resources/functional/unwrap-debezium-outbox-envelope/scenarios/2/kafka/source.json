@@ -1,0 +1,11 @@
+{
+  "key": "faa652a5-a4e3-4c17-b3d7-fcbd33d466da",
+  "value": {
+    "payload": "{\"id\": \"143ef572-226f-444e-acd2-8fccf72dc287\", \"email\": \"uitestautomation+e11xiu8r65@getfeedback.com\"}",
+    "type": "user-updated",
+    "aggregateId": "143ef572-226f-444e-acd2-8fccf72dc287",
+    "aggregateType": "user",
+    "payloadType": "user"
+  },
+  "recordTime": 1614438235000
+}

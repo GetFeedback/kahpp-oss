@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/action"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "foo": "bar",
+      "baz": "foz"
+    }
+  }
+}

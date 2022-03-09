@@ -1,0 +1,15 @@
+kahpp:
+  group: dev
+  name: simple-instance
+  topics:
+    source: source-topic
+    sink: sink-topic
+  streamsConfig:
+    bootstrapServers:
+    - kafka:9092
+    cache-max-size-buffering: 300MB
+  steps:
+  - name: produceRecordToSinkTopic
+    type: dev.vox.platform.kahpp.configuration.topic.ProduceToTopic
+    config:
+      topic: sink

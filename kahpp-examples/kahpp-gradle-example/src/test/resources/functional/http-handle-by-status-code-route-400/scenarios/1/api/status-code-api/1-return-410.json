@@ -1,0 +1,10 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/action"
+  },
+  "response": {
+    "status": 410,
+    "body": ""
+  }
+}

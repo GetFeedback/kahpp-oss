@@ -1,0 +1,14 @@
+{
+  "key": {
+    "id": "1-continue-on-anything-but-410"
+  },
+  "value": {
+    "foo": "bar"
+  },
+  "recordTime": 1614438235000,
+  "headers": [
+    {
+      "kahpp.http.handle-by-status-code.shouldTerminateOn410": {"timestamp":1596362400000,"version":1,"status":"SUCCESS","context":{}}
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "key": {
+    "id": "389f8d79-e329-4daf-b8b0-1c4a5cbc094f"
+  },
+  "value": {
+    "bar": false,
+    "foo": false,
+    "payload": "meaningful data",
+    "route": "no route found"
+  },
+  "recordTime": 1584352842000
+}

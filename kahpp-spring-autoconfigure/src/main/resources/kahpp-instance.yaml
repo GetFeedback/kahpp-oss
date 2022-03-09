@@ -1,0 +1,32 @@
+# This is the development KaHPP instance
+# it won't be automatically loaded if you're running the project from your IDE
+# for that you have to specify a spring.config.location
+# For instance we do that if you run the docker-compose version via an env var
+
+# Should be externalized via:
+# K8S configmap renders the instance configuration to `/config/application.yaml`
+# Load the during the jar execution via `-Dspring.config.location=/config/application.yaml`
+kahpp:
+  # The final application id will be `kahpp-dev-all-the-things`
+  group: dev
+  name: all-the-things
+  topics:
+    source: source-topic
+    sink: kahpp-output-success
+    error: kahpp-output-error-foo
+  streamsConfig:
+    bootstrapServers:
+      - kafka:9092
+    cache-max-size-buffering: 1GB
+    properties:
+      "num.stream.threads": 1
+      "commit.interval.ms": 100
+      # 23mb to fetch records and make requests, it's important when dealing with feedback data
+      # as they can get up to 21mb
+      "fetch.max.bytes": 23000000
+      "max.request.size": 23000000
+  steps:
+    - name: produceRecordToSinkTopic
+      type: dev.vox.platform.kahpp.configuration.topic.ProduceToTopic
+      config:
+        topic: sink

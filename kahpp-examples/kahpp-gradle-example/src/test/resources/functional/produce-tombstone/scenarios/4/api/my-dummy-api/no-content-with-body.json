@@ -1,0 +1,23 @@
+// The scenario should fail! It doesn't because the HTTP Client seems to be
+// dropping the response body in the case of 204 No Content with actual content.
+{
+  "request": {
+    "method": "POST",
+    "path": "/foo",
+    "body": {
+      "bar": false,
+      "foo": true,
+      "payload": "meaningful data",
+      "route": "route to foo"
+    }
+  },
+  "response": {
+    "status": 204,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": {
+      "some": "content"
+    }
+  }
+}

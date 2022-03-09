@@ -1,0 +1,26 @@
+{
+  "key": {
+    "id": "392a508e-8153-44ec-9a30-ec834aacc65b"
+  },
+  "value": {
+    "payload": "meaningful data",
+    "route": "route to foo",
+    "headers": [
+      {
+        "bar": "foo"
+      },
+      {
+        "foo": true
+      }
+    ]
+  },
+  "headers": [
+    {
+      "bar": "foo"
+    },
+    {
+      "foo": true
+    }
+  ],
+  "recordTime": 1584352842000
+}

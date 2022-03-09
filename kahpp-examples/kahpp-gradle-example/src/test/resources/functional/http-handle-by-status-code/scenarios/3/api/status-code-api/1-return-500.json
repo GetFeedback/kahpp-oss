@@ -1,0 +1,15 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/action"
+  },
+  "response": {
+    "status": 500,
+    "body": {
+      "error": "bar"
+    },
+    "headers": {
+      "Date": "Thu, 09 Sep 2021 14:36:44 GMT"
+    }
+  }
+}

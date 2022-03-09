@@ -1,0 +1,14 @@
+{
+  "key": {
+    "id": "1-sink-to-error-on-500"
+  },
+  "value": {
+    "foo": "bar"
+  },
+  "recordTime": 1614438235000,
+  "headers": [
+    {
+      "kahpp.http.handle-by-status-code.shouldTerminateOn410": {"timestamp":1596362400000,"version":1,"status":"ERROR_UNKNOWN","context":{"exception":{"cause":null,"message":"No responseHandler matched with status code `500`","suppressed":[{"cause":null,"response":{"headers":{"Server":"WEBrick/1.7.0 (Ruby/2.7.4/2021-07-07) OpenSSL/1.1.1k","Connection":"Keep-Alive","Content-Length":"15","Date":"Thu, 09 Sep 2021 14:36:44 GMT"},"statusCode":500,"body":"{\"error\":\"bar\"}"},"message":"Received server error response","suppressed":[],"localizedMessage":"Received server error response"}],"localizedMessage":"No responseHandler matched with status code `500`"}}}
+    }
+  ]
+}

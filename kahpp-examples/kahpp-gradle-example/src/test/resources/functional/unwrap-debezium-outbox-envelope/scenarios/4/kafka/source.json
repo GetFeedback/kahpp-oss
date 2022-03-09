@@ -1,0 +1,27 @@
+{
+  "key": {
+    "id": "143ef572-226f-444e-acd2-8fccf72dc287"
+  },
+  "value": {
+    "id": "143ef572-226f-444e-acd2-8fccf72dc287",
+    "email": "uitestautomation+e11xiu8r65@getfeedback.com"
+  },
+  "headers": [
+    {
+      "kahpp.transform.unwrap-debezium-outbox-envelope.unwrapDebeziumOutboxEnvelope": {"timestamp":1596362400000,"version":1,"status":"SUCCESS","context":{}}
+    },
+    {
+      "vox.outbox.trigger": "user-deleted"
+    },
+    {
+      "vox.outbox.aggregateId": "143ef572-226f-444e-acd2-8fccf72dc287"
+    },
+    {
+      "vox.outbox.aggregateType": "user"
+    },
+    {
+      "vox.outbox.payloadType": "user"
+    }
+  ],
+  "recordTime": 1614438235000
+}

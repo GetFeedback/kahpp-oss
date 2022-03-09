@@ -1,0 +1,18 @@
+kahpp:
+  group: test-filter-field
+  name: filter-field-with-now-function
+  topics:
+    source: foo
+    sink: bar
+  streamsConfig:
+    bootstrapServers:
+    - kafka:9092
+  steps:
+  - name: shouldBeGood
+    type: dev.vox.platform.kahpp.configuration.filter.FilterField
+    config:
+      jmesPath: "timestamp == now('+P0D')"
+  - name: produceRecordToSinkTopic
+    type: dev.vox.platform.kahpp.configuration.topic.ProduceToTopic
+    config:
+      topic: sink

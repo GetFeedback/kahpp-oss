@@ -1,0 +1,99 @@
+plugins {
+    id 'net.ltgt.errorprone' version '2.0.2'
+}
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+ext {
+    sentryVersion = '5.6.2'
+    micrometerVersion = '1.8.3'
+    kafkaHealthcheckVersion = '0.2.0'
+    retryableHttpVersion = '0.7.0'
+    kafkaVersion = '3.0.0'
+    logbackVersion = '1.2.10'
+    jacksonVersion = '2.13.1'
+    mockitoVersion = '4.3.1'
+}
+
+dependencies{
+    annotationProcessor 'org.springframework.boot:spring-boot-autoconfigure-processor'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    implementation 'org.springframework.boot:spring-boot'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+
+    implementation "io.sentry:sentry-logback:${sentryVersion}"
+    implementation "io.micrometer:micrometer-core:${micrometerVersion}"
+    implementation "io.micrometer:micrometer-registry-jmx:${micrometerVersion}"
+    implementation "io.burt:jmespath-core:0.5.1"
+    implementation "io.burt:jmespath-jackson:0.5.1"
+    implementation "io.vavr:vavr:1.0.0-alpha-4"
+    implementation "com.usabilla.healthcheck.springboot:kafka:${kafkaHealthcheckVersion}"
+    implementation "com.usabilla:retryableapiclient:${retryableHttpVersion}"
+    implementation "org.springframework.kafka:spring-kafka"
+    implementation "org.springframework.boot:spring-boot-starter"
+    implementation "org.springframework.boot:spring-boot-starter-validation"
+    implementation "org.apache.httpcomponents:httpclient:4.5.13"
+    implementation "org.apache.kafka:kafka-streams:${kafkaVersion}"
+    implementation "org.apache.kafka:kafka-clients:${kafkaVersion}"
+    implementation "net.logstash.logback:logstash-logback-encoder:7.0.1"
+    implementation "ch.qos.logback:logback-core:${logbackVersion}"
+    implementation "org.slf4j:slf4j-api"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.module:jackson-module-scala_3:${jacksonVersion}"
+    implementation ("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jacksonVersion}") {
+        because "due to missing deps after bump kafkaVersion from 2.8.0 to 3.0.0"
+    }
+    implementation("ch.qos.logback:logback-classic:${logbackVersion}") {
+        exclude group: "org.sl4j", module: "slf4j-api"
+    }
+    implementation("com.github.spotbugs:spotbugs-annotations:4.5.3")
+    implementation "org.apache.kafka:kafka-clients:${kafkaVersion}:test"
+    implementation "org.apache.kafka:kafka_2.13:${kafkaVersion}"
+    implementation "org.apache.kafka:kafka_2.13:${kafkaVersion}:test"
+    implementation "org.skyscreamer:jsonassert:1.5.0"
+    implementation "org.springframework.kafka:spring-kafka-test"
+    implementation "org.apache.kafka:kafka-streams-test-utils:${kafkaVersion}"
+    implementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude group: "org.junit.vintage", module: "junit-vintage-engine"
+        exclude group: "junit", module: "junit"
+    }
+    implementation "org.mock-server:mockserver-netty:5.12.0"
+    implementation ("org.bouncycastle:bcprov-jdk15on:1.70") {
+        because "due to ClassNotFoundException after bump mockserver-netty-5.12.0"
+    }
+    implementation ("org.bouncycastle:bcpkix-jdk15on:1.70") {
+        because "due to ClassNotFoundException after bump mockserver-netty-5.12.0"
+    }
+    implementation("com.google.guava:guava:31.1-jre") {
+        because "due to ClassNotFoundException after update mockserver-netty to 5.11.2"
+    }
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
+    implementation "org.testcontainers:testcontainers:1.16.3"
+    implementation "org.assertj:assertj-core:3.22.0"
+    implementation "org.mockito:mockito-core:${mockitoVersion}"
+    implementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+
+    developmentOnly "org.springframework.boot:spring-boot-devtools"
+    errorprone "com.google.errorprone:error_prone_core:2.11.0"
+}
+
+publishing {
+    publications {
+        starter(MavenPublication) {
+            groupId = "${groupId}"
+            artifactId = 'kahpp-spring-autoconfigure'
+            version = "${version}"
+
+            from components.java
+        }
+    }
+}
+

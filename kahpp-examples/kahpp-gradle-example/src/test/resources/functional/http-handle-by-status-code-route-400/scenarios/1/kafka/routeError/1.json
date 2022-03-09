@@ -1,0 +1,19 @@
+{
+  "key": {
+    "id": "1"
+  },
+  "value": {
+    "foo": "bar"
+  },
+  "recordTime": 1614438235000,
+  "headers": [
+    {
+      "kahpp.http.handle-by-status-code-route-400.shouldRouteToTheRightTopic": {
+        "timestamp": 1596362400000,
+        "version": 1,
+        "status": "SUCCESS",
+        "context": {}
+      }
+    }
+  ]
+}

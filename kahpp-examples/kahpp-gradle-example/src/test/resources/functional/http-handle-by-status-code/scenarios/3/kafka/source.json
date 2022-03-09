@@ -1,0 +1,9 @@
+{
+  "key": {
+    "id": "1-sink-to-error-on-500"
+  },
+  "value": {
+    "foo": "bar"
+  },
+  "recordTime": 1614438235000
+}

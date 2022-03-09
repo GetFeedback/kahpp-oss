@@ -1,0 +1,117 @@
+{
+  "consumer": {
+    "name": "test-transform-to-tombstone"
+  },
+  "provider": {
+    "name": "my-dummy-api"
+  },
+  "interactions": [
+    {
+      "description": "scenarios/1/api/my-dummy-api/without-body.json",
+      "request": {
+        "method": "POST",
+        "path": "/foo",
+        "body": {
+          "bar": false,
+          "foo": true,
+          "payload": "meaningful data",
+          "route": "route to foo"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        }
+      }
+    },
+    {
+      "description": "scenarios/2/api/my-dummy-api/with-null-body.json",
+      "request": {
+        "method": "POST",
+        "path": "/foo",
+        "body": {
+          "bar": false,
+          "foo": true,
+          "payload": "meaningful data",
+          "route": "route to foo"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": null
+      }
+    },
+    {
+      "description": "scenarios/3/api/my-dummy-api/no-content-without-body.json",
+      "request": {
+        "method": "POST",
+        "path": "/foo",
+        "body": {
+          "bar": false,
+          "foo": true,
+          "payload": "meaningful data",
+          "route": "route to foo"
+        }
+      },
+      "response": {
+        "status": 204,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        }
+      }
+    },
+    {
+      "description": "scenarios/4/api/my-dummy-api/no-content-with-body.json",
+      "request": {
+        "method": "POST",
+        "path": "/foo",
+        "body": {
+          "bar": false,
+          "foo": true,
+          "payload": "meaningful data",
+          "route": "route to foo"
+        }
+      },
+      "response": {
+        "status": 204,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "some": "content"
+        }
+      }
+    },
+    {
+      "description": "scenarios/5/api/my-dummy-api/with-body.json",
+      "request": {
+        "method": "POST",
+        "path": "/foo",
+        "body": {
+          "bar": false,
+          "foo": true,
+          "payload": "meaningful data",
+          "route": "route to foo"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "some": "content"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

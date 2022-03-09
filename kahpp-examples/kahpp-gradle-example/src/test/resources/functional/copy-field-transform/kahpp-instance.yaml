@@ -1,0 +1,19 @@
+kahpp:
+  group: direct
+  name: transform-copy-basic
+  topics:
+    source: foo
+    sink: bar
+  streamsConfig:
+    bootstrapServers:
+    - kafka:9092
+  steps:
+  - name: shouldTransform
+    type: dev.vox.platform.kahpp.configuration.transform.CopyFieldRecordTransform
+    config:
+      from: value.bar
+      to: key.bar
+  - name: produceRecordToSinkTopic
+    type: dev.vox.platform.kahpp.configuration.topic.ProduceToTopic
+    config:
+      topic: sink

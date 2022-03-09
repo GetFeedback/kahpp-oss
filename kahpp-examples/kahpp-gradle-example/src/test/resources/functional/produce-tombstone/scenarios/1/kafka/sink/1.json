@@ -1,0 +1,12 @@
+{
+  "key": {
+    "id": "392a508e-8153-44ec-9a30-ec834aacc65b"
+  },
+  "value": null,
+  "recordTime": 1584352842000,
+  "headers": [
+    {
+      "kahpp.test.transform-to-tombstone.httpNoContent": {"timestamp":1596362400000,"version":1,"status":"SUCCESS","context":{}}
+    }
+  ]
+}
