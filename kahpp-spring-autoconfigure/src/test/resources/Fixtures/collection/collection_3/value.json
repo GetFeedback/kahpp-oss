@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "id": "a76cf51c-c9d8-42a8-b76a-0c457c2f5a2f",
+    "ip": "100.97.0.3",
+    "channel": {
+      "name": "collection_3",
+      "details": {
+        "foo": "123456qwerty"
+      }
+    },
+    "input": {
+      "data": {
+        "foo": "123456qwerty"
+      }
+    }
+  },
+  "publication_date": "2019-07-10T08:17:58+00:00",
+  "operation": "create_cake"
+}
