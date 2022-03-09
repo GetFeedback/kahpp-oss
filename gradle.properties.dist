@@ -1,0 +1,10 @@
+# Please put your Github access token it 'gradle.properties' (make sure to give it read permissions for packages)
+githubToken=
+# Please put your Github username in 'gradle.properties'
+githubUser=
+# due to https://github.com/google/google-java-format/blob/v1.12.0/README.md#jdk-16
+org.gradle.jvmargs=--add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED \
+--add-exports jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED \
+--add-exports jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED \
+--add-exports jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED \
+--add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED
