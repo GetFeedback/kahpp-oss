@@ -1,0 +1,55 @@
+stages:
+  - test
+  - publish
+
+image: registry.vox.dev/getfeedback/cicd-container-images/gitlab-runner-jdk17-jdk
+
+variables:
+  GRADLE_USER_HOME: .gradle-home
+
+.gradle:
+  before_script:
+    - echo githubToken="$GITHUB_PACKAGE_TOKEN" > ./gradle.properties
+    - echo githubUser="ub-jenkins" >> ./gradle.properties
+    # due to https://github.com/google/google-java-format/blob/v1.12.0/README.md#jdk-16
+    - echo org.gradle.jvmargs=--add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED \
+      --add-exports jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED \
+      --add-exports jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED \
+      --add-exports jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED \
+      --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED >> ./gradle.properties
+  cache:
+    key: "${CI_PROJECT_PATH_SLUG}"
+    paths:
+      - ${GRADLE_USER_HOME}/wrapper
+      - ${GRADLE_USER_HOME}/caches
+    policy: pull-push
+  dependencies: []
+
+check:
+  stage: test
+  extends:
+    - .gradle
+  script:
+    - ./gradlew check
+  artifacts:
+    when: always
+    paths:
+      - build/reports/tests/test
+      - build/test-results/test/TEST-*.xml
+
+publish:
+  only:
+    - /^\d+\.\d+\.\d+$/
+  allow_failure: true
+  extends:
+    - .gradle-properties
+  stage: publish
+  cache:
+    policy: pull
+  dependencies: []
+  artifacts:
+    paths:
+      - build/libs/*.jar
+      - build/publications/pluginMaven/*.xml
+  script:
+    ./gradlew publish --project-prop projVersion="${CI_COMMIT_TAG}"

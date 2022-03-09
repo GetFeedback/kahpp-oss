@@ -1,0 +1,130 @@
+import com.github.spotbugs.snom.SpotBugsTask
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'org.springframework.boot' version '2.6.4' apply false
+    id 'com.github.spotbugs' version '5.0.6'
+    id 'com.diffplug.spotless' version '6.3.0'
+    id 'com.github.nbaztec.coveralls-jacoco' version '1.2.14'
+}
+
+allprojects {
+    group = 'dev.vox.platform.kahpp'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url 'https://repo.spring.io/milestone' }
+        maven {
+            credentials {
+                username githubUser
+                password githubToken
+            }
+            url "https://maven.pkg.github.com/usabilla/health-indicator-kafka-java"
+        }
+    }
+}
+
+def root = project.rootDir.path
+subprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'com.github.spotbugs'
+    apply plugin: 'pmd'
+    apply plugin: 'jacoco'
+    apply plugin: 'com.github.nbaztec.coveralls-jacoco'
+    apply plugin: 'com.diffplug.spotless'
+
+    dependencyManagement {
+        imports {
+            mavenBom SpringBootPlugin.BOM_COORDINATES
+        }
+    }
+
+    dependencies {
+        implementation("com.github.spotbugs:spotbugs-annotations:4.5.3")
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    pmd {
+        toolVersion '6.20.0'
+        ignoreFailures = false
+        consoleOutput = true
+        incrementalAnalysis = true
+        setRuleSetFiles(layout.files("$root/config/pmd-ruleset.xml"))
+        ruleSets = []
+    }
+
+    spotbugs {
+        excludeFilter = file("$root/config/spotbugs-exclude.xml")
+    }
+
+    tasks.withType(SpotBugsTask) {
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+        auxClassPaths = sourceSets.getByName("main").compileClasspath + sourceSets.getByName("test").compileClasspath
+    }
+
+    jacoco {
+        toolVersion = "0.8.7"
+        jacocoTestReport {
+            dependsOn test
+            reports {
+                xml.enabled true
+                html.destination file("${buildDir}/jacocoHtml")
+            }
+        }
+        jacocoTestCoverageVerification {
+            violationRules {
+                rule {
+                    element = 'CLASS'
+                    limit {
+                        counter = 'INSTRUCTION'
+                        value = 'COVEREDRATIO'
+                        minimum = 0.92
+                    }
+                    excludes = [
+                        // No need to test the main method...
+                        'dev.vox.platform.kahpp.Application',
+                        // No need to test these internal classes
+                        'dev.vox.platform.kahpp.configuration.TransformRecord.JmesPathMutation',
+                        'dev.vox.platform.kahpp.configuration.TransformRecord.RemoveFieldMutation',
+                    ]
+                }
+            }
+        }
+    }
+
+    jacocoTestCoverageVerification.dependsOn(jacocoTestReport, test)
+    check.dependsOn(jacocoTestCoverageVerification)
+
+    coverallsJacoco {
+        reportPath = file("$buildDir/reports/jacoco/test/jacocoTestReport.xml")
+    }
+
+    spotless {
+        java {
+            googleJavaFormat()
+            removeUnusedImports()
+            trimTrailingWhitespace()
+        }
+    }
+}
+
+spotless {
+    groovyGradle {
+        greclipse()
+        indentWithSpaces()
+    }
+}

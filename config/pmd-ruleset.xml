@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<ruleset name="Pipeline streamer rule set"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+    <description>Java Spring Boot Skeleton PMD ruleset</description>
+
+    <rule ref="category/java/bestpractices.xml">
+        <exclude name="JUnitAssertionsShouldIncludeMessage"/>
+    </rule>
+
+    <rule ref="category/java/performance.xml"/>
+
+    <rule ref="category/java/errorprone.xml">
+        <exclude name="DataflowAnomalyAnalysis"/>
+    </rule>
+
+    <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
+        <properties>
+            <property name="maximumAsserts" value="20"/>
+        </properties>
+    </rule>
+
+</ruleset>
