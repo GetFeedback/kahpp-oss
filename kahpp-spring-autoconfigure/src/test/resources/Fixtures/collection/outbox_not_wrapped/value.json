@@ -1,0 +1,7 @@
+{
+  "payload": "{\"id\": \"bc6a5194-0807-4df7-a5f7-d6ad9f816361\", \"email\": \"test@kahpp.dev\"}",
+  "type": "cake-test",
+  "aggregateId": "bc6a5194-0807-4df7-a5f7-d6ad9f816361",
+  "aggregateType": "cake",
+  "payloadType": "cake"
+}

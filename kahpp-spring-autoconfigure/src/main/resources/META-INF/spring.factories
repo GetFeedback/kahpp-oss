@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  dev.vox.platform.kahpp.KafkaStreams \
+  dev.vox.platform.kahpp.Application

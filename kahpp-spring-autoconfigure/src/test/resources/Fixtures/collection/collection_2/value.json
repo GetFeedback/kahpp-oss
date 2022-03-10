@@ -1,0 +1,17 @@
+{
+  "payload": {
+    "id": "287c8691-6cd1-48ac-8a02-813127d1f546",
+    "ip": "100.101.0.2",
+    "channel": {
+      "name": "collection_2",
+      "details": {
+        "cake": "c10ba745-5be0-40ec-8486-7d99bc28bf4c"
+      }
+    },
+    "input": {
+      "foo": "dff00650-a766-4be1-867f-653fb2a6d839"
+    }
+  },
+  "publication_date": "2019-08-20T09:14:20+00:00",
+  "operation": "create_cake"
+}

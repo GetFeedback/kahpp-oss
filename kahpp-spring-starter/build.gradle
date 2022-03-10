@@ -1,0 +1,16 @@
+dependencies {
+    api project(':kahpp-spring-autoconfigure')
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+}
+
+publishing {
+    publications {
+        starter(MavenPublication) {
+            groupId = "${groupId}"
+            artifactId = 'kahpp-spring-starter'
+            version = "${version}"
+            from components.java
+        }
+    }
+}

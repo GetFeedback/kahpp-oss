@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <property resource="application.properties"/>
+  <contextName>${spring.application.name}</contextName>
+  <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+  <appender class="io.sentry.logback.SentryAppender" name="SENTRY">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>WARN</level>
+    </filter>
+  </appender>
+  <appender class="ch.qos.logback.core.ConsoleAppender" name="CONSOLE">
+    <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+      <providers>
+        <contextName>
+          <fieldName>application</fieldName>
+        </contextName>
+        <logLevel>
+          <fieldName>level_name</fieldName>
+        </logLevel>
+        <logLevelValue>
+          <fieldName>level</fieldName>
+        </logLevelValue>
+        <message>
+          <fieldName>msg</fieldName>
+        </message>
+        <nestedField>
+          <fieldName>app</fieldName>
+          <providers>
+            <arguments>
+              <includeNonStructuredArguments>false</includeNonStructuredArguments>
+            </arguments>
+            <callerData>
+              <classFieldName>class</classFieldName>
+              <fileFieldName>file</fileFieldName>
+              <lineFieldName>line</lineFieldName>
+              <methodFieldName>method</methodFieldName>
+            </callerData>
+            <loggerName>
+              <fieldName>logger</fieldName>
+            </loggerName>
+            <stackHash>
+              <fieldName>trace_hash</fieldName>
+            </stackHash>
+            <stackTrace>
+              <fieldName>trace</fieldName>
+            </stackTrace>
+            <threadName>
+              <fieldName>thread</fieldName>
+            </threadName>
+          </providers>
+        </nestedField>
+        <nestedField>
+          <fieldName>context</fieldName>
+          <providers>
+            <mdc/>
+          </providers>
+        </nestedField>
+        <timestamp>
+          <fieldName>timestamp</fieldName>
+          <timeZone>UTC</timeZone>
+        </timestamp>
+      </providers>
+    </encoder>
+  </appender>
+  <springProfile name="dev">
+    <appender class="ch.qos.logback.core.ConsoleAppender" name="CONSOLE">
+      <layout class="ch.qos.logback.classic.PatternLayout">
+        <Pattern>%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m [%X]%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</Pattern>
+      </layout>
+    </appender>
+  </springProfile>
+  <root level="INFO">
+    <appender-ref ref="CONSOLE"/>
+    <appender-ref ref="SENTRY"/>
+  </root>
+</configuration>

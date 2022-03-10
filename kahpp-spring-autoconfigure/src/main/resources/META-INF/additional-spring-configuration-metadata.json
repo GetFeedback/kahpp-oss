@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "kahpp.group",
+      "type": "java.lang.String",
+      "description": "The KaHPP group name, the highest logic level of multiple KaHPP instances."
+    },
+    {
+      "name": "kahpp.name",
+      "type": "java.lang.String",
+      "description": "The KaHPP instance name, multiple instances can belong to the same group."
+    }
+  ] }

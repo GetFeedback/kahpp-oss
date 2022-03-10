@@ -17,7 +17,6 @@ allprojects {
     targetCompatibility = JavaVersion.VERSION_17
 
     repositories {
-        mavenLocal()
         mavenCentral()
         maven { url 'https://repo.spring.io/milestone' }
         maven {
@@ -35,6 +34,7 @@ subprojects {
     apply plugin: 'java-library'
     apply plugin: 'maven-publish'
     apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'org.springframework.boot'
     apply plugin: 'com.github.spotbugs'
     apply plugin: 'pmd'
     apply plugin: 'jacoco'
