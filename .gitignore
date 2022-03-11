@@ -35,3 +35,6 @@ out/
 
 ### Helm charts folder ###
 helm/*/charts/
+
+### Kahpp Test ###
+topology.txt

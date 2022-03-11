@@ -1,0 +1,84 @@
+{
+  "consumer": {
+    "name": "kahpp-test-basic-transformations"
+  },
+  "provider": {
+    "name": "my-dummy-api"
+  },
+  "interactions": [
+    {
+      "description": "scenarios/1/api/my-dummy-api/foo-happy.json",
+      "request": {
+        "method": "POST",
+        "path": "/foo"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "date_time": "2020-03-16T10:00:42+0000",
+          "foo": true,
+          "provokeError": false
+        }
+      }
+    },
+    {
+      "description": "scenarios/2/api/my-dummy-api/foo-happy.json",
+      "request": {
+        "method": "POST",
+        "path": "/foo"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "date_time": "2020-08-02T10:00:00+0000"
+        }
+      }
+    },
+    {
+      "description": "scenarios/3/api/my-dummy-api/foo-happy.json",
+      "request": {
+        "method": "POST",
+        "path": "/foo"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "date_time": "2020-08-02T10:00:01+0000",
+          "provokeError": false
+        }
+      }
+    },
+    {
+      "description": "scenarios/4/api/my-dummy-api/foo-unhappy.json",
+      "request": {
+        "method": "POST",
+        "path": "/foo"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "date_time": "2020-08-02T10:00:02+0000",
+          "foo": true,
+          "provokeError": true
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

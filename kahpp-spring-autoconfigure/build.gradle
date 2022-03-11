@@ -97,3 +97,7 @@ publishing {
     }
 }
 
+test {
+    systemProperty("kahpp-test.instance", "default")
+    systemProperty("kahpp-test.build-dir", "src/test/resources/functional/default")
+}
