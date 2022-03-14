@@ -124,6 +124,20 @@ subprojects {
             trimTrailingWhitespace()
         }
     }
+
+    publishing {
+        repositories {
+            maven {
+                name = 'Github'
+                url = uri('https://maven.pkg.github.com/getfeedback/kahpp-oss')
+
+                credentials {
+                    username = project.property('githubUser')
+                    password = project.property('githubToken')
+                }
+            }
+        }
+    }
 }
 
 spotless {
