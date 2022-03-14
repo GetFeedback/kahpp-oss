@@ -13,6 +13,9 @@ plugins {
 allprojects {
     group = 'dev.vox.platform.kahpp'
     version = '0.0.1-SNAPSHOT'
+    if (project.hasProperty('projVersion')) {
+        project.version = project.projVersion
+    }
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 
@@ -34,7 +37,6 @@ subprojects {
     apply plugin: 'java-library'
     apply plugin: 'maven-publish'
     apply plugin: 'io.spring.dependency-management'
-    apply plugin: 'org.springframework.boot'
     apply plugin: 'com.github.spotbugs'
     apply plugin: 'pmd'
     apply plugin: 'jacoco'
