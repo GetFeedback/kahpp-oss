@@ -16,7 +16,7 @@ ext {
     retryableHttpVersion = '0.7.0'
     kafkaVersion = '3.0.0'
     logbackVersion = '1.2.11'
-    jacksonVersion = '2.13.1'
+    jacksonVersion = '2.13.2'
     mockitoVersion = '4.4.0'
 }
 
