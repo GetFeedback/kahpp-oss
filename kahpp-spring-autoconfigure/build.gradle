@@ -14,7 +14,7 @@ ext {
     micrometerVersion = '1.8.3'
     kafkaHealthcheckVersion = '0.2.0'
     retryableHttpVersion = '0.7.0'
-    kafkaVersion = '3.0.0'
+    kafkaVersion = '3.1.0'
     logbackVersion = '1.2.11'
     jacksonVersion = '2.13.1'
     mockitoVersion = '4.4.0'
