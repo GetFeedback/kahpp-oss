@@ -1,0 +1,57 @@
+kahpp:
+  group: test
+  name: basic-transformations
+  topics:
+    source: kahpp-input
+    sink: kahpp-output-success
+    error: kahpp-output-error
+  streamsConfig:
+    bootstrapServers:
+    - kafka:9092
+    properties:
+      "num.stream.threads": 1
+      "commit.interval.ms": 0
+  apis:
+    my-dummy-api:
+      basePath: http://my-dummy-api
+      options:
+        rateLimit:
+          requestsPerSecond: 20
+          warmUpMillis: 2000
+        connection:
+          connectTimeoutMillis: 300
+          socketTimeoutMs: 1500
+  steps:
+  - name: filterTombstone
+    type: dev.vox.platform.kahpp.configuration.filter.FilterTombstone
+    config:
+      filterNot: 'true'
+  - name: setDateTime
+    type: dev.vox.platform.kahpp.configuration.transform.TimestampToValueTransform
+    config:
+      field: date_time
+  - name: httpDoWhatever
+    type: dev.vox.platform.kahpp.configuration.http.OkOrProduceError
+    config:
+      api: my-dummy-api
+      path: /foo
+      topic: error
+      conditionalStep:
+        enabled: true
+        jmesPath: "value.bla == `true`"
+  - name: provokeErrorWithJMES
+    type: dev.vox.platform.kahpp.configuration.predicate.PredicateOrProduceError
+    config:
+      jmesPath: "value.provokeError == `true`"
+      either: left
+      topic: error
+  - name: convertDateTime
+    type: dev.vox.platform.kahpp.configuration.transform.ConvertZonedDateTimeFieldTransform
+    config:
+      field: value.date_time
+      inputFormat: RFC_3339_LENIENT_MS_FORMATTER
+      outputFormat: RFC_3339
+  - name: produceRecordToSinkTopic
+    type: dev.vox.platform.kahpp.configuration.topic.ProduceToTopic
+    config:
+      topic: sink

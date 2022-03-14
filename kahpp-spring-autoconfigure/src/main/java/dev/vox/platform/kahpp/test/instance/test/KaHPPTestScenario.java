@@ -66,7 +66,7 @@ public class KaHPPTestScenario {
   }
 
   public Map<String, Map<String, JsonNode>> getExpectedApiInteractions() {
-    return expectedApiInteractions;
+    return Map.copyOf(expectedApiInteractions);
   }
 
   public Path getPath() {
@@ -78,6 +78,6 @@ public class KaHPPTestScenario {
   }
 
   public Map<String, List<TestRecord<JsonNode, JsonNode>>> getExpectedRecordsPerSink() {
-    return expectedRecordsPerSink;
+    return Map.copyOf(expectedRecordsPerSink);
   }
 }

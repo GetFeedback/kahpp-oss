@@ -23,8 +23,23 @@
                 <Field type="dev.vox.platform.kahpp.streams.StepBuilderConfiguration$StepBuilderMap"/>
                 <Field type="org.springframework.boot.autoconfigure.kafka.KafkaProperties$Streams"/>
                 <Field type="io.micrometer.core.instrument.MeterRegistry"/>
+                <Field type="dev.vox.platform.kahpp.test.instance.pact.PactMockServiceRegistry"/>
+
             </Or>
         </And>
+    </Match>
+
+    <Match>
+        <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE"/>
+        <Class name="dev.vox.platform.kahpp.test.instance.InstanceTest" />
+        <And>
+            <Method name="buildScenarios"/>
+        </And>
+    </Match>
+
+    <Match>
+        <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE"/>
+        <Class name="dev.vox.platform.kahpp.test.instance.InstanceTest" />
     </Match>
 
 </FindBugsFilter>

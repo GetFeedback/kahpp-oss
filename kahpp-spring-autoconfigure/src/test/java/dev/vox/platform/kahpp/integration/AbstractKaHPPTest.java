@@ -162,8 +162,7 @@ public abstract class AbstractKaHPPTest {
             () -> {
               RecordHeaders headers = new RecordHeaders();
               headers.add(
-                  new RecordHeader(
-                      "operation", OBJECT_MAPPER.writeValueAsBytes("create_cake")));
+                  new RecordHeader("operation", OBJECT_MAPPER.writeValueAsBytes("create_cake")));
 
               ProducerRecord<String, String> producerRecord =
                   new ProducerRecord<>(
