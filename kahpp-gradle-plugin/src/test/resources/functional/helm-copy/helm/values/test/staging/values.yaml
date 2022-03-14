@@ -1,0 +1,14 @@
+instance:
+  group: kahpp-plugin
+  name: test-copying-config-from-helm
+  topics:
+    source: my-source-topic
+    sink: my-sink-topic
+  streamsConfig:
+    bootstrapServers:
+      - my-staging-cluster:9092
+  steps:
+    - name: produceRecordToSinkTopic
+      type: dev.vox.platform.kahpp.configuration.topic.ProduceToTopic
+      config:
+        topic: sink
