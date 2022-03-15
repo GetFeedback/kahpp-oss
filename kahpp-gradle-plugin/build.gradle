@@ -1,0 +1,56 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+    id 'groovy'
+    id 'java'
+}
+
+gradlePlugin {
+    plugins {
+        kahpp {
+            id = "dev.vox.platform.kahpp"
+            implementationClass = "dev.vox.platform.kahpp.gradle.plugin.KaHPPGradlePlugin"
+        }
+    }
+}
+
+ext {
+    springVersion = '2.6.4'
+}
+
+dependencies {
+    api "org.yaml:snakeyaml:1.29"
+    api "org.assertj:assertj-core:3.21.0"
+    api "org.springframework.boot:spring-boot-gradle-plugin:${springVersion}"
+    api("io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE")
+    compileOnly localGroovy()
+    testImplementation gradleTestKit()
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+project.dependencies.add( "implementation", project.dependencies.create("org.springframework.boot:spring-boot-starter-validation:${springVersion}"))
+project.dependencies.add( "implementation", project.dependencies.create("org.springframework.kafka:spring-kafka-test:${springVersion}"))
+project.dependencies.add( "implementation", project.dependencies.create("org.springframework.boot:spring-boot-starter-test:${springVersion}"))
+
+spotless {
+    groovyGradle {
+        greclipse()
+        indentWithSpaces()
+    }
+    groovy {
+        greclipse()
+        indentWithSpaces()
+    }
+}
+
+jacoco {
+    jacocoTestCoverageVerification {
+        violationRules {
+            enabled = false
+        }
+    }
+}
+
+spotbugsMain.enabled = false
+spotbugsTest.enabled = false

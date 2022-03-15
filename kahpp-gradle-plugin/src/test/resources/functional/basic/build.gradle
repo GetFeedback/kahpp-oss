@@ -1,0 +1,4 @@
+
+plugins {
+    id 'dev.vox.platform.kahpp'
+}
