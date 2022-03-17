@@ -50,6 +50,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.EnabledIf;
 
@@ -58,6 +59,7 @@ import org.springframework.test.context.junit.jupiter.EnabledIf;
  * unit tests as they're suppose to have a real KaHPP configuration file. See the available
  * tests/tasks by running: `./gradlew tasks --group=kahpp`
  */
+@Profile("test")
 @SpringBootTest(
     classes = {
       Serdes.class,
