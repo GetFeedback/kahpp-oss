@@ -7,9 +7,11 @@ import dev.vox.platform.kahpp.step.ConfigurationToStep;
 import dev.vox.platform.kahpp.step.StepConfiguration;
 import dev.vox.platform.kahpp.streams.Instance;
 import java.util.HashMap;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+@Profile("test")
 @Component
 @Order(500) // Ensure we can modify the Step and inject the Pact Server URI
 public class PactConfigurationToHttpCallStep implements ConfigurationToStep<HttpCall> {

@@ -12,10 +12,12 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.testcontainers.containers.Container;
 import org.testcontainers.containers.GenericContainer;
 
+@Profile("test")
 @Component
 public class PactMockServiceRegistry {
   private static final int MOCK_SERVICE_PORT = 80;

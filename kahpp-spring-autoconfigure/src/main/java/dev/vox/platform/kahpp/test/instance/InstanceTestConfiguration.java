@@ -23,7 +23,9 @@ import java.time.ZoneId;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
+@Profile("test")
 @Configuration
 public class InstanceTestConfiguration {
   public static final Instant CLOCK_FROZEN_INSTANT = Instant.parse("2020-08-02T10:00:00Z");
