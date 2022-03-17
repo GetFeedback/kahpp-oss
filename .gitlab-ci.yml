@@ -30,12 +30,16 @@ check:
   extends:
     - .gradle
   script:
-    - ./gradlew check
+    - ./gradlew check coverallsJacoco
   artifacts:
     when: always
     paths:
       - build/reports/tests/test
+      - build/reports/spotbugs
+      - build/reports/pmd
+      - build/reports/jacoco/test/html
       - build/test-results/test/TEST-*.xml
+      - build/reports/jacoco/test/jacocoTestReport.xml
 
 publish:
   only:
