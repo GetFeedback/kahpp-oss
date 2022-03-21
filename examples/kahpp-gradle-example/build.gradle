@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://maven.pkg.github.com/GetFeedback/kahpp-oss"
+        }
+    }
+
+    dependencies {
+        classpath "dev.vox.platform.kahpp:kahpp-gradle-plugin:0.0.4"
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '2.6.4'
+}
+
+apply plugin: 'dev.vox.platform.kahpp'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://maven.pkg.github.com/GetFeedback/kahpp-oss"
+    }
+}
+
+dependencies {
+    implementation "dev.vox.platform.kahpp:kahpp-spring-starter:0.0.4"
+    testImplementation("org.springframework:spring-test:5.3.16")
+}
