@@ -33,6 +33,9 @@ Here is an example of what KaHPP is capable of doing:
 ### Filters
 - `FilterField`: permits to filter records by specific field (key,value,timestamp) using `jmespath`.
 
+### Throttle
+- `Throttle`: Limit the output of a KaHPP instance by applying a rate limit using `recordsPerSecond`.
+
 ### JMESPath custom functions
 We can make our filters more powerful using `JMESPath` functions.
 - `now`: permits addition or subtraction from now time, for different units.
@@ -71,4 +74,3 @@ Then in the steps we may decide how to use it and how to handle the response.
 ## Contributing to KaHPP
 
 Be sure to setup `gradle.properties` with required information documented in `gradle.properties.dist`.
-
