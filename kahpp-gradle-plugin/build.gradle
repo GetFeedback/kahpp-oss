@@ -15,7 +15,7 @@ gradlePlugin {
 }
 
 ext {
-    springVersion = '2.6.4'
+    springVersion = '2.6.5'
 }
 
 dependencies {
