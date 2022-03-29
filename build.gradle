@@ -27,7 +27,7 @@ allprojects {
                 username githubUser
                 password githubToken
             }
-            url "https://maven.pkg.github.com/usabilla/health-indicator-kafka-java"
+            url "https://maven.pkg.github.com/usabilla/retryable-api-client-java"
         }
     }
 }

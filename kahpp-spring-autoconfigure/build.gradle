@@ -33,7 +33,7 @@ dependencies{
     implementation "io.burt:jmespath-core:0.5.1"
     implementation "io.burt:jmespath-jackson:0.5.1"
     implementation "io.vavr:vavr:1.0.0-alpha-4"
-    implementation "com.usabilla.healthcheck.springboot:kafka:${kafkaHealthcheckVersion}"
+    implementation "com.deviceinsight.kafka:kafka-health-check:1.3.0"
     implementation "com.usabilla:retryableapiclient:${retryableHttpVersion}"
     implementation "org.springframework.kafka:spring-kafka"
     implementation "org.springframework.boot:spring-boot-starter"
