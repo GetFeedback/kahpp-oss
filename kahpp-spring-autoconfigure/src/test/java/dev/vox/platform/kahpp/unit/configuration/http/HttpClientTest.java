@@ -2,16 +2,16 @@ package dev.vox.platform.kahpp.unit.configuration.http;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.usabilla.retryableapiclient.ApiClient;
-import com.usabilla.retryableapiclient.RateLimit;
-import com.usabilla.retryableapiclient.ratelimit.SmoothRateLimit;
-import com.usabilla.retryableapiclient.retry.RetryConfig;
 import dev.vox.platform.kahpp.configuration.http.HttpClient;
 import dev.vox.platform.kahpp.configuration.http.HttpClient.Options;
 import dev.vox.platform.kahpp.configuration.http.HttpClient.Options.Connection;
 import dev.vox.platform.kahpp.configuration.http.HttpClient.Options.RateLimitConfig;
 import dev.vox.platform.kahpp.configuration.http.HttpClient.Options.Retries;
 import dev.vox.platform.kahpp.configuration.http.HttpClient.Options.RetriesForHttpStatus;
+import dev.vox.platform.kahpp.configuration.http.client.ApiClient;
+import dev.vox.platform.kahpp.configuration.http.client.configuration.RateLimit;
+import dev.vox.platform.kahpp.configuration.http.client.configuration.RetryConfig;
+import dev.vox.platform.kahpp.configuration.http.client.configuration.SmoothRateLimit;
 import java.io.IOException;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.List;

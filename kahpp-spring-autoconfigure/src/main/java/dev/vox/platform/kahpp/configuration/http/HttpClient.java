@@ -1,9 +1,9 @@
 package dev.vox.platform.kahpp.configuration.http;
 
-import com.usabilla.retryableapiclient.ApiClient;
-import com.usabilla.retryableapiclient.RateLimit;
-import com.usabilla.retryableapiclient.ratelimit.RateLimitBuilder;
-import com.usabilla.retryableapiclient.retry.RetryConfig;
+import dev.vox.platform.kahpp.configuration.http.client.ApiClient;
+import dev.vox.platform.kahpp.configuration.http.client.configuration.RateLimit;
+import dev.vox.platform.kahpp.configuration.http.client.configuration.RateLimitBuilder;
+import dev.vox.platform.kahpp.configuration.http.client.configuration.RetryConfig;
 import dev.vox.platform.kahpp.configuration.http.validation.RetryableHttpStatusCodes;
 import java.time.Duration;
 import java.util.Collections;

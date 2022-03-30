@@ -1,7 +1,7 @@
 package dev.vox.platform.kahpp.configuration.http;
 
-import com.usabilla.retryableapiclient.RequestException;
 import dev.vox.platform.kahpp.configuration.RecordAction;
+import dev.vox.platform.kahpp.configuration.http.client.exception.RequestException;
 
 /**
  * Contract for ResponseHandler types which are also able to Handle a RequestException, since the

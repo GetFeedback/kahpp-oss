@@ -1,9 +1,9 @@
 package dev.vox.platform.kahpp.configuration.http;
 
 import static java.util.Collections.emptyMap;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import com.usabilla.retryableapiclient.ApiClient;
+import dev.vox.platform.kahpp.configuration.http.client.ApiClient;
 import dev.vox.platform.kahpp.configuration.topic.TopicEntry.TopicIdentifier;
 import dev.vox.platform.kahpp.configuration.util.Range;
 import dev.vox.platform.kahpp.unit.ConstraintViolationTestAbstract;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 class HandleByStatusCodeTest extends ConstraintViolationTestAbstract {
 
   static TopicIdentifier topicIdentifier = new TopicIdentifier("my-topic");
-  static ApiClient apiClient = ApiClient.create("/path", 1, 1);
+  static ApiClient apiClient = new ApiClient.Builder("/path").setRequestConfig(1, 1).build();
 
   @Test
   public void failsValidationOnEmptyMap() {

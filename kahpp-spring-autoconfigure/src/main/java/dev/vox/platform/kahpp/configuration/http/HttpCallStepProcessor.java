@@ -1,11 +1,11 @@
 package dev.vox.platform.kahpp.configuration.http;
 
-import com.usabilla.retryableapiclient.RequestException;
-import com.usabilla.retryableapiclient.Response;
 import dev.vox.platform.kahpp.configuration.RecordAction;
 import dev.vox.platform.kahpp.configuration.RecordActionRoute;
 import dev.vox.platform.kahpp.configuration.TransformRecord;
 import dev.vox.platform.kahpp.configuration.TransformRecordApplier;
+import dev.vox.platform.kahpp.configuration.http.client.Response;
+import dev.vox.platform.kahpp.configuration.http.client.exception.RequestException;
 import dev.vox.platform.kahpp.configuration.topic.Produce;
 import dev.vox.platform.kahpp.configuration.topic.TopicEntry;
 import dev.vox.platform.kahpp.processor.StepProcessor;

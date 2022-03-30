@@ -1,10 +1,10 @@
 package dev.vox.platform.kahpp.configuration.http;
 
-import com.usabilla.retryableapiclient.ApiClient;
-import com.usabilla.retryableapiclient.RequestException;
 import dev.vox.platform.kahpp.configuration.RecordAction;
 import dev.vox.platform.kahpp.configuration.conditional.Condition;
 import dev.vox.platform.kahpp.configuration.conditional.Conditional;
+import dev.vox.platform.kahpp.configuration.http.client.ApiClient;
+import dev.vox.platform.kahpp.configuration.http.client.exception.RequestException;
 import dev.vox.platform.kahpp.streams.KaHPPRecord;
 import io.vavr.control.Either;
 import io.vavr.control.Try;

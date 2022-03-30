@@ -1,7 +1,7 @@
 package dev.vox.platform.kahpp.configuration.http;
 
-import com.usabilla.retryableapiclient.Response;
 import dev.vox.platform.kahpp.configuration.RecordActionRoute;
+import dev.vox.platform.kahpp.configuration.http.client.Response;
 import dev.vox.platform.kahpp.configuration.topic.TopicEntry;
 import java.util.Collections;
 import java.util.Set;
