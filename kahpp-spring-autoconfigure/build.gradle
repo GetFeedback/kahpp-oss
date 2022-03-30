@@ -10,7 +10,7 @@ configurations {
 }
 
 ext {
-    sentryVersion = '5.7.0'
+    sentryVersion = '5.7.1'
     micrometerVersion = '1.8.4'
     kafkaHealthcheckVersion = '0.2.0'
     retryableHttpVersion = '0.7.0'
