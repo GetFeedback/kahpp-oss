@@ -80,7 +80,7 @@ dependencies{
     implementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
 
     developmentOnly "org.springframework.boot:spring-boot-devtools"
-    errorprone "com.google.errorprone:error_prone_core:2.11.0"
+    errorprone "com.google.errorprone:error_prone_core:2.12.1"
 }
 
 publishing {
