@@ -74,7 +74,7 @@ dependencies{
     }
     implementation "com.google.guava:guava:31.1-jre"
     implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
-    implementation "org.testcontainers:testcontainers:1.17.0"
+    implementation "org.testcontainers:testcontainers:1.17.1"
     implementation "org.assertj:assertj-core:3.22.0"
     implementation "org.mockito:mockito-core:${mockitoVersion}"
     implementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
