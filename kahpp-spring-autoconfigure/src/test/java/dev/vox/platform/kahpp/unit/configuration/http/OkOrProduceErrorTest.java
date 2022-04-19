@@ -2,10 +2,10 @@ package dev.vox.platform.kahpp.unit.configuration.http;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.usabilla.retryableapiclient.ApiClient;
 import dev.vox.platform.kahpp.configuration.conditional.Condition;
 import dev.vox.platform.kahpp.configuration.http.OkOrProduceError;
 import dev.vox.platform.kahpp.configuration.http.ResponseHandlerRecordUpdate;
+import dev.vox.platform.kahpp.configuration.http.client.ApiClient;
 import dev.vox.platform.kahpp.configuration.topic.TopicEntry;
 import dev.vox.platform.kahpp.unit.ConstraintViolationTestAbstract;
 import java.util.List;
@@ -27,7 +27,7 @@ class OkOrProduceErrorTest extends ConstraintViolationTestAbstract {
                 "path",
                 "/",
                 "apiClient",
-                ApiClient.create("https://localhost", 20, 10),
+                new ApiClient.Builder("https://localhost").setRequestConfig(10, 20).build(),
                 "topic",
                 new TopicEntry.TopicIdentifier("error"),
                 "forwardRecordOnError",

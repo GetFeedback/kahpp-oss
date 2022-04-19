@@ -2,13 +2,13 @@ package dev.vox.platform.kahpp.unit.configuration.http;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.usabilla.retryableapiclient.Response;
 import dev.vox.platform.kahpp.configuration.RecordAction;
 import dev.vox.platform.kahpp.configuration.RecordActionRoute;
 import dev.vox.platform.kahpp.configuration.TransformRecord;
 import dev.vox.platform.kahpp.configuration.http.ResponseHandler;
 import dev.vox.platform.kahpp.configuration.http.ResponseHandlerException;
 import dev.vox.platform.kahpp.configuration.http.ResponseHandlerRecordRoute;
+import dev.vox.platform.kahpp.configuration.http.client.Response;
 import dev.vox.platform.kahpp.configuration.topic.TopicEntry;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

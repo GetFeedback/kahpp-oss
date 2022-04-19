@@ -1,8 +1,8 @@
 package dev.vox.platform.kahpp.test.instance.pact;
 
-import com.usabilla.retryableapiclient.ApiClient;
 import dev.vox.platform.kahpp.configuration.http.HttpCall;
 import dev.vox.platform.kahpp.configuration.http.HttpClient;
+import dev.vox.platform.kahpp.configuration.http.client.ApiClient;
 import dev.vox.platform.kahpp.step.ConfigurationToStep;
 import dev.vox.platform.kahpp.step.StepConfiguration;
 import dev.vox.platform.kahpp.streams.Instance;

@@ -1,7 +1,6 @@
 package dev.vox.platform.kahpp;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.usabilla.healthcheck.springboot.kafka.Topics;
 import dev.vox.platform.kahpp.configuration.Step;
 import dev.vox.platform.kahpp.configuration.topic.Produce;
 import dev.vox.platform.kahpp.configuration.topic.TopicEntry;
@@ -57,7 +56,7 @@ public class KafkaStreams implements AutoCloseable {
   }
 
   @Bean("requiredKafkaStreamsTopics")
-  public Topics getTopics() {
+  public TopicsMap getTopics() {
     return config.getTopics();
   }
 

@@ -1,7 +1,7 @@
 package dev.vox.platform.kahpp.configuration.http;
 
-import com.usabilla.retryableapiclient.Response;
 import dev.vox.platform.kahpp.configuration.RecordAction;
+import dev.vox.platform.kahpp.configuration.http.client.Response;
 
 public interface ResponseHandler {
   ResponseHandler RECORD_TERMINATE = response -> () -> false;

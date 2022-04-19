@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.usabilla.retryableapiclient.Response;
 import dev.vox.platform.kahpp.configuration.TransformRecord;
+import dev.vox.platform.kahpp.configuration.http.client.Response;
 import org.springframework.util.StringUtils;
 
 public final class ResponseHandlerRecordUpdate implements ResponseHandler {

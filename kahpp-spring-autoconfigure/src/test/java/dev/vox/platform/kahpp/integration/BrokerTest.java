@@ -2,8 +2,8 @@ package dev.vox.platform.kahpp.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.usabilla.healthcheck.springboot.kafka.Topics;
 import dev.vox.platform.kahpp.KafkaStreams;
+import dev.vox.platform.kahpp.configuration.topic.TopicsMap;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public final class BrokerTest extends AbstractKaHPPTest {
 
   @Test
   public void topicsAreCorrect() {
-    Topics streamsTopics = kafkaStreams.getTopics();
+    TopicsMap streamsTopics = kafkaStreams.getTopics();
     Set<String> brokerTopics = embeddedKafka.getTopics();
 
     assertThat(brokerTopics).hasSizeGreaterThan(0);

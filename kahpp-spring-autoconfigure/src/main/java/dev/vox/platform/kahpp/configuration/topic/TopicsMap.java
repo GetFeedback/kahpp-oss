@@ -1,6 +1,5 @@
 package dev.vox.platform.kahpp.configuration.topic;
 
-import com.usabilla.healthcheck.springboot.kafka.Topics;
 import dev.vox.platform.kahpp.configuration.topic.validation.SourceTopicIsPresent;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -12,7 +11,7 @@ import javax.validation.constraints.Size;
 @SourceTopicIsPresent
 @Size(min = 1, max = 100)
 public final class TopicsMap extends HashMap<String, TopicEntry>
-    implements Topics, Map<String, TopicEntry>, Serializable {
+    implements Map<String, TopicEntry>, Serializable {
   private static final long serialVersionUID = -4917327073874163327L;
 
   public static final String TOPIC_SOURCE_IDENTIFIER = "source";
@@ -38,7 +37,6 @@ public final class TopicsMap extends HashMap<String, TopicEntry>
         .collect(Collectors.toUnmodifiableMap(Entry::getKey, Entry::getValue));
   }
 
-  @Override
   public Set<String> all() {
     return this.values().stream().map(TopicEntry::getName).collect(Collectors.toUnmodifiableSet());
   }

@@ -12,8 +12,6 @@ configurations {
 ext {
     sentryVersion = '5.7.3'
     micrometerVersion = '1.8.5'
-    kafkaHealthcheckVersion = '0.2.0'
-    retryableHttpVersion = '0.7.0'
     kafkaVersion = '3.1.0'
     logbackVersion = '1.2.11'
     jacksonVersion = '2.13.2'
@@ -33,8 +31,7 @@ dependencies{
     implementation "io.burt:jmespath-core:0.5.1"
     implementation "io.burt:jmespath-jackson:0.5.1"
     implementation "io.vavr:vavr:1.0.0-alpha-4"
-    implementation "com.usabilla.healthcheck.springboot:kafka:${kafkaHealthcheckVersion}"
-    implementation "com.usabilla:retryableapiclient:${retryableHttpVersion}"
+    implementation "com.deviceinsight.kafka:kafka-health-check:1.3.0"
     implementation "org.springframework.kafka:spring-kafka"
     implementation "org.springframework.boot:spring-boot-starter"
     implementation "org.springframework.boot:spring-boot-starter-validation"

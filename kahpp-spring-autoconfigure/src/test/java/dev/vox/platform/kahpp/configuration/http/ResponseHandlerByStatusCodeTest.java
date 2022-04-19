@@ -6,9 +6,9 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
 
-import com.usabilla.retryableapiclient.RequestException;
-import com.usabilla.retryableapiclient.Response;
 import dev.vox.platform.kahpp.configuration.RecordAction;
+import dev.vox.platform.kahpp.configuration.http.client.Response;
+import dev.vox.platform.kahpp.configuration.http.client.exception.RequestException;
 import dev.vox.platform.kahpp.configuration.util.Range;
 import java.lang.reflect.Constructor;
 import java.util.HashMap;

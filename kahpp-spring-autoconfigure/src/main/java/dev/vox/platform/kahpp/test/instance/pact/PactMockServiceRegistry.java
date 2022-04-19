@@ -2,8 +2,8 @@ package dev.vox.platform.kahpp.test.instance.pact;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.usabilla.retryableapiclient.ApiClient;
-import com.usabilla.retryableapiclient.RequestException;
+import dev.vox.platform.kahpp.configuration.http.client.ApiClient;
+import dev.vox.platform.kahpp.configuration.http.client.exception.RequestException;
 import dev.vox.platform.kahpp.test.instance.InstanceTestConfiguration;
 import dev.vox.platform.kahpp.test.instance.test.KaHPPTestScenario;
 import java.nio.file.Path;
@@ -95,8 +95,10 @@ public class PactMockServiceRegistry {
 
       this.container = container;
       this.internalClient =
-          ApiClient.create(getServiceUri(), 300, 100, Map.of("X-Pact-Mock-Service", "true"));
-
+          new ApiClient.Builder(getServiceUri())
+              .setRequestConfig(100, 300)
+              .setHeaders(Map.of("X-Pact-Mock-Service", "true"))
+              .build();
       try {
         // Poor implemented WaitStrategy
         internalClient.sendRequest("GET", "/");
