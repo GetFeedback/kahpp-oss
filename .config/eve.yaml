@@ -1,11 +1,6 @@
 version: 1 # This ensures backwards compatibilities
 team: platform # The team that owns that project
 
-mirrors:
-  gitlab:
-    group: usabilla/dev/getfeedback
-    name: kahpp-oss
-
 plugins:
   approve-dependabot-prs:
     enabled: true

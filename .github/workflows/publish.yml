@@ -1,0 +1,15 @@
+name: publish
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - /^\d+\.\d+\.\d+$/
+jobs:
+  publish:
+    needs: [build]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Publish artifact
+      run: |
+        ./gradlew publish --project-prop projVersion="${{ github.ref_name }}" -PgitHubRepositoryUsername=${{ secrets.PACKAGE_REGISTRY_GITHUB_USER }} -PgitHubRepositoryPassword=${{ secrets.PACKAGE_REGISTRY_GITHUB_TOKEN }}
