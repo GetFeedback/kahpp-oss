@@ -11,5 +11,5 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Publish artifact
-      run: |
-        ./gradlew publish --project-prop projVersion="${{ github.ref_name }}" -PgitHubRepositoryUsername=${{ secrets.PACKAGE_REGISTRY_GITHUB_USER }} -PgitHubRepositoryPassword=${{ secrets.PACKAGE_REGISTRY_GITHUB_TOKEN }}
+        run: |
+          ./gradlew publish --project-prop projVersion="${{ github.ref_name }}" -PgitHubRepositoryUsername=${{ secrets.PACKAGE_REGISTRY_GITHUB_USER }} -PgitHubRepositoryPassword=${{ secrets.PACKAGE_REGISTRY_GITHUB_TOKEN }}
