@@ -2,12 +2,9 @@ name: publish
 on:
   workflow_run:
     workflows: [ check ]
-    branches: [ main ]
     types:
       - completed
-  push:
-    branches:
-      - main
+    branches: [ main ]
     tags:
       - /^\d+\.\d+\.\d+$/
 jobs:
