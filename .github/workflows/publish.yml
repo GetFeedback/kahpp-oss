@@ -1,5 +1,10 @@
 name: publish
 on:
+  workflow_run:
+    workflows: [ check ]
+    branches: [ main ]
+    types:
+      - completed
   push:
     branches:
       - main
@@ -7,7 +12,6 @@ on:
       - /^\d+\.\d+\.\d+$/
 jobs:
   publish:
-    needs: [build]
     runs-on: ubuntu-20.04
     steps:
       - name: Publish artifact
