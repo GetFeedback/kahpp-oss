@@ -1,4 +1,4 @@
-# Kahpp [![Coverage Status](https://coveralls.io/repos/github/GetFeedback/kahpp-oss/badge.svg?t=rUt4Ui)](https://coveralls.io/github/GetFeedback/kahpp-oss)
+# Kahpp [![Coverage Status](https://coveralls.io/repos/github/GetFeedback/kahpp-oss/badge.svg?t=rUt4Ui)](https://coveralls.io/github/GetFeedback/kahpp-oss) [![check](https://github.com/GetFeedback/kahpp-oss/actions/workflows/check.yml/badge.svg)](https://github.com/GetFeedback/kahpp-oss/actions/workflows/check.yml)
 
 ### A Low-Code Real-Time Kafka Stream Processor
 
