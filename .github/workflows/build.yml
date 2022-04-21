@@ -1,18 +1,12 @@
-name: publish
+name: build
 on:
-  workflow_run:
-    workflows: [ check ]
-    types:
-      - completed
-    branches:
-      - main
   push:
-    branches:
-      - main
     tags:
       - '[0-9]+.[0-9]+.[0-9]+$'
+    branches:
+      - '*'
 jobs:
-  publish:
+  check:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -23,6 +17,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
       - name: Setup
         run: |
           # due to https://github.com/google/google-java-format/blob/v1.12.0/README.md#jdk-16
@@ -31,6 +27,15 @@ jobs:
             --add-exports jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED \
             --add-exports jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED \
             --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED >> ./gradle.properties
-      - name: Publish artifact
+#      - name: Check
+#        uses: gradle/gradle-build-action@v2
+#        with:
+#          arguments: check
+  publish:
+    needs: [check]
+    if: github.ref == 'refs/heads/main' && startsWith(github.ref, 'refs/tags')
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Publish artifact on GitHub
         run: |
           ./gradlew publish -PprojVersion=${{ github.ref_name }} -PgithubRepositoryUsername=${{ secrets.PACKAGE_REGISTRY_GITHUB_USER }} -PgithubRepositoryPassword=${{ secrets.PACKAGE_REGISTRY_GITHUB_TOKEN }} 
