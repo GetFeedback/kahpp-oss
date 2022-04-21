@@ -11,6 +11,18 @@ publishing {
             artifactId = 'kahpp-spring-starter'
             version = "${version}"
             from components.java
+            pom {
+                name = artifactId
+                description = "Everything you need for Kahpp as Spring Boot application"
+                url = "https://github.com/GetFeedback/kahpp-oss"
+                licenses {
+                    license {
+                        name = 'The MIT License'
+                        url = 'https://github.com/GetFeedback/kahpp-oss/blob/main/LICENSE'
+                        distribution = 'repo'
+                    }
+                }
+            }
         }
     }
 }

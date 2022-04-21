@@ -14,6 +14,25 @@ gradlePlugin {
     }
 }
 
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                name = artifactId
+                description = "The Gradle Plugin to maximize the usage of Kahpp"
+                url = "https://github.com/GetFeedback/kahpp-oss"
+                licenses {
+                    license {
+                        name = 'The MIT License'
+                        url = 'https://github.com/GetFeedback/kahpp-oss/blob/main/LICENSE'
+                        distribution = 'repo'
+                    }
+                }
+            }
+        }
+    }
+}
+
 ext {
     springVersion = '2.6.5'
 }

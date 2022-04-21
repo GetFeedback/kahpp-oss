@@ -86,8 +86,19 @@ publishing {
             groupId = "${groupId}"
             artifactId = 'kahpp-spring-autoconfigure'
             version = "${version}"
-
             from components.java
+            pom {
+                name = artifactId
+                description = "Spring Boot auto-configuration for Kahpp"
+                url = "https://github.com/GetFeedback/kahpp-oss"
+                licenses {
+                    license {
+                        name = 'The MIT License'
+                        url = 'https://github.com/GetFeedback/kahpp-oss/blob/main/LICENSE'
+                        distribution = 'repo'
+                    }
+                }
+            }
         }
     }
 }
