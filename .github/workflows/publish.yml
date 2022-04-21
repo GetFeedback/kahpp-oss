@@ -10,7 +10,7 @@ on:
     branches:
       - main
     tags:
-      - [0-9]+.[0-9]+.[0-9]+$
+      - '[0-9]+.[0-9]+.[0-9]+$'
 jobs:
   publish:
     runs-on: ubuntu-20.04
@@ -33,4 +33,4 @@ jobs:
             --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED >> ./gradle.properties
       - name: Publish artifact
         run: |
-          ./gradlew publish -PprojVersion="${{ github.ref_name }}" -PgitHubRepositoryUsername=${{ secrets.PACKAGE_REGISTRY_GITHUB_USER }} -PgitHubRepositoryPassword=${{ secrets.PACKAGE_REGISTRY_GITHUB_TOKEN }}
+          ./gradlew publish -PprojVersion=${{ github.ref_name }} -PgithubRepositoryUsername=${{ secrets.PACKAGE_REGISTRY_GITHUB_USER }} -PgithubRepositoryPassword=${{ secrets.PACKAGE_REGISTRY_GITHUB_TOKEN }} 
