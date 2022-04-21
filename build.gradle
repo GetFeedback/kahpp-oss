@@ -123,10 +123,8 @@ subprojects {
     publishing {
         repositories {
             maven {
-                name = 'Github'
-                url = uri('https://maven.pkg.github.com/getfeedback/kahpp-oss')
-
                 name = 'githubRepository'
+                url = uri('https://maven.pkg.github.com/getfeedback/kahpp-oss')
                 credentials(PasswordCredentials)
             }
         }
