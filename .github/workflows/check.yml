@@ -27,5 +27,7 @@ jobs:
             --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED >> ./gradle.properties
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
+        env:
+          COVERALLS_REPO_TOKEN: ${{secrets.COVERALLS_REPO_TOKEN}}
         with:
           arguments: check coverallsJacoco
