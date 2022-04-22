@@ -31,5 +31,8 @@ jobs:
             --add-exports jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED \
             --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED >> ./gradle.properties
       - name: Publish artifact
+        env:
+          PGP_KEY: ${{secrets.OSS_GPG_KEY}}
+          PGP_PSW: ${{secrets.OSS_GPG_PASSPHRASE}}
         run: |
-          ./gradlew publish -PprojVersion=${{ github.ref_name }} -PgithubRepositoryUsername=${{ secrets.PACKAGE_REGISTRY_GITHUB_USER }} -PgithubRepositoryPassword=${{ secrets.PACKAGE_REGISTRY_GITHUB_TOKEN }} 
+          ./gradlew publish -PprojVersion=${{ github.ref_name }} -PgithubRepositoryUsername=${{ secrets.PACKAGE_REGISTRY_GITHUB_USER }} -PgithubRepositoryPassword=${{ secrets.PACKAGE_REGISTRY_GITHUB_TOKEN }} -PsignJar

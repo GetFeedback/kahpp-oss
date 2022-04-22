@@ -36,6 +36,7 @@ subprojects {
     apply plugin: 'jacoco'
     apply plugin: 'com.github.nbaztec.coveralls-jacoco'
     apply plugin: 'com.diffplug.spotless'
+    apply plugin: 'signing'
 
     dependencyManagement {
         imports {
@@ -127,6 +128,13 @@ subprojects {
                 url = uri('https://maven.pkg.github.com/getfeedback/kahpp-oss')
                 credentials(PasswordCredentials)
             }
+        }
+    }
+
+    signing {
+        if (project.hasProperty("signJar")) {
+            useInMemoryPgpKeys(System.getenv('PGP_KEY'), System.getenv('PGP_PSW'))
+            sign publishing.publications
         }
     }
 }
