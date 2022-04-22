@@ -4,6 +4,8 @@ on:
     workflows: [ check ]
     types:
       - completed
+    branches:
+      - 'main'
   create:
     tags:
       - '[0-9]+.[0-9]+.[0-9]+$'
