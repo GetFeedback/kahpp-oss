@@ -16,7 +16,7 @@ gradlePlugin {
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        pluginMaven(MavenPublication) {
             pom {
                 name = artifactId
                 description = "The Gradle Plugin to maximize the usage of Kahpp"
