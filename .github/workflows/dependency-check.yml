@@ -24,7 +24,7 @@ jobs:
         run: |
           ./gradlew dependencyCheckAggregate
       - name: Upload dependency check report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: always()
         with:
           name: dependency-check-report.html
