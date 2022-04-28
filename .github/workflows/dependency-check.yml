@@ -22,9 +22,10 @@ jobs:
             --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED >> ./gradle.properties
       - name: Build report overview of the vulnerabilities per dependency
         run: |
-          ./gradlew dependencyCheckAnalyze
+          ./gradlew dependencyCheckAggregate
       - name: Upload dependency check report
         uses: actions/upload-artifact@v2
+        if: always()
         with:
-          name: dependency-check-report-${{ github.ref_name }}.html
+          name: dependency-check-report.html
           path: ./build/reports/dependency-check-report.html
