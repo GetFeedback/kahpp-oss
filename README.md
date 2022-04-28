@@ -1,4 +1,8 @@
+<p align="center"><img height="200" src="doc/kahpp-logo.svg"/></p>
+
+
 # Kahpp [![Coverage Status](https://coveralls.io/repos/github/GetFeedback/kahpp-oss/badge.svg?t=rUt4Ui)](https://coveralls.io/github/GetFeedback/kahpp-oss) [![check](https://github.com/GetFeedback/kahpp-oss/actions/workflows/check.yml/badge.svg)](https://github.com/GetFeedback/kahpp-oss/actions/workflows/check.yml)
+
 
 ### A Low-Code Real-Time Kafka Stream Processor
 
@@ -157,4 +161,7 @@ Please, follow this list to have a smooth journey:
 * Read our [contributing guidelines](CONTRIBUTING.md) and our [code of conduct](CODE_OF_CONDUCT.md).
 * Be sure to setup `gradle.properties` with required information documented in `gradle.properties.dist`.
 * Clone the repo and make your contribution into a separate branch.
-* Open for a PR. 
+* Open for a PR.   
+
+## Powered By
+<a href="https://www.momentive.ai/"><img height="100" src="doc/momentive-logo.svg"/></a>
