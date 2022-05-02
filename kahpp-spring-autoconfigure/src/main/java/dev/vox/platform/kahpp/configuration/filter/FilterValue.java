@@ -9,7 +9,9 @@ import java.util.Map;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-/** @deprecated Replaced by {@link FilterField}} */
+/**
+ * @deprecated Replaced by {@link FilterField}}
+ */
 @Deprecated
 public final class FilterValue implements PredicateBranch {
 
