@@ -15,7 +15,7 @@ ext {
     kafkaVersion = '3.1.0'
     logbackVersion = '1.2.11'
     jacksonVersion = '2.13.2'
-    mockitoVersion = '4.4.0'
+    mockitoVersion = '4.5.1'
 }
 
 dependencies{
@@ -75,6 +75,9 @@ dependencies{
     implementation "org.assertj:assertj-core:3.22.0"
     implementation "org.mockito:mockito-core:${mockitoVersion}"
     implementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+    implementation("net.bytebuddy:byte-buddy:1.12.9") {
+        because "due to https://github.com/mockito/mockito/releases/tag/v4.5.1"
+    }
 
     developmentOnly "org.springframework.boot:spring-boot-devtools"
     errorprone "com.google.errorprone:error_prone_core:2.13.1"
