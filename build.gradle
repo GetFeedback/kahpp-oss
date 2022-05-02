@@ -149,4 +149,5 @@ spotless {
 
 dependencyCheck {
     failBuildOnCVSS = 4.0
+    suppressionFile = "$root/config/dependency-check-suppression.xml"
 }
