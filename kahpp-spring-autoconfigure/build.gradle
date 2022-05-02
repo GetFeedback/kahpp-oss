@@ -75,7 +75,7 @@ dependencies{
     implementation "org.assertj:assertj-core:3.22.0"
     implementation "org.mockito:mockito-core:${mockitoVersion}"
     implementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
-    implementation("net.bytebuddy:byte-buddy:1.12.9") {
+    implementation("net.bytebuddy:byte-buddy:1.12.10") {
         because "due to https://github.com/mockito/mockito/releases/tag/v4.5.1"
     }
 
