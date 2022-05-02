@@ -39,7 +39,7 @@ ext {
 
 dependencies {
     api "org.yaml:snakeyaml:1.30"
-    api "org.assertj:assertj-core:3.21.0"
+    api "org.assertj:assertj-core:3.22.0"
     api "org.springframework.boot:spring-boot-gradle-plugin:${springVersion}"
     api("io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE")
     compileOnly localGroovy()
