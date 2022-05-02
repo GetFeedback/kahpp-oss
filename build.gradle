@@ -42,6 +42,7 @@ subprojects {
     dependencyManagement {
         imports {
             mavenBom SpringBootPlugin.BOM_COORDINATES
+            mavenBom 'com.fasterxml.jackson:jackson-bom:2.13.2.20220328'
         }
     }
 
