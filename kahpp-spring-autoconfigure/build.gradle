@@ -14,7 +14,6 @@ ext {
     micrometerVersion = '1.8.5'
     kafkaVersion = '3.1.0'
     logbackVersion = '1.2.11'
-    jacksonVersion = '2.13.2'
     mockitoVersion = '4.5.1'
 }
 
@@ -41,13 +40,14 @@ dependencies{
     implementation "net.logstash.logback:logstash-logback-encoder:7.1.1"
     implementation "ch.qos.logback:logback-core:${logbackVersion}"
     implementation "org.slf4j:slf4j-api"
-    implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
-    implementation "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
-    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-    implementation "com.fasterxml.jackson.module:jackson-module-scala_3:${jacksonVersion}"
-    implementation ("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jacksonVersion}") {
-        because "due to missing deps after bump kafkaVersion from 2.8.0 to 3.0.0"
-    }
+
+    implementation "com.fasterxml.jackson.core:jackson-annotations"
+    implementation "com.fasterxml.jackson.core:jackson-core"
+    implementation ("com.fasterxml.jackson.module:jackson-module-scala_3")
+    implementation ("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+    implementation ("com.fasterxml.jackson.datatype:jackson-datatype-jdk8")
+    implementation "com.fasterxml.jackson.core:jackson-databind"
+
     implementation("ch.qos.logback:logback-classic:${logbackVersion}") {
         exclude group: "org.sl4j", module: "slf4j-api"
     }
@@ -70,7 +70,6 @@ dependencies{
         because "due to ClassNotFoundException after bump mockserver-netty-5.12.0"
     }
     implementation "com.google.guava:guava:31.1-jre"
-    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
     implementation "org.testcontainers:testcontainers:1.17.1"
     implementation "org.assertj:assertj-core:3.22.0"
     implementation "org.mockito:mockito-core:${mockitoVersion}"

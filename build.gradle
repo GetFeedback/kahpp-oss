@@ -42,11 +42,16 @@ subprojects {
     dependencyManagement {
         imports {
             mavenBom SpringBootPlugin.BOM_COORDINATES
+            mavenBom 'com.fasterxml.jackson:jackson-bom:2.13.2.20220328'
         }
     }
 
     dependencies {
         implementation("com.github.spotbugs:spotbugs-annotations:4.6.0")
+        pmd("net.sourceforge.pmd:pmd-java:6.20.0") {
+            exclude group: 'commons-io', module: 'commons-io'
+        }
+        pmd("commons-io:commons-io:2.7")
     }
 
     test {
@@ -54,7 +59,6 @@ subprojects {
     }
 
     pmd {
-        toolVersion '6.20.0'
         ignoreFailures = false
         consoleOutput = true
         incrementalAnalysis = true
@@ -149,4 +153,5 @@ spotless {
 
 dependencyCheck {
     failBuildOnCVSS = 4.0
+    suppressionFile = "$root/config/dependency-check-suppression.xml"
 }
