@@ -51,7 +51,7 @@ subprojects {
         pmd("net.sourceforge.pmd:pmd-java:6.20.0") {
             exclude group: 'commons-io', module: 'commons-io'
         }
-        pmd("commons-io:commons-io:2.7")
+        pmd("commons-io:commons-io:2.11.0")
     }
 
     test {
