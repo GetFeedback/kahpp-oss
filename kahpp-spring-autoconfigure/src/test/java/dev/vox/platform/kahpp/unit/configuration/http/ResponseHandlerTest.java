@@ -55,7 +55,7 @@ class ResponseHandlerTest {
     ResponseHandlerRecordRoute responseHandler =
         new ResponseHandlerRecordRoute(Collections.singleton(topic));
     RecordActionRoute handle = responseHandler.handle(this.response);
-    assertThat(handle.shouldForward()).isTrue();
+    assertThat(handle.shouldForward()).isFalse();
     assertThat(handle.routes()).contains(topic);
     assertThat(responseHandler.getTopics()).contains(topic);
   }

@@ -25,7 +25,7 @@ public class ResponseHandlerRecordRoute implements ResponseHandler {
 
       @Override
       public boolean shouldForward() {
-        return true;
+        return false;
       }
     };
   }
