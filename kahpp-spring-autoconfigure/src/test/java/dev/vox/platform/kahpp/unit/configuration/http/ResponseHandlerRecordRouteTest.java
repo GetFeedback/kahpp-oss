@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.vox.platform.kahpp.configuration.RecordAction;
-import dev.vox.platform.kahpp.configuration.RecordActionRoute;
 import dev.vox.platform.kahpp.configuration.http.HandleByStatusCode;
 import dev.vox.platform.kahpp.configuration.http.HttpClient;
 import dev.vox.platform.kahpp.configuration.http.ResponseHandlerException;
 import dev.vox.platform.kahpp.configuration.http.ResponseHandlerRecordRoute;
+import dev.vox.platform.kahpp.configuration.http.client.exception.ClientException;
 import dev.vox.platform.kahpp.configuration.topic.TopicEntry;
 import dev.vox.platform.kahpp.configuration.util.Range;
 import dev.vox.platform.kahpp.integration.KaHPPMockServer;
@@ -78,9 +78,13 @@ class ResponseHandlerRecordRouteTest {
     Either<Throwable, RecordAction> afterCall =
         httpCall.call(KaHPPRecord.build(key, value, 1584352842123L));
 
-    assertTrue(afterCall.isRight());
-    assertThat(afterCall.get()).isInstanceOf(RecordActionRoute.class);
-    assertThat(((RecordActionRoute) afterCall.get()).routes()).contains(topic);
+    assertTrue(afterCall.isLeft());
+    assertThat(afterCall.getLeft()).isInstanceOf(ClientException.class);
+    assertThat(((ClientException) afterCall.getLeft()).getResponse().get().getStatusCode())
+        .isEqualTo(410);
+    assertThat(((ClientException) afterCall.getLeft()).getResponse().get().getBody())
+        .contains("""
+            {"foo":"bar"}""");
   }
 
   @Test

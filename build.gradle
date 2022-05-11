@@ -13,7 +13,7 @@ plugins {
 
 allprojects {
     group = 'dev.vox.platform.kahpp'
-    version = '0.0.1-SNAPSHOT'
+    version = '0.2.4-SNAPSHOT'
     if (project.hasProperty('projVersion')) {
         project.version = project.projVersion
     }
