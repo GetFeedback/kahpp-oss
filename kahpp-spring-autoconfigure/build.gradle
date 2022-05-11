@@ -51,7 +51,7 @@ dependencies{
     implementation("ch.qos.logback:logback-classic:${logbackVersion}") {
         exclude group: "org.sl4j", module: "slf4j-api"
     }
-    implementation("com.github.spotbugs:spotbugs-annotations:4.6.0")
+    implementation("com.github.spotbugs:spotbugs-annotations:4.7.0")
     implementation "org.apache.kafka:kafka-clients:${kafkaVersion}:test"
     implementation "org.apache.kafka:kafka_2.13:${kafkaVersion}"
     implementation "org.apache.kafka:kafka_2.13:${kafkaVersion}:test"
