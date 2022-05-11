@@ -121,6 +121,7 @@ public class HttpCallStepProcessor extends StepProcessor<HttpCall> {
     final Timer.Sample sample = Timer.start(meterRegistry);
 
     Either<Throwable, RecordAction> recordAction = step().call(sourceRecord);
+    RecordAction action = null;
 
     if (recordAction.isLeft()) {
       final long nanoInterval = sample.stop(unsuccessfulResponseTimer);
@@ -134,7 +135,17 @@ public class HttpCallStepProcessor extends StepProcessor<HttpCall> {
       LOGGER.warn(
           "{}: HTTP call failed with: {}", step().getTypedName(), getStatusCodeContext(error));
 
-      if (step() instanceof Produce) {
+      if (step() instanceof HandleByStatusCode step
+          && step.responseHandler instanceof UnexpectedResponseHandler) {
+        RequestException requestException = (RequestException) error;
+        if (requestException.getResponse().isPresent()) {
+          try {
+            action = step.responseHandler.handle(requestException.getResponse().get());
+          } catch (ResponseHandlerException e) {
+            forwardToSink(sourceRecord, (Produce) step());
+          }
+        }
+      } else if (step() instanceof Produce) {
         forwardToSink(sourceRecord, (Produce) step());
       }
 
@@ -143,32 +154,36 @@ public class HttpCallStepProcessor extends StepProcessor<HttpCall> {
         return;
       }
 
-      return;
+    } else {
+
+      final long nanoInterval = sample.stop(successfulResponseTimer);
+
+      context().headers().add(InstanceRuntime.HeaderHelper.forSuccess(step()));
+
+      successfulResponseTimeMs.record(Duration.ofNanos(nanoInterval).toMillis());
+      successfulResponseCounter.increment();
     }
 
-    final long nanoInterval = sample.stop(successfulResponseTimer);
+    if (action == null && recordAction.isRight()) {
+      action = recordAction.get();
+    }
 
-    context().headers().add(InstanceRuntime.HeaderHelper.forSuccess(step()));
-
-    successfulResponseTimeMs.record(Duration.ofNanos(nanoInterval).toMillis());
-    successfulResponseCounter.increment();
-
-    RecordAction action = recordAction.get();
-
-    KaHPPRecord sinkRecord = sourceRecord;
-    if (action instanceof TransformRecord) {
-      sinkRecord =
-          TransformRecordApplier.apply(jacksonRuntime, sourceRecord, (TransformRecord) action);
-    } else if (action instanceof RecordActionRoute) {
-      Set<TopicEntry.TopicIdentifier> routes = ((RecordActionRoute) action).routes();
-      for (TopicEntry.TopicIdentifier topic : routes) {
-        forwardToTopic(sinkRecord, topic);
+    if (action != null) {
+      KaHPPRecord sinkRecord = sourceRecord;
+      if (action instanceof TransformRecord) {
+        sinkRecord =
+            TransformRecordApplier.apply(jacksonRuntime, sourceRecord, (TransformRecord) action);
+      } else if (action instanceof RecordActionRoute) {
+        Set<TopicEntry.TopicIdentifier> routes = ((RecordActionRoute) action).routes();
+        for (TopicEntry.TopicIdentifier topic : routes) {
+          forwardToTopic(sinkRecord, topic);
+        }
       }
-    }
 
-    if (action.shouldForward()) {
-      forwardToNextStep(sinkRecord);
-      return;
+      if (action.shouldForward()) {
+        forwardToNextStep(sinkRecord);
+        return;
+      }
     }
 
     // fixme: forward to
