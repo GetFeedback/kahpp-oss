@@ -10,7 +10,7 @@ configurations {
 }
 
 ext {
-    sentryVersion = '5.7.3'
+    sentryVersion = '6.0.0'
     micrometerVersion = '1.9.0'
     kafkaVersion = '3.1.0'
     logbackVersion = '1.2.11'
