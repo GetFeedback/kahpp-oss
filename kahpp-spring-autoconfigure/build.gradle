@@ -14,7 +14,7 @@ ext {
     micrometerVersion = '1.9.0'
     kafkaVersion = '3.1.0'
     logbackVersion = '1.2.11'
-    mockitoVersion = '4.5.1'
+    mockitoVersion = '4.6.1'
 }
 
 dependencies{
