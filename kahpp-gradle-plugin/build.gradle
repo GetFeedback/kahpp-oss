@@ -34,7 +34,7 @@ publishing {
 }
 
 ext {
-    springVersion = '2.6.5'
+    springVersion = '2.7.0'
 }
 
 dependencies {
