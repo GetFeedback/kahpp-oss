@@ -13,7 +13,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-@SuppressWarnings({"PMD.AvoidFieldNameMatchingMethodName"})
 public abstract class AbstractHttpCall implements HttpCall, Conditional {
   @NotBlank private final transient String name;
 

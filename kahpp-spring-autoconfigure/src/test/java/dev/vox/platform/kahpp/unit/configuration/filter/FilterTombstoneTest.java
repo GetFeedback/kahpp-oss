@@ -29,7 +29,7 @@ class FilterTombstoneTest extends ConstraintViolationTestAbstract {
       KaHPPRecord.build(recordKey, recordValue, 1584352842123L);
 
   @Test
-  public void canConstruct() {
+  void canConstruct() {
     Set<ConstraintViolation<FilterTombstone>> violations = validator.validate(filter);
 
     assertThat(violations).hasSize(0);
@@ -39,7 +39,7 @@ class FilterTombstoneTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void canConstructWithConfig() {
+  void canConstructWithConfig() {
     FilterTombstone filter = new FilterTombstone(NAME, Map.of("filterNot", "true"));
 
     Set<ConstraintViolation<FilterTombstone>> violations = validator.validate(filter);
@@ -51,7 +51,7 @@ class FilterTombstoneTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void canFilterRecordsWithNullValues() {
+  void canFilterRecordsWithNullValues() {
     assertThat(filter.test(jacksonRuntime, tombStoneRecord)).isTrue();
     assertThat(filter.test(jacksonRuntime, recordWithValue)).isFalse();
   }

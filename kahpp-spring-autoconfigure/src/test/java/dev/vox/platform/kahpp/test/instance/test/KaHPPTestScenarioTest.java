@@ -44,6 +44,7 @@ class KaHPPTestScenarioTest {
   }
 
   @Test
+  @SuppressWarnings("PMD.AvoidDuplicateLiterals")
   void addPactInteraction() throws URISyntaxException {
     JsonNode interaction = objectMapper.createObjectNode().put("post", "hello/world");
 

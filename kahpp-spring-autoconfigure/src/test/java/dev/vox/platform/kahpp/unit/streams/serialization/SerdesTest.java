@@ -61,6 +61,7 @@ class SerdesTest {
             new SimpleEntry<>("spring.json.add.type.headers", false));
   }
 
+  @SuppressWarnings("PMD.AvoidAccessibilityAlteration")
   private static Serdes createSerdesWithProperties(Map<String, Object> properties)
       throws NoSuchFieldException, IllegalAccessException {
     KafkaProperties.Streams streamsConfig = new KafkaProperties.Streams();

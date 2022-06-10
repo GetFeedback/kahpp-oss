@@ -19,7 +19,7 @@ class HandleByStatusCodeTest extends ConstraintViolationTestAbstract {
   static ApiClient apiClient = new ApiClient.Builder("/path").setRequestConfig(1, 1).build();
 
   @Test
-  public void failsValidationOnEmptyMap() {
+  void failsValidationOnEmptyMap() {
     var invalidHandler = new HandleByStatusCode("test", emptyMap());
     var validate = validator.validate(invalidHandler);
     assertThat(validate).isNotEmpty();

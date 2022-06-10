@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 @SpringBootTest(classes = ProduceToTopicByRouteTest.KStreamsTest.class)
-public class ProduceToTopicByRouteTest extends AbstractKaHPPTest {
+class ProduceToTopicByRouteTest extends AbstractKaHPPTest {
 
   @Test
   void recordsAreRoutedToCorrectTopics() {

@@ -65,6 +65,7 @@ class UnwrapDebeziumOutboxEnvelopeTransformTest {
   }
 
   @Test
+  @SuppressWarnings("PMD.AvoidDuplicateLiterals")
   void shouldUnwrapOutbox() {
     MockProcessorContext mockProcessorContext = new MockProcessorContext();
     RecordHeaders recordHeaders = new RecordHeaders();

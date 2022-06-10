@@ -46,6 +46,7 @@ public class JsonNodeSerializer extends JsonSerializer<JsonNode> {
     }
   }
 
+  @SuppressWarnings("PMD.ReturnEmptyCollectionRatherThanNull")
   @Override
   public byte[] serialize(String topic, JsonNode data) {
     if (serializeTextNodeAsString && data instanceof TextNode) {

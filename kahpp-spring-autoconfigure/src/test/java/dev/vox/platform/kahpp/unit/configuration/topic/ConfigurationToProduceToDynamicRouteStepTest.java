@@ -31,7 +31,7 @@ class ConfigurationToProduceToDynamicRouteStepTest {
   }
 
   @Test
-  public void shouldNotUpdateOnMissingConfiguration() {
+  void shouldNotUpdateOnMissingConfiguration() {
     ConfigBuilder configBuilder = getConfigBuilder();
 
     StepConfiguration<ProduceToDynamicRoute> stepConfiguration =
@@ -44,7 +44,7 @@ class ConfigurationToProduceToDynamicRouteStepTest {
   }
 
   @Test
-  public void shouldAddErrorTopicWhenPresentInConfiguration() {
+  void shouldAddErrorTopicWhenPresentInConfiguration() {
     ConfigBuilder configBuilder = getConfigBuilder();
 
     StepConfiguration<ProduceToDynamicRoute> stepConfiguration =
@@ -61,7 +61,7 @@ class ConfigurationToProduceToDynamicRouteStepTest {
 
   @ParameterizedTest
   @MethodSource("provideInvalidRouteConfigurations")
-  public void shouldSkipRoutesWhenOfIncorrectDatatypeInConfiguration(Object routeConfiguration) {
+  void shouldSkipRoutesWhenOfIncorrectDatatypeInConfiguration(Object routeConfiguration) {
     ConfigBuilder configBuilder = getConfigBuilder();
 
     StepConfiguration<ProduceToDynamicRoute> stepConfiguration =
@@ -80,7 +80,7 @@ class ConfigurationToProduceToDynamicRouteStepTest {
   }
 
   @Test
-  public void shouldSkipRouteWhenNotOfCorrectShapeInConfiguration() {
+  void shouldSkipRouteWhenNotOfCorrectShapeInConfiguration() {
     ConfigBuilder configBuilder = getConfigBuilder();
 
     StepConfiguration<ProduceToDynamicRoute> stepConfiguration =
@@ -96,7 +96,7 @@ class ConfigurationToProduceToDynamicRouteStepTest {
   }
 
   @Test
-  public void shouldThrowExceptionWhenPredicateIsNotPresentInRouteConfiguration() {
+  void shouldThrowExceptionWhenPredicateIsNotPresentInRouteConfiguration() {
     ConfigBuilder configBuilder = getConfigBuilder();
 
     StepConfiguration<ProduceToDynamicRoute> stepConfiguration =
@@ -112,7 +112,7 @@ class ConfigurationToProduceToDynamicRouteStepTest {
   }
 
   @Test
-  public void shouldThrowExceptionWhenJmesPathCompilationFails() {
+  void shouldThrowExceptionWhenJmesPathCompilationFails() {
     ConfigBuilder configBuilder = getConfigBuilder();
 
     StepConfiguration<ProduceToDynamicRoute> stepConfiguration =
@@ -132,7 +132,7 @@ class ConfigurationToProduceToDynamicRouteStepTest {
   }
 
   @Test
-  public void shouldThrowExceptionWhenTopicIsNotPresentInRouteConfiguration() {
+  void shouldThrowExceptionWhenTopicIsNotPresentInRouteConfiguration() {
     ConfigBuilder configBuilder = getConfigBuilder();
 
     StepConfiguration<ProduceToDynamicRoute> stepConfiguration =
@@ -150,7 +150,7 @@ class ConfigurationToProduceToDynamicRouteStepTest {
   }
 
   @Test
-  public void shouldRemoveDuplicateRoutes() {
+  void shouldRemoveDuplicateRoutes() {
     ConfigBuilder configBuilder = getConfigBuilder();
 
     Map<String, String> routeConfiguration =

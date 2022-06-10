@@ -22,7 +22,7 @@ class HttpClientConfigurationValidationTest extends ConstraintViolationTestAbstr
       new Options(validConnection, Map.of("header-key", "header-value"), null, null);
 
   @Test
-  public void connectionValidation() {
+  void connectionValidation() {
     Connection connection = new Connection(-10, 0);
     Set<ConstraintViolation<Connection>> violations = validator.validate(connection);
     assertThat(violations).hasSize(2);
@@ -35,7 +35,7 @@ class HttpClientConfigurationValidationTest extends ConstraintViolationTestAbstr
   }
 
   @Test
-  public void optionsValidation() {
+  void optionsValidation() {
     Options options = new Options(validConnection, Map.of("my-empty-header", ""), null, null);
     Set<ConstraintViolation<Options>> violations = validator.validate(options);
     assertThat(violations).hasSize(1);
@@ -45,7 +45,7 @@ class HttpClientConfigurationValidationTest extends ConstraintViolationTestAbstr
   }
 
   @Test
-  public void connectionsAndOptionsValidation() {
+  void connectionsAndOptionsValidation() {
     Connection connection = new Connection(-5, 20);
     Options options = new Options(connection, Map.of("my-other-empty-header", ""), null, null);
     Set<ConstraintViolation<Options>> violations = validator.validate(options);
@@ -59,7 +59,7 @@ class HttpClientConfigurationValidationTest extends ConstraintViolationTestAbstr
   }
 
   @Test
-  public void httpClientValidation() {
+  void httpClientValidation() {
     HttpClient httpClient = new HttpClient("", validOptions);
     Set<ConstraintViolation<HttpClient>> violations = validator.validate(httpClient);
     assertThat(violations).hasSize(1);
@@ -69,7 +69,7 @@ class HttpClientConfigurationValidationTest extends ConstraintViolationTestAbstr
 
   @ParameterizedTest
   @ValueSource(strings = {"random-string", "localhost", "localhost:8080"})
-  public void httpClientBasePathValidation(String wrongUrl) {
+  void httpClientBasePathValidation(String wrongUrl) {
     HttpClient httpClient = new HttpClient(wrongUrl, validOptions);
     Set<ConstraintViolation<HttpClient>> violations = validator.validate(httpClient);
     assertThat(violations).hasSize(1);
@@ -86,14 +86,14 @@ class HttpClientConfigurationValidationTest extends ConstraintViolationTestAbstr
         "http://a:9997/a",
         "https://a:9997/a/"
       })
-  public void httpClientValidBasePath(String validUrl) {
+  void httpClientValidBasePath(String validUrl) {
     HttpClient httpClient = new HttpClient(validUrl, validOptions);
     Set<ConstraintViolation<HttpClient>> violations = validator.validate(httpClient);
     assertThat(violations).hasSize(0);
   }
 
   @Test
-  public void httpClientChainValidation() {
+  void httpClientChainValidation() {
     Connection connection = new Connection(-10, 20);
     Options options = new Options(connection, Map.of("my-empty-header", ""), null, null);
     HttpClient httpClient = new HttpClient("", options);

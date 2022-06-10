@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 @SpringBootTest(classes = CopyFieldRecordTransformTest.KStreamsTest.class)
-public class CopyFieldRecordTransformTest extends AbstractKaHPPTest {
+class CopyFieldRecordTransformTest extends AbstractKaHPPTest {
 
   @Test
   void transformWithSuccess() {

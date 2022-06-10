@@ -12,7 +12,7 @@ class BasicTest {
   private final URL testProjectUrl = ClassLoader.getSystemResource("functional/basic");
 
   @Test
-  public void hasAllTasks() {
+  void hasAllTasks() {
     BuildResult result =
         GradleRunner.create()
             .withPluginClasspath()

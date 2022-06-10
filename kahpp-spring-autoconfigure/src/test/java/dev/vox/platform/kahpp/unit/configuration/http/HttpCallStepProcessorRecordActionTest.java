@@ -32,7 +32,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 
-public class HttpCallStepProcessorRecordActionTest {
+class HttpCallStepProcessorRecordActionTest {
 
   private static final ObjectMapper MAPPER =
       JsonMapper.builder().addModules(new Jdk8Module(), new JavaTimeModule()).build();

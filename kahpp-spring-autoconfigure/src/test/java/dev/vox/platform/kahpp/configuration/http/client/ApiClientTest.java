@@ -72,6 +72,7 @@ class ApiClientTest {
   }
 
   @Test
+  @SuppressWarnings({"PMD.JUnitTestsShouldIncludeAssert", "PMD.AvoidDuplicateLiterals"})
   void theApiClientIsConfiguredWithNoHeaders() throws RequestException {
     mockServerClient
         .when(HttpRequest.request())
@@ -89,6 +90,7 @@ class ApiClientTest {
   }
 
   @Test
+  @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
   void theApiClientIsConfiguredWithConfigureHeaders() throws RequestException {
     mockServerClient
         .when(HttpRequest.request())
@@ -101,6 +103,7 @@ class ApiClientTest {
   }
 
   @Test
+  @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
   void theApiClientIsConfiguredWithCustomHeaders() throws RequestException {
     final Map<String, String> customHeaders =
         Map.of(
@@ -128,6 +131,7 @@ class ApiClientTest {
   }
 
   @Test
+  @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
   void itCanCreateAndSendARequestWithoutABody() throws RequestException {
     mockServerClient
         .when(HttpRequest.request())
@@ -141,6 +145,7 @@ class ApiClientTest {
   }
 
   @Test
+  @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
   void itCanCreateAndSendARequestWithABodyFromString() throws RequestException {
     mockServerClient
         .when(HttpRequest.request())

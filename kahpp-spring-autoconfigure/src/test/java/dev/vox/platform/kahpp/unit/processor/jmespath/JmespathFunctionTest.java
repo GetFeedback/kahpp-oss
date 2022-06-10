@@ -6,7 +6,7 @@ import io.burt.jmespath.function.FunctionRegistry;
 import io.burt.jmespath.jackson.JacksonRuntime;
 import org.junit.jupiter.api.BeforeEach;
 
-public abstract class JmespathFunctionTest {
+abstract class JmespathFunctionTest {
   private JacksonRuntime runtime;
 
   @BeforeEach

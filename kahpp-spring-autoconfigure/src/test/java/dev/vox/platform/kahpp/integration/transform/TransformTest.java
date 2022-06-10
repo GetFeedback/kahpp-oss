@@ -10,7 +10,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.junit.jupiter.api.Test;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
-public class TransformTest extends AbstractKaHPPTest {
+class TransformTest extends AbstractKaHPPTest {
   @Test
   void transformNotWrappedItem() throws JsonProcessingException {
     sendCollectionFeedbackItemFixture("collection_5_not_wrapped");

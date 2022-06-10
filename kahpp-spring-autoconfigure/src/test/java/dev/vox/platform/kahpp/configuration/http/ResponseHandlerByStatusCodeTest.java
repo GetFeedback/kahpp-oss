@@ -35,7 +35,7 @@ class ResponseHandlerByStatusCodeTest {
   }
 
   @Test
-  public void whenThereAreNoHandlersItDoesFallback() {
+  void whenThereAreNoHandlersItDoesFallback() {
     Map<Range, ResponseHandler> statusCodeHandlers = new HashMap<>();
     Response response = buildResponse(Map.of(), 204, "");
     var handler = new ResponseHandlerByStatusCode(statusCodeHandlers);
@@ -46,7 +46,7 @@ class ResponseHandlerByStatusCodeTest {
   }
 
   @Test
-  public void whenNoMatchesOccurItThrowsAnException() {
+  void whenNoMatchesOccurItThrowsAnException() {
     var statusCodeHandlers = Map.of(new Range(200, 299), foundHandler);
     Response response = buildResponse(Map.of(), 404, "");
     var handler = new ResponseHandlerByStatusCode(statusCodeHandlers);
@@ -56,7 +56,7 @@ class ResponseHandlerByStatusCodeTest {
   }
 
   @Test
-  public void itDoesHandleWhenRangeMatches() throws ResponseHandlerException {
+  void itDoesHandleWhenRangeMatches() throws ResponseHandlerException {
     var statusCodeHandlers = Map.of(new Range(200, 299), foundHandler);
 
     Response response = buildResponse(Map.of(), 200, "");
@@ -67,7 +67,7 @@ class ResponseHandlerByStatusCodeTest {
   }
 
   @Test
-  public void canHandleExceptionsWithResponse() {
+  void canHandleExceptionsWithResponse() {
     Response response = buildResponse(Map.of(), 500, "err");
 
     lenient().when(requestException.getResponse()).thenReturn(Optional.of(response));
@@ -81,7 +81,7 @@ class ResponseHandlerByStatusCodeTest {
   }
 
   @Test
-  public void rethrowsRequestExceptionWhenThereIsNoResponse() {
+  void rethrowsRequestExceptionWhenThereIsNoResponse() {
     lenient().when(requestException.getResponse()).thenReturn(Optional.empty());
 
     var handler = new ResponseHandlerByStatusCode(Map.of());
@@ -89,6 +89,7 @@ class ResponseHandlerByStatusCodeTest {
     assertThat(throwable).isSameAs(requestException);
   }
 
+  @SuppressWarnings({"PMD.AvoidAccessibilityAlteration", "PMD.AvoidCatchingThrowable"})
   private Response buildResponse(Map<String, String> headers, int statusCode, String body) {
     // fixme: Should the RetryableApiClient open its Response constructor?
     try {

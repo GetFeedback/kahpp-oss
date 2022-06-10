@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 @SpringBootTest(classes = HttpResponseHandlerTest.KStreamsTest.class)
-public class HttpResponseHandlerTest extends AbstractKaHPPTest {
+class HttpResponseHandlerTest extends AbstractKaHPPTest {
 
   @BeforeAll
   static void setupMockServer() {

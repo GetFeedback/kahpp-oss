@@ -8,49 +8,50 @@ import org.junit.jupiter.api.Test;
 
 class ArrayIntersectFunctionTest extends JmespathFunctionTest {
   @Test
-  public void intersectWithEmptyListForA() {
+  void intersectWithEmptyListForA() {
     assertEquals(parse("[]"), evaluate("array_intersect(`[]`, `[\"red\"]`)"));
   }
 
   @Test
-  public void intersectWithEmptyListForB() {
+  void intersectWithEmptyListForB() {
     assertEquals(parse("[]"), evaluate("array_intersect(`[\"red\"]`, `[]`)"));
   }
 
   @Test
-  public void intersectWithOneMatch() {
+  @SuppressWarnings("PMD.AvoidDuplicateLiterals")
+  void intersectWithOneMatch() {
     assertEquals(
         parse("[\"red\"]"), evaluate("array_intersect(`[\"red\", \"blue\"]`, `[\"red\"]`)"));
   }
 
   @Test
-  public void intersectWithOneMatchInverse() {
+  void intersectWithOneMatchInverse() {
     assertEquals(
         parse("[\"red\"]"), evaluate("array_intersect(`[\"red\"]`, `[\"red\", \"blue\"]`)"));
   }
 
   @Test
-  public void intersectWithoutAnyOverlapInTheLists() {
+  void intersectWithoutAnyOverlapInTheLists() {
     assertEquals(
         parse("[]"), evaluate("array_intersect(`[\"red\", \"blue\"]`, `[\"green\", \"black\"]`)"));
   }
 
   @Test
-  public void intersectWithSameLists() {
+  void intersectWithSameLists() {
     assertEquals(
         parse("[\"red\", \"blue\"]"),
         evaluate("array_intersect(`[\"red\", \"blue\"]`, `[\"red\", \"blue\"]`)"));
   }
 
   @Test
-  public void intersectWithDuplicatesInListA() {
+  void intersectWithDuplicatesInListA() {
     assertEquals(
         parse("[\"red\"]"),
         evaluate("array_intersect(`[\"red\", \"red\", \"blue\"]`, `[\"red\"]`)"));
   }
 
   @Test
-  public void intersectWithDuplicatesInListB() {
+  void intersectWithDuplicatesInListB() {
     assertEquals(
         parse("[\"red\"]"),
         evaluate("array_intersect(`[\"red\", \"blue\"]`, `[\"red\", \"red\"]`)"));

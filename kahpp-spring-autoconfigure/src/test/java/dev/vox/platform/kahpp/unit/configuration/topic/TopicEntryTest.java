@@ -18,13 +18,13 @@ class TopicEntryTest {
   private final transient TopicEntry topicEntry = new TopicEntry("topic-id", TOPIC_NAME);
 
   @Test
-  public void generatesTo() {
+  void generatesTo() {
     To toActual = topicEntry.getIdentifier().to();
     assertThat(toActual).isEqualTo(To.child("topic-id"));
   }
 
   @Test
-  public void isImmutable() {
+  void isImmutable() {
     assertThatThrownBy(() -> topicEntry.setValue("new-topic-in-kafka"))
         .isInstanceOf(UnsupportedOperationException.class);
   }

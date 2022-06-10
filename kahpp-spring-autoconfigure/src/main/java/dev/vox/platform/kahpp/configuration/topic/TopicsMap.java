@@ -33,7 +33,7 @@ public final class TopicsMap extends HashMap<String, TopicEntry>
 
   public Map<String, TopicEntry> getSinkTopics() {
     return this.entrySet().stream()
-        .filter(entry -> !entry.getKey().equals(TOPIC_SOURCE_IDENTIFIER))
+        .filter(entry -> !TOPIC_SOURCE_IDENTIFIER.equals(entry.getKey()))
         .collect(Collectors.toUnmodifiableMap(Entry::getKey, Entry::getValue));
   }
 

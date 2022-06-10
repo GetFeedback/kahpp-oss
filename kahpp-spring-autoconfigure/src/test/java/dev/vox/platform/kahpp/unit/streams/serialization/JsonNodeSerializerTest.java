@@ -46,6 +46,7 @@ class JsonNodeSerializerTest {
   }
 
   @Test
+  @SuppressWarnings("PMD.AvoidDuplicateLiterals")
   void textNodeWithConfigOnShouldReturnANonQuotedString() {
     JsonNodeSerializer jsonNodeSerializer = new JsonNodeSerializer();
 
@@ -70,6 +71,7 @@ class JsonNodeSerializerTest {
   }
 
   @Test
+  @SuppressWarnings("PMD.AvoidDuplicateLiterals")
   void nonTextNodeValueShouldHaveTheSameBehaviorWithTextNodeConfigOnAndOff() {
     JsonNodeSerializer serializerWithConversion = new JsonNodeSerializer();
     serializerWithConversion.configure(Map.of(JSON_SERIALIZE_TEXT_NODE_AS_STRING, true), false);

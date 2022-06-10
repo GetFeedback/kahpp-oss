@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 @SpringBootTest(classes = UnwrapDebeziumOutboxEnvelopeTransformTest.KStreamsTest.class)
-public class UnwrapDebeziumOutboxEnvelopeTransformTest extends AbstractKaHPPTest {
+class UnwrapDebeziumOutboxEnvelopeTransformTest extends AbstractKaHPPTest {
 
   @Test
   void transformWithSuccess() throws JsonProcessingException {

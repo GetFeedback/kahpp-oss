@@ -15,7 +15,7 @@ import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 class ResponseHandlerByStatusCodeConfigurationToStepTest {
 
   @Test
-  public void testConfigureWithoutResponseHandlers() {
+  void testConfigureWithoutResponseHandlers() {
     var handler = new ResponseHandlerByStatusCodeConfigurationToStep();
 
     var sourceStepConfig = stepConfig(emptyMap());
@@ -24,7 +24,7 @@ class ResponseHandlerByStatusCodeConfigurationToStepTest {
   }
 
   @Test
-  public void testConfigureWithResponseHandler() {
+  void testConfigureWithResponseHandler() {
     var handler = new ResponseHandlerByStatusCodeConfigurationToStep();
     Map<String, Object> responseHandlerConfig = Map.of("type", RECORD_UPDATE.toString());
     Map<String, Map<String, ?>> responseHandlers =

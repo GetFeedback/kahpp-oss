@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class GuavaRateLimiterTest {
   @Test
-  public void acquireIsRateLimited() {
+  void acquireIsRateLimited() {
     GuavaRateLimiter rateLimiter = new GuavaRateLimiter(10);
 
     long start = Instant.now().toEpochMilli();

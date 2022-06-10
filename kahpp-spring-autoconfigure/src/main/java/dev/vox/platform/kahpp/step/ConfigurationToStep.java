@@ -3,6 +3,7 @@ package dev.vox.platform.kahpp.step;
 import dev.vox.platform.kahpp.configuration.Step;
 import dev.vox.platform.kahpp.streams.Instance;
 import java.util.HashMap;
+import java.util.Map;
 
 public interface ConfigurationToStep<T extends Step> {
   StepConfiguration<T> configure(
@@ -10,7 +11,7 @@ public interface ConfigurationToStep<T extends Step> {
 
   Class<T> supportsType();
 
-  default HashMap<String, Object> getConfigAsHashMap(StepConfiguration<T> tStepConfiguration) {
+  default Map<String, Object> getConfigAsHashMap(StepConfiguration<T> tStepConfiguration) {
     return new HashMap<>(tStepConfiguration.getConfig());
   }
 }

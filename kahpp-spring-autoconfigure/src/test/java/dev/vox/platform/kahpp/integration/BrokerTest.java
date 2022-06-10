@@ -8,18 +8,18 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public final class BrokerTest extends AbstractKaHPPTest {
+final class BrokerTest extends AbstractKaHPPTest {
 
   @Autowired private transient KafkaStreams kafkaStreams;
 
   @Test
-  public void testBrokerIsAvailable() {
+  void testBrokerIsAvailable() {
     String brokerList = embeddedKafka.getBrokersAsString();
     assertThat(brokerList).isNotEmpty();
   }
 
   @Test
-  public void topicsAreCorrect() {
+  void topicsAreCorrect() {
     TopicsMap streamsTopics = kafkaStreams.getTopics();
     Set<String> brokerTopics = embeddedKafka.getTopics();
 

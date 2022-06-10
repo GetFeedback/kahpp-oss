@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 class ThrottleTest extends ConstraintViolationTestAbstract {
   @Test
-  public void canBeConstructed() {
+  void canBeConstructed() {
     Throttle step = new Throttle("test", Map.ofEntries(Map.entry("recordsPerSecond", 10)));
 
     Set<ConstraintViolation<Throttle>> violations = validator.validate(step);
@@ -19,7 +19,7 @@ class ThrottleTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void containsRateLimiterConfig() {
+  void containsRateLimiterConfig() {
     Throttle step = new Throttle("test", Map.ofEntries(Map.entry("recordsPerSecond", 10)));
 
     assertThat(step.getRecordsPerSecond()).isEqualTo(10);

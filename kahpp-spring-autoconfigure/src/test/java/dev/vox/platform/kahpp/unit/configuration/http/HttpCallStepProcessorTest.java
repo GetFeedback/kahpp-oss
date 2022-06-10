@@ -34,7 +34,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 
-public class HttpCallStepProcessorTest {
+class HttpCallStepProcessorTest {
 
   private static final String HTTP_STEP_NAME = "httpDelayable";
   private static final String HTTP_STEP_CLASS = "DelayableHttpCall";

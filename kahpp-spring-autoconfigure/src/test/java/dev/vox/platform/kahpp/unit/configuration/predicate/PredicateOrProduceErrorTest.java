@@ -39,7 +39,7 @@ class PredicateOrProduceErrorTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void canConstruct() {
+  void canConstruct() {
     PredicateOrProduceError predicateOrProduceError =
         new PredicateOrProduceError(
             "test-canConstruct",
@@ -53,7 +53,7 @@ class PredicateOrProduceErrorTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void canValidate() {
+  void canValidate() {
     PredicateOrProduceError predicateOrProduceError =
         new PredicateOrProduceError("test-canValidate", Map.of("either", "random"));
     Set<ConstraintViolation<PredicateOrProduceError>> violations =
@@ -69,7 +69,7 @@ class PredicateOrProduceErrorTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void leftPredicate() {
+  void leftPredicate() {
     PredicateOrProduceError predicate =
         new PredicateOrProduceError(
             "test-leftPredicate",
@@ -83,7 +83,7 @@ class PredicateOrProduceErrorTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void rightPredicate() {
+  void rightPredicate() {
     PredicateOrProduceError predicate =
         new PredicateOrProduceError(
             "test-name",

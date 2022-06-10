@@ -25,7 +25,7 @@ class StepBuilderTest {
 
   @ParameterizedTest
   @ValueSource(classes = {NoConstructorStep.class, ConstructorWithWrongArgumentsStep.class})
-  public void throwsOnInvalidSteps(Class<Step> stepConfigurationClass) {
+  void throwsOnInvalidSteps(Class<Step> stepConfigurationClass) {
     ConfigBuilder configBuilder =
         new ConfigBuilder(
             "test",

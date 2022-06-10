@@ -47,6 +47,7 @@ class DropFieldRecordTransformTest {
   }
 
   @Test
+  @SuppressWarnings("PMD.AvoidDuplicateLiterals")
   void testDropFieldReturnTransformRecordToTransformValueAtRootLevel() {
     DropFieldRecordTransform dropField =
         new DropFieldRecordTransform(STEP_NAME, Map.of(JMESPATH_CONFIG_NAME, "value.remove"));

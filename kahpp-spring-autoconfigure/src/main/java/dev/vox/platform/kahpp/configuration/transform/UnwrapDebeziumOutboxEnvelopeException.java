@@ -7,4 +7,8 @@ public class UnwrapDebeziumOutboxEnvelopeException extends RuntimeException {
   public UnwrapDebeziumOutboxEnvelopeException(String message) {
     super(message);
   }
+
+  public UnwrapDebeziumOutboxEnvelopeException(String message, Throwable e) {
+    super(message, e);
+  }
 }

@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 @SpringBootTest(classes = KafkaStreamsFilterNotTest.class)
-public class FilterNotTest extends AbstractKaHPPTest {
+class FilterNotTest extends AbstractKaHPPTest {
 
   @Autowired private transient MeterRegistry meterRegistry;
 

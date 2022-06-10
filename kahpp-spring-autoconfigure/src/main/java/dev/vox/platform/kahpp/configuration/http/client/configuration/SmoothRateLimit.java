@@ -6,7 +6,6 @@ import org.apache.http.HttpRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
 public final class SmoothRateLimit implements RateLimit {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(SmoothRateLimit.class);

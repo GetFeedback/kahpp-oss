@@ -14,7 +14,7 @@ import io.vavr.control.Either;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-public class HttpCallConditionalTest {
+class HttpCallConditionalTest {
 
   @Test
   void shouldReturnTheConfiguredCondition() {

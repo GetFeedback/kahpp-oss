@@ -12,6 +12,7 @@ import java.time.temporal.ChronoField;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 class ConfigurationToConvertZonedDateTimeFieldTransformStepTest {
 
   @Test

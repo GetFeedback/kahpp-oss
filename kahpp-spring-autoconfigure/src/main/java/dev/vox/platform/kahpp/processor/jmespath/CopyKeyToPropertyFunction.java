@@ -22,9 +22,9 @@ public class CopyKeyToPropertyFunction extends BaseFunction {
     T name = arguments.get(1).value();
 
     Map<T, T> accumulator = new LinkedHashMap<>();
+    Map<T, T> entryCopy = new LinkedHashMap<>();
     for (T key : runtime.getPropertyNames(map)) {
-      Map<T, T> entryCopy = new LinkedHashMap<>();
-
+      entryCopy.clear();
       T entry = runtime.getProperty(map, key);
       for (T property : runtime.getPropertyNames(entry)) {
         entryCopy.put(property, runtime.getProperty(entry, property));

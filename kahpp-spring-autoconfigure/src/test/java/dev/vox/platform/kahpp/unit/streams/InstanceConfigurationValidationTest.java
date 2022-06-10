@@ -20,7 +20,7 @@ import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Streams;
 class InstanceConfigurationValidationTest extends ConstraintViolationTestAbstract {
 
   @Test
-  public void basicValidation() {
+  void basicValidation() {
     ConfigBuilder configBuilder =
         new ConfigBuilder("t", "b", 0, Map.of(), null, Map.of(), List.of());
 
@@ -40,7 +40,7 @@ class InstanceConfigurationValidationTest extends ConstraintViolationTestAbstrac
   }
 
   @Test
-  public void stepValidation() {
+  void stepValidation() {
     StepConfiguration<FilterValue> httpStep =
         new StepConfiguration<>(FilterValue.class, "", Map.of());
     ConfigBuilder configBuilder =
@@ -60,7 +60,7 @@ class InstanceConfigurationValidationTest extends ConstraintViolationTestAbstrac
   }
 
   @Test
-  public void stepWithApiValidation() {
+  void stepWithApiValidation() {
     StepConfiguration<SimpleHttpCall> httpStepWithoutName =
         new StepConfiguration<>(SimpleHttpCall.class, "", Map.of());
     StepConfiguration<SimpleHttpCall> httpWithWrongApi =
@@ -88,7 +88,8 @@ class InstanceConfigurationValidationTest extends ConstraintViolationTestAbstrac
   }
 
   @Test
-  public void stepWithTopicValidation() {
+  @SuppressWarnings("PMD.AvoidDuplicateLiterals")
+  void stepWithTopicValidation() {
     StepConfiguration<ProduceToTopic> stepWithoutName =
         new StepConfiguration<>(ProduceToTopic.class, "", Map.of("topic", "sink"));
     StepConfiguration<PredicateOrProduceError> stepWithNonExistentTopic =

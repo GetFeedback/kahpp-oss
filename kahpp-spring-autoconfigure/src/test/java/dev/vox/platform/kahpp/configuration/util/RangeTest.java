@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class RangeTest {
 
   @Test
-  public void testContainsTrue() {
+  void testContainsTrue() {
     var range = new Range(10, 20);
     assertTrue(range.contains(10));
     assertTrue(range.contains(15));
@@ -16,7 +16,7 @@ class RangeTest {
   }
 
   @Test
-  public void testContainsFalse() {
+  void testContainsFalse() {
     var range = new Range(10, 20);
     assertFalse(range.contains(9));
     assertFalse(range.contains(21));

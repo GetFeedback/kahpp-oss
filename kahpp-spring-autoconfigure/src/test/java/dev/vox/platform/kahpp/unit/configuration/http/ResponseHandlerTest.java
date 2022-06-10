@@ -21,6 +21,7 @@ class ResponseHandlerTest {
   Response response;
 
   @BeforeEach
+  @SuppressWarnings("PMD.AvoidAccessibilityAlteration")
   void setUp()
       throws NoSuchMethodException, IllegalAccessException, InvocationTargetException,
           InstantiationException {
