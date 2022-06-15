@@ -8,7 +8,7 @@ updates:
     labels:
       - "Dependencies"
     reviewers:
-      - "usabilla/platform-java"
+      - "GetFeedback/platform-java"
   - package-ecosystem: "gradle"
     directory: "/kahpp-gradle-plugin"
     schedule:
@@ -16,7 +16,7 @@ updates:
     labels:
       - "Dependencies"
     reviewers:
-      - "usabilla/platform-java"
+      - "GetFeedback/platform-java"
   - package-ecosystem: "gradle"
     directory: "/kahpp-spring-autoconfigure"
     schedule:
@@ -24,7 +24,7 @@ updates:
     labels:
       - "Dependencies"
     reviewers:
-      - "usabilla/platform-java"
+      - "GetFeedback/platform-java"
   - package-ecosystem: "gradle"
     directory: "/kahpp-spring-starter"
     schedule:
@@ -32,7 +32,7 @@ updates:
     labels:
       - "Dependencies"
     reviewers:
-      - "usabilla/platform-java"
+      - "GetFeedback/platform-java"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -40,4 +40,4 @@ updates:
     labels:
       - "CI"
     reviewers:
-      - "usabilla/platform-java"
+      - "GetFeedback/platform-java"
