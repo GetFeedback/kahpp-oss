@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
-public final class MeterTest extends AbstractKaHPPTest {
+final class MeterTest extends AbstractKaHPPTest {
 
   private static final String METRIC_COLLECTION_PER_CHANNEL =
       "kahppMetricPrefix.collectionPerChannel";

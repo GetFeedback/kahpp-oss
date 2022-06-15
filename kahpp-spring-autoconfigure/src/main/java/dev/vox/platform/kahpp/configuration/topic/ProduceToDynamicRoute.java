@@ -1,5 +1,6 @@
 package dev.vox.platform.kahpp.configuration.topic;
 
+@SuppressWarnings("PMD.ConstantsInInterface")
 public interface ProduceToDynamicRoute extends Produce {
   String STEP_CONFIGURATION_ERROR_TOPIC = "errorTopic";
   String STEP_CONFIGURATION_ROUTES = "routes";

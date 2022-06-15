@@ -15,6 +15,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 class FilterFieldTest extends ConstraintViolationTestAbstract {
 
   private static final String NAME = "test-name";
@@ -22,7 +23,7 @@ class FilterFieldTest extends ConstraintViolationTestAbstract {
       new StepBuilderConfiguration().jacksonRuntime();
 
   @Test
-  public void canConstruct() {
+  void canConstruct() {
     FilterField filter = new FilterField(NAME, Map.of("jmesPath", "value == 0"));
     Set<ConstraintViolation<FilterField>> violations = validator.validate(filter);
 
@@ -33,7 +34,7 @@ class FilterFieldTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void canConstructWithFilterNot() {
+  void canConstructWithFilterNot() {
     FilterField filter =
         new FilterField(NAME, Map.of("jmesPath", "value == 0", "filterNot", "true"));
     Set<ConstraintViolation<FilterField>> violations = validator.validate(filter);
@@ -45,7 +46,7 @@ class FilterFieldTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void canFilterByTimestamp() {
+  void canFilterByTimestamp() {
     final TextNode recordKey = TextNode.valueOf("test-record-id");
     final ObjectNode recordValue = MAPPER.createObjectNode().put("foo", "bar");
     final KaHPPRecord recordWithValue = KaHPPRecord.build(recordKey, recordValue, 1584352842123L);
@@ -57,7 +58,7 @@ class FilterFieldTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void canFilterByValue() {
+  void canFilterByValue() {
     final TextNode recordKey = TextNode.valueOf("test-record-id");
     final ObjectNode recordValue = MAPPER.createObjectNode().put("foo", "bar");
     final KaHPPRecord recordWithValue = KaHPPRecord.build(recordKey, recordValue, 1584352842123L);
@@ -69,7 +70,7 @@ class FilterFieldTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void canFilterByKey() {
+  void canFilterByKey() {
     final TextNode recordKey = TextNode.valueOf("test-record-id");
     final ObjectNode recordValue = MAPPER.createObjectNode().put("foo", "bar");
     final KaHPPRecord recordWithValue = KaHPPRecord.build(recordKey, recordValue, 1584352842123L);
@@ -81,7 +82,7 @@ class FilterFieldTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void canFilterByTimestampFail() {
+  void canFilterByTimestampFail() {
     final TextNode recordKey = TextNode.valueOf("test-record-id");
     final ObjectNode recordValue = MAPPER.createObjectNode().put("foo", "bar");
     final KaHPPRecord recordWithValue = KaHPPRecord.build(recordKey, recordValue, 1584352842123L);
@@ -93,7 +94,7 @@ class FilterFieldTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void canFilterByTimestampUsingNowFun() {
+  void canFilterByTimestampUsingNowFun() {
     final TextNode recordKey = TextNode.valueOf("test-record-id");
     final ObjectNode recordValue = MAPPER.createObjectNode().put("foo", "bar");
     final KaHPPRecord recordWithValue = KaHPPRecord.build(recordKey, recordValue, 1633341600L);

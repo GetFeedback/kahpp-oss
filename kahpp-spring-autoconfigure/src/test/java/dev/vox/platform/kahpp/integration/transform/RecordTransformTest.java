@@ -25,7 +25,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 @SpringBootTest(classes = RecordTransformTest.KStreamsTest.class)
-public class RecordTransformTest extends AbstractKaHPPTest {
+class RecordTransformTest extends AbstractKaHPPTest {
 
   @Test
   void feedbackKeyIsWrappedPayloadId() {

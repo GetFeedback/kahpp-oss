@@ -32,7 +32,7 @@ class HelmCopyTest {
   }
 
   @Test
-  public void canDetectDriftFromHelmToTestsState() {
+  void canDetectDriftFromHelmToTestsState() {
     BuildResult result =
         GradleRunner.create()
             .withPluginClasspath()
@@ -51,7 +51,7 @@ class HelmCopyTest {
   }
 
   @Test
-  public void canDetectAndCopyHelmKaHPPConfiguration() {
+  void canDetectAndCopyHelmKaHPPConfiguration() {
     BuildResult result =
         GradleRunner.create()
             .withPluginClasspath()

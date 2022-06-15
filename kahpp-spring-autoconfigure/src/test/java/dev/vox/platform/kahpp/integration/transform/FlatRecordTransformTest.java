@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 @SpringBootTest(classes = FlatRecordTransformTest.KStreamsTest.class)
-public class FlatRecordTransformTest extends AbstractKaHPPTest {
+class FlatRecordTransformTest extends AbstractKaHPPTest {
 
   @Test
   void recordIsSplitIntoMultipleWithValuesFoundAtJmesPath() {

@@ -52,7 +52,7 @@ class KafkaStreamsTest {
   }
 
   @Test
-  public void baseContracts() {
+  void baseContracts() {
     assertThat(simpleStreams.getTopics().all()).contains("KafkaStreamsTest-source");
     assertThat(simpleStreams.getTopologyBuilder()).isNotNull();
     assertThat(simpleStreams.kStreamsConfigs().asProperties())
@@ -61,7 +61,8 @@ class KafkaStreamsTest {
   }
 
   @Test
-  public void streamsBuilderFactoryBeanCustomizer() {
+  @SuppressWarnings("PMD.AvoidAccessibilityAlteration")
+  void streamsBuilderFactoryBeanCustomizer() {
     StreamsBuilderFactoryBeanConfigurer expectCustomizer =
         simpleStreams.streamsBuilderFactoryBeanCustomizer();
 

@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 class ProduceToTopicTest extends ConstraintViolationTestAbstract {
   @Test
-  public void canConstruct() {
+  void canConstruct() {
     ProduceToTopic produceToTopic =
         new ProduceToTopic(
             "test-canConstruct",
@@ -25,7 +25,7 @@ class ProduceToTopicTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void canValidate() {
+  void canValidate() {
     ProduceToTopic produceToTopic = new ProduceToTopic("test-canValidate", Map.of("key", "value"));
     Set<ConstraintViolation<ProduceToTopic>> violations = validator.validate(produceToTopic);
     assertThat(violations).hasSize(1);

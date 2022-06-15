@@ -8,7 +8,7 @@ import io.micrometer.core.instrument.MeterRegistry;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class FilterTest extends AbstractKaHPPTest {
+class FilterTest extends AbstractKaHPPTest {
 
   @Autowired private transient MeterRegistry meterRegistry;
 

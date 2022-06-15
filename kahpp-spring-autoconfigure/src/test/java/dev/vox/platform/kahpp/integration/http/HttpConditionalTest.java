@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 @SpringBootTest(classes = HttpConditionalTest.KStreamsTest.class)
-public class HttpConditionalTest extends AbstractKaHPPTest {
+class HttpConditionalTest extends AbstractKaHPPTest {
 
   @BeforeAll
   static void setupMockServer() {
@@ -32,6 +32,7 @@ public class HttpConditionalTest extends AbstractKaHPPTest {
   }
 
   @Test
+  @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
   void shouldExecuteHttpCall() {
     Fixture fixture = loadFixture("conditional", "true");
 
@@ -44,6 +45,7 @@ public class HttpConditionalTest extends AbstractKaHPPTest {
   }
 
   @Test
+  @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
   void shouldNotExecuteHttpCall() {
     Fixture fixture = loadFixture("conditional", "false");
     sendFixture(TOPIC_SOURCE, fixture);

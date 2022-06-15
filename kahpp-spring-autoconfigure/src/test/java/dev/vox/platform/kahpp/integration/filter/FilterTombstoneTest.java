@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 @SpringBootTest(classes = FilterTombstoneTest.KStreamsTest.class)
-public class FilterTombstoneTest extends AbstractKaHPPTest {
+class FilterTombstoneTest extends AbstractKaHPPTest {
 
   private final Fixture tombstoneFixture = new Fixture();
 

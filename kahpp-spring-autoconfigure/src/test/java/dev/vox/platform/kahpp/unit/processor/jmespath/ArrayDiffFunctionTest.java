@@ -8,45 +8,45 @@ import org.junit.jupiter.api.Test;
 
 class ArrayDiffFunctionTest extends JmespathFunctionTest {
   @Test
-  public void diffWithEmptyListForA() {
+  void diffWithEmptyListForA() {
     assertEquals(parse("[]"), evaluate("array_diff(`[]`, `[\"red\"]`)"));
   }
 
   @Test
-  public void diffWithEmptyListForB() {
+  void diffWithEmptyListForB() {
     assertEquals(parse("[\"red\"]"), evaluate("array_diff(`[\"red\"]`, `[]`)"));
   }
 
   @Test
-  public void diffWithOneMatch() {
+  void diffWithOneMatch() {
     assertEquals(parse("[\"blue\"]"), evaluate("array_diff(`[\"red\", \"blue\"]`, `[\"red\"]`)"));
   }
 
   @Test
-  public void diffWithOneMatchInverse() {
+  void diffWithOneMatchInverse() {
     assertEquals(parse("[]"), evaluate("array_diff(`[\"red\"]`, `[\"red\", \"blue\"]`)"));
   }
 
   @Test
-  public void diffWithoutAnyOverlapInTheLists() {
+  void diffWithoutAnyOverlapInTheLists() {
     assertEquals(
         parse("[\"red\", \"blue\"]"),
         evaluate("array_diff(`[\"red\", \"blue\"]`, `[\"green\", \"black\"]`)"));
   }
 
   @Test
-  public void diffWithSameLists() {
+  void diffWithSameLists() {
     assertEquals(parse("[]"), evaluate("array_diff(`[\"red\", \"blue\"]`, `[\"red\", \"blue\"]`)"));
   }
 
   @Test
-  public void diffWithDuplicatesInListA() {
+  void diffWithDuplicatesInListA() {
     assertEquals(
         parse("[\"red\"]"), evaluate("array_diff(`[\"red\", \"red\", \"blue\"]`, `[\"blue\"]`)"));
   }
 
   @Test
-  public void diffWithDuplicatesInListB() {
+  void diffWithDuplicatesInListB() {
     assertEquals(
         parse("[\"red\"]"), evaluate("array_diff(`[\"red\", \"blue\"]`, `[\"blue\", \"blue\"]`)"));
   }

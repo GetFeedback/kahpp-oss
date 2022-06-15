@@ -17,7 +17,7 @@ class HandleByStatusCodeStepToKStreamTest {
 
   @ParameterizedTest
   @MethodSource("params")
-  public void testSupplier(
+  void testSupplier(
       SimpleMeterRegistry meterRegistry,
       JacksonRuntime jacksonRuntime,
       HandleByStatusCode handle,
@@ -34,7 +34,7 @@ class HandleByStatusCodeStepToKStreamTest {
 
   @ParameterizedTest
   @MethodSource("paramsNull")
-  public void testSupplierThrowsException(
+  void testSupplierThrowsException(
       SimpleMeterRegistry meterRegistry,
       JacksonRuntime jacksonRuntime,
       HandleByStatusCode handle,

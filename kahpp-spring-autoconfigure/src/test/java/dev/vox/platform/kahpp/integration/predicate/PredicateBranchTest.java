@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 @SpringBootTest(classes = KafkaStreamPredicateTest.class)
-public class PredicateBranchTest extends AbstractKaHPPTest {
+class PredicateBranchTest extends AbstractKaHPPTest {
 
   @Test
   void shouldSendWebPassiveFeedbackToSinkTopic() throws JsonProcessingException {

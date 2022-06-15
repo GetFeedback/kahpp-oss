@@ -26,11 +26,12 @@ import org.apache.kafka.streams.processor.ProcessorContext;
  *     href="https://debezium.io/documentation/reference/1.6/transformations/outbox-event-router.html">Debezium
  *     Outbox Event Router documentation</a>
  */
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public final class UnwrapDebeziumOutboxEnvelopeTransform extends AbstractRecordTransform
     implements Step, IdempotentStep {
 
   @NotBlank private transient String prefix = "vox.outbox.";
-  @NotBlank private transient boolean copyHeaders = false;
+  @NotBlank private transient boolean copyHeaders;
 
   public UnwrapDebeziumOutboxEnvelopeTransform(String name, Map<String, ?> config) {
     super(name, config);
@@ -76,7 +77,8 @@ public final class UnwrapDebeziumOutboxEnvelopeTransform extends AbstractRecordT
       throw new UnwrapDebeziumOutboxEnvelopeException(
           String.format(
               "Could not parsing payload to JsonNode: got error when trying to parse %s",
-              record.getKey()));
+              record.getKey()),
+          e);
     }
 
     List<TransformRecord.Mutation> mutations = new ArrayList<>();

@@ -12,12 +12,12 @@ import javax.validation.ConstraintViolation;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
-public final class HttpClientValidationTest extends ConstraintViolationTestAbstract {
+final class HttpClientValidationTest extends ConstraintViolationTestAbstract {
 
   public static final String MUST_BE_GREATER_THAN_0 = "must be greater than 0";
 
   @Test
-  public void retriesBasicValidation() {
+  void retriesBasicValidation() {
     Retries retries =
         new Retries(List.of(new RetriesForHttpStatus(500, 500, 500, 5)), 0, null, null, 0, 0, 0);
 
@@ -37,7 +37,7 @@ public final class HttpClientValidationTest extends ConstraintViolationTestAbstr
   }
 
   @Test
-  public void retriesForHttpStatusWithRangeBasicValidation() {
+  void retriesForHttpStatusWithRangeBasicValidation() {
     RetriesForHttpStatus retries = new RetriesForHttpStatus(null, 0, 0, 0);
 
     Set<ConstraintViolation<RetriesForHttpStatus>> violations = validator.validate(retries);
@@ -52,7 +52,7 @@ public final class HttpClientValidationTest extends ConstraintViolationTestAbstr
   }
 
   @Test
-  public void retriesForHttpStatusWithSingleCodeBasicValidation() {
+  void retriesForHttpStatusWithSingleCodeBasicValidation() {
     RetriesForHttpStatus retries = new RetriesForHttpStatus(0, null, null, 0);
 
     Set<ConstraintViolation<RetriesForHttpStatus>> violations = validator.validate(retries);
@@ -66,7 +66,7 @@ public final class HttpClientValidationTest extends ConstraintViolationTestAbstr
   }
 
   @Test
-  public void retriesForHttpStatusWithCodeAndRange() {
+  void retriesForHttpStatusWithCodeAndRange() {
     RetriesForHttpStatus retries = new RetriesForHttpStatus(500, 500, 503, 3);
 
     Set<ConstraintViolation<RetriesForHttpStatus>> violations = validator.validate(retries);
@@ -78,7 +78,7 @@ public final class HttpClientValidationTest extends ConstraintViolationTestAbstr
   }
 
   @Test
-  public void retriesForHttpStatusRangeWhereEndIsBiggerThanStart() {
+  void retriesForHttpStatusRangeWhereEndIsBiggerThanStart() {
     RetriesForHttpStatus retries = new RetriesForHttpStatus(null, 501, 500, 3);
 
     Set<ConstraintViolation<RetriesForHttpStatus>> violations = validator.validate(retries);
@@ -90,7 +90,7 @@ public final class HttpClientValidationTest extends ConstraintViolationTestAbstr
   }
 
   @Test
-  public void retriesForHttpStatusRangeWhereStartIsNotDefined() {
+  void retriesForHttpStatusRangeWhereStartIsNotDefined() {
     RetriesForHttpStatus retries = new RetriesForHttpStatus(null, null, 500, 3);
 
     Set<ConstraintViolation<RetriesForHttpStatus>> violations = validator.validate(retries);
@@ -102,7 +102,7 @@ public final class HttpClientValidationTest extends ConstraintViolationTestAbstr
   }
 
   @Test
-  public void retriesForHttpStatusRangeWhereEndIsNotDefined() {
+  void retriesForHttpStatusRangeWhereEndIsNotDefined() {
     RetriesForHttpStatus retries = new RetriesForHttpStatus(null, 500, null, 3);
 
     Set<ConstraintViolation<RetriesForHttpStatus>> violations = validator.validate(retries);

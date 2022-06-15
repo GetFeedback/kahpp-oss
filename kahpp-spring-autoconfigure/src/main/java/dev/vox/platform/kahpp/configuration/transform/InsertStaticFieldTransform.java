@@ -9,6 +9,7 @@ import dev.vox.platform.kahpp.configuration.TransformRecord;
 import dev.vox.platform.kahpp.streams.KaHPPRecord;
 import io.burt.jmespath.Expression;
 import io.burt.jmespath.jackson.JacksonRuntime;
+import java.util.Locale;
 import java.util.Map;
 import javax.validation.constraints.NotBlank;
 import org.apache.kafka.streams.processor.ProcessorContext;
@@ -35,14 +36,15 @@ public final class InsertStaticFieldTransform extends AbstractRecordTransform {
   private JsonNode getValue(Map<String, ?> config) {
     String value = String.valueOf(config.get("value"));
     if (config.containsKey("format")) {
-      format = Format.valueOf(String.valueOf(config.get("format")).toUpperCase());
+      format =
+          Format.valueOf(String.valueOf(config.get("format")).toUpperCase(Locale.getDefault()));
       if (Format.JSON.equals(format)) {
         try {
           return OBJECT_MAPPER.readTree(value);
         } catch (JsonProcessingException e) {
           LOGGER.error("Failed to parse value {} to JSON", value, e);
           throw new IllegalArgumentException(
-              String.format("Failed to parse %s value to JSON", value));
+              String.format("Failed to parse %s value to JSON", value), e);
         }
       }
     }
@@ -57,7 +59,9 @@ public final class InsertStaticFieldTransform extends AbstractRecordTransform {
     // If the field exists, this step won't change it's value
     if (jmesPathExpression.search(record.build()) != null
         && !jmesPathExpression.search(record.build()).isNull()) {
-      LOGGER.debug("{}: field `{}` is not empty", getTypedName(), field);
+      if (LOGGER.isDebugEnabled()) {
+        LOGGER.debug(getTypedName() + ": field `" + field + "` is not empty");
+      }
       return TransformRecord.noTransformation();
     }
 

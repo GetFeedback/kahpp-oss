@@ -41,7 +41,7 @@ class PredicateStepProcessorTest {
   }
 
   @Test
-  public void rightPredicate() {
+  void rightPredicate() {
     final PredicateOrProduceError predicate =
         new PredicateOrProduceError(
             "test-leftPredicate",
@@ -69,7 +69,7 @@ class PredicateStepProcessorTest {
   }
 
   @Test
-  public void leftPredicate() {
+  void leftPredicate() {
     final PredicateOrProduceError predicate =
         new PredicateOrProduceError(
             "test-leftPredicate",

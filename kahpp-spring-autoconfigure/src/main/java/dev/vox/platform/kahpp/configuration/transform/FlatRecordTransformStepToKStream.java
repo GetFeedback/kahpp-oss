@@ -49,14 +49,21 @@ public final class FlatRecordTransformStepToKStream
     public void process(KaHPPRecord record) {
       List<KaHPPRecord> records = step.transform(jacksonRuntime, record);
 
-      LOGGER.debug(
-          "{}: Flat record transformation {}",
-          step.getTypedName(),
-          records.isEmpty() ? "skipped" : "applied");
+      if (LOGGER.isDebugEnabled()) {
+        LOGGER.debug(
+            "{}: Flat record transformation {}",
+            step.getTypedName(),
+            records.isEmpty() ? "skipped" : "applied");
+      }
 
       if (!records.isEmpty()) {
-        LOGGER.debug(
-            "{}: {} records created from original record", step.getTypedName(), records.size());
+        if (LOGGER.isDebugEnabled()) {
+          LOGGER.debug(
+              step.getTypedName()
+                  + ": "
+                  + records.size()
+                  + " records created from original record");
+        }
       }
 
       records.iterator().forEachRemaining(this::forwardToNextStep);

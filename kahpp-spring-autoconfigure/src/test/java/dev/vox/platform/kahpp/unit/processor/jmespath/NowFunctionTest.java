@@ -14,7 +14,7 @@ class NowFunctionTest extends JmespathFunctionTest {
       Clock.fixed(Instant.parse("2021-10-05T10:00:00Z"), ZoneId.systemDefault());
 
   @Test
-  public void evaluateNowWithPlus() {
+  void evaluateNowWithPlus() {
     assertEquals(
         parse(Instant.parse("2021-10-06T10:00:00Z").toEpochMilli()), evaluate("now('+PT86400S')"));
     assertEquals(
@@ -30,7 +30,7 @@ class NowFunctionTest extends JmespathFunctionTest {
   }
 
   @Test
-  public void evaluateNowWithMinus() {
+  void evaluateNowWithMinus() {
     assertEquals(
         parse(Instant.parse("2021-10-04T10:00:00Z").toEpochMilli()), evaluate("now('-P1D')"));
     assertEquals(

@@ -19,7 +19,7 @@ import javax.validation.ConstraintViolation;
 import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
-public final class ResponseHandlerConfigTest extends ConstraintViolationTestAbstract {
+final class ResponseHandlerConfigTest extends ConstraintViolationTestAbstract {
 
   @Test
   void responseHandlerTypeShouldNotAcceptNull() {

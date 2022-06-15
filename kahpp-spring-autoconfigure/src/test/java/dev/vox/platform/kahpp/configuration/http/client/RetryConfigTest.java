@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 class RetryConfigTest {
 
   @Test
-  public void canBuildRetryStrategy() {
+  void canBuildRetryStrategy() {
     RetryConfig retryConfig =
         new RetryConfig(3, false, false, 10, 100, 3)
             .addRetryForStatusCode(429, 10)
@@ -28,7 +28,7 @@ class RetryConfigTest {
   }
 
   @Test
-  public void canBuildRetryStrategyWithTimeoutAwareHttpRequestRetryHandler() {
+  void canBuildRetryStrategyWithTimeoutAwareHttpRequestRetryHandler() {
     RetryConfig retryConfig =
         new RetryConfig(3, false, true, 10, 100, 3)
             .addRetryForStatusCode(429, 10)

@@ -19,6 +19,7 @@ class KafkaHeaderConverterTest {
       new KafkaHeaderConverter(objectMapper);
 
   @Test
+  @SuppressWarnings("PMD.AvoidDuplicateLiterals")
   void shouldCovertFromHeaders() throws JsonProcessingException {
     RecordHeaders emptyHeaders = new RecordHeaders();
     JsonNode emptyHeadersJson = kafkaHeaderConverter.convert(emptyHeaders);

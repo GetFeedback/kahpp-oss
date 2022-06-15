@@ -14,6 +14,7 @@ import java.util.Objects;
 import org.apache.kafka.common.header.Headers;
 import org.apache.kafka.common.header.internals.RecordHeaders;
 
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public class KaHPPRecord {
   private static final int PIECES_WITH_ONLY_ONE_ITEM = 1;
   private static final ObjectMapper OBJECT_MAPPER =
@@ -153,7 +154,7 @@ public class KaHPPRecord {
 
   private ObjectNode removeNestedField(ObjectNode dataSource, List<String> pieces) {
     String currentField = pieces.get(0);
-    if (pieces.size() == 1) {
+    if (pieces.size() == PIECES_WITH_ONLY_ONE_ITEM) {
       dataSource.remove(currentField);
       return dataSource;
     }

@@ -2,9 +2,12 @@ package dev.vox.platform.kahpp.configuration.http.client.exception;
 
 import dev.vox.platform.kahpp.configuration.http.client.Request;
 import dev.vox.platform.kahpp.configuration.http.client.Response;
+import java.io.Serial;
 import java.util.Optional;
 
 public abstract class BadResponseException extends RequestException {
+
+  @Serial private static final long serialVersionUID = -244362035541033852L;
 
   private final Request request;
   private final Response response;

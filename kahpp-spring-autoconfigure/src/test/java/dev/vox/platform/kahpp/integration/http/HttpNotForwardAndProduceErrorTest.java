@@ -23,7 +23,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 @SpringBootTest(classes = HttpNotForwardAndProduceErrorTest.KStreamsTest.class)
-public class HttpNotForwardAndProduceErrorTest extends AbstractKaHPPTest {
+class HttpNotForwardAndProduceErrorTest extends AbstractKaHPPTest {
 
   @BeforeAll
   static void setupMockServer() {
@@ -72,6 +72,7 @@ public class HttpNotForwardAndProduceErrorTest extends AbstractKaHPPTest {
   }
 
   @Test
+  @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
   void htmlHttpResponseShouldGoToErrorTopic() {
     Fixture fixture = loadFixture("collection", "collection_6");
     KaHPPMockServer.mockHttpResponse(

@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 class OkOrProduceErrorTest extends ConstraintViolationTestAbstract {
 
   @Test
-  public void canConstruct() {
+  void canConstruct() {
     OkOrProduceError step =
         new OkOrProduceError(
             "test-canConstruct",
@@ -42,7 +42,7 @@ class OkOrProduceErrorTest extends ConstraintViolationTestAbstract {
   }
 
   @Test
-  public void canValidate() {
+  void canValidate() {
     OkOrProduceError step =
         new OkOrProduceError(
             "test-canValidate",

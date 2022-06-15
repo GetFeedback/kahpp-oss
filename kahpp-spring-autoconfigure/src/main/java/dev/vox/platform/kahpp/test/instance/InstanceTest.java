@@ -59,6 +59,7 @@ import org.springframework.test.context.junit.jupiter.EnabledIf;
  * unit tests as they're suppose to have a real KaHPP configuration file. See the available
  * tests/tasks by running: `./gradlew tasks --group=kahpp`
  */
+@SuppressWarnings("PMD.JUnit5TestShouldBePackagePrivate")
 @Profile("test")
 @SpringBootTest(
     classes = {
@@ -138,31 +139,33 @@ public class InstanceTest {
             InstanceTestConfiguration.CLOCK_FROZEN_INSTANT,
             InstanceTestConfiguration.CLOCK_TICK);
 
-    var outputKeyDeserializer = new JsonNodeDeserializer();
-    var outputValueDeserializer = new JsonNodeDeserializer();
-    Map<String, ?> configMap =
-        shouldDeserializeStrings(kahpp.kStreamsConfigs().asProperties())
-            ? Map.of(JsonNodeDeserializer.JSON_DESERIALIZE_STRING_AS_TEXT_NODE, "true")
-            : Map.of();
-    outputKeyDeserializer.configure(configMap, true);
-    outputValueDeserializer.configure(configMap, false);
+    try (var outputKeyDeserializer = new JsonNodeDeserializer();
+        var outputValueDeserializer = new JsonNodeDeserializer()) {
+      Map<String, ?> configMap =
+          shouldDeserializeStrings(kahpp.kStreamsConfigs().asProperties())
+              ? Map.of(JsonNodeDeserializer.JSON_DESERIALIZE_STRING_AS_TEXT_NODE, "true")
+              : Map.of();
+      outputKeyDeserializer.configure(configMap, true);
+      outputValueDeserializer.configure(configMap, false);
 
-    config
-        .getTopics()
-        .getSinkTopics()
-        .forEach(
-            (identifier, topic) -> {
-              TestOutputTopic<JsonNode, JsonNode> outputTopic =
-                  testDriver.createOutputTopic(
-                      topic.getName(), outputKeyDeserializer, outputValueDeserializer);
-              outputTopics.put(identifier, outputTopic);
-            });
+      config
+          .getTopics()
+          .getSinkTopics()
+          .forEach(
+              (identifier, topic) -> {
+                TestOutputTopic<JsonNode, JsonNode> outputTopic =
+                    testDriver.createOutputTopic(
+                        topic.getName(), outputKeyDeserializer, outputValueDeserializer);
+                outputTopics.put(identifier, outputTopic);
+              });
+    }
   }
 
   private boolean shouldDeserializeStrings(Properties kStreamsProperties) {
-    return kStreamsProperties
-        .getOrDefault(JsonNodeSerializer.JSON_SERIALIZE_TEXT_NODE_AS_STRING, "false")
-        .equals("true");
+    return "true"
+        .equals(
+            kStreamsProperties.getOrDefault(
+                JsonNodeSerializer.JSON_SERIALIZE_TEXT_NODE_AS_STRING, "false"));
   }
 
   @AfterEach
@@ -307,6 +310,7 @@ public class InstanceTest {
     return testScenarios;
   }
 
+  @SuppressWarnings("PMD.AvoidDuplicateLiterals")
   private Map<String, Map<Path, JsonNode>> getScenarioApiInteractions(Path apiInteractions)
       throws IOException {
     try (Stream<Path> walk = Files.walk(apiInteractions, 2)) {
@@ -461,6 +465,7 @@ public class InstanceTest {
     softly.assertAll();
   }
 
+  @SuppressWarnings("PMD.NullAssignment")
   protected static KaHPPTestRecord readFixture(Path scenarioPath, String s) {
     AtomicReference<KaHPPTestRecord> testRecord = new AtomicReference<>();
 

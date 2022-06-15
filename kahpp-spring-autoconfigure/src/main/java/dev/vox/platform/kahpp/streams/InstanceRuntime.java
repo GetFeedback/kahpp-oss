@@ -130,6 +130,7 @@ public final class InstanceRuntime {
     private final Status status;
     private final transient Map<String, Object> context = new HashMap<>();
 
+    @SuppressWarnings("PMD.NullAssignment")
     public Header() {
       this.version = null;
       this.status = null;

@@ -33,7 +33,9 @@ public final class InsertCurrentTimestampFieldTransform extends AbstractRecordTr
     // If the field exists, this step won't change it's value
     if (jmesPathExpression.search(record.build()) != null
         && !jmesPathExpression.search(record.build()).isNull()) {
-      LOGGER.warn("{}: field `{}` is not empty", getTypedName(), field);
+      if (LOGGER.isWarnEnabled()) {
+        LOGGER.warn(getTypedName() + ": field `" + field + "` is not empty");
+      }
       return TransformRecord.noTransformation();
     }
 

@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 @SpringBootTest(classes = ThrottleTest.KStreamsTest.class)
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 class ThrottleTest extends AbstractKaHPPTest {
   @Test
   void recordIsNotMutated() {

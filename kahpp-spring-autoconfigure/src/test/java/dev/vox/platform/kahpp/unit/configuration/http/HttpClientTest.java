@@ -42,13 +42,13 @@ class HttpClientTest {
               null));
 
   @Test
-  public void canBuild() {
+  void canBuild() {
     ApiClient apiClient = simpleHttpClient.buildApiClient();
     assertThat(apiClient).isNotNull();
   }
 
   @Test
-  public void optionsHasCorrectData() {
+  void optionsHasCorrectData() {
     Options options = simpleHttpClient.getOptions();
     assertThat(options.getHeaders()).containsExactly(new SimpleEntry<>("x", "y"));
     assertThat(options.getConnection().getConnectTimeoutMillis()).isEqualTo(CONNECT_TIMEOUT_MILLIS);
@@ -56,13 +56,13 @@ class HttpClientTest {
   }
 
   @Test
-  public void optionsCreatesDefaultRetries() {
+  void optionsCreatesDefaultRetries() {
     Options options = simpleHttpClient.getOptions();
     assertThat(options.getRetries()).isInstanceOf(Retries.class);
   }
 
   @Test
-  public void canBuildWithoutHeadersAndRateLimit() {
+  void canBuildWithoutHeadersAndRateLimit() {
     final HttpClient httpClient =
         new HttpClient(
             HTTP_BASE_PATH,
@@ -75,7 +75,7 @@ class HttpClientTest {
   }
 
   @Test
-  public void canBuildWithHeadersAndWithoutRateLimit() {
+  void canBuildWithHeadersAndWithoutRateLimit() {
     final HttpClient httpClient =
         new HttpClient(
             HTTP_BASE_PATH,
@@ -91,7 +91,7 @@ class HttpClientTest {
   }
 
   @Test
-  public void canBuildWithHeadersAndRateLimit() {
+  void canBuildWithHeadersAndRateLimit() {
     final HttpClient httpClient =
         new HttpClient(
             HTTP_BASE_PATH,
@@ -107,7 +107,7 @@ class HttpClientTest {
   }
 
   @Test
-  public void canBuildWithRetries() {
+  void canBuildWithRetries() {
     final HttpClient httpClient =
         new HttpClient(
             HTTP_BASE_PATH,
@@ -121,7 +121,7 @@ class HttpClientTest {
   }
 
   @Test
-  public void rateLimitConfigShouldBuildARateLimitWithoutWarmUpPeriod() {
+  void rateLimitConfigShouldBuildARateLimitWithoutWarmUpPeriod() {
     final RateLimitConfig rateLimitConfig = new RateLimitConfig(10, null);
     final RateLimit rateLimit = rateLimitConfig.build();
 
@@ -130,7 +130,7 @@ class HttpClientTest {
   }
 
   @Test
-  public void rateLimitConfigShouldBuildARateLimitWithWarmUpPeriod() {
+  void rateLimitConfigShouldBuildARateLimitWithWarmUpPeriod() {
     final RateLimitConfig rateLimitConfig = new RateLimitConfig(10, 2000);
     final RateLimit rateLimit = rateLimitConfig.build();
 
@@ -139,7 +139,7 @@ class HttpClientTest {
   }
 
   @Test
-  public void retriesBuildUsesDefaults() {
+  void retriesBuildUsesDefaults() {
     final Retries retries = new Retries(null, null, null, null, null, null, null);
     final RetryConfig config = retries.build();
     final ServiceUnavailableRetryStrategy strategy = config.getServiceUnavailableRetryStrategy();
@@ -154,7 +154,7 @@ class HttpClientTest {
   }
 
   @Test
-  public void retriesBuildUsesValues() {
+  void retriesBuildUsesValues() {
     final List<RetriesForHttpStatus> statusCodes =
         List.of(
             new RetriesForHttpStatus(429, null, null, 5),
@@ -172,7 +172,7 @@ class HttpClientTest {
   }
 
   @Test
-  public void retriesBuildsWithoutConnectionRetries() {
+  void retriesBuildsWithoutConnectionRetries() {
     final Retries retries = new Retries(null, 0, null, null, null, null, null);
     final RetryConfig config = retries.build();
     final HttpRequestRetryHandler handler = config.getHttpRequestRetryHandler();

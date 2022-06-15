@@ -14,6 +14,7 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 class ProduceToTopicByRouteTest {
   private static final TopicIdentifier ERROR_TOPIC = new TopicIdentifier("error");
   private static final String STEP_NAME = "dynamicRouter";

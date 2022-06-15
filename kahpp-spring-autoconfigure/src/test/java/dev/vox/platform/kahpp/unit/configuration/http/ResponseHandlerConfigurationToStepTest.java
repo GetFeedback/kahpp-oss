@@ -19,7 +19,8 @@ class ResponseHandlerConfigurationToStepTest {
       new ResponseHandlerConfigurationToStep();
 
   @Test
-  public void shouldHaveDefaultResponseHandler() {
+  @SuppressWarnings("PMD.AvoidDuplicateLiterals")
+  void shouldHaveDefaultResponseHandler() {
     var configuration = new StepConfiguration<>(HttpCall.class, "test", Map.of());
 
     StepConfiguration<HttpCall> configure = configToStep.configure(configuration, null);
@@ -32,7 +33,7 @@ class ResponseHandlerConfigurationToStepTest {
   }
 
   @Test
-  public void canInjectAResponseHandler() {
+  void canInjectAResponseHandler() {
     var configuration =
         new StepConfiguration<>(
             HttpCall.class,

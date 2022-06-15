@@ -3,9 +3,12 @@ package dev.vox.platform.kahpp.configuration.http.client.exception;
 import dev.vox.platform.kahpp.configuration.http.client.Request;
 import dev.vox.platform.kahpp.configuration.http.client.Response;
 import java.io.IOException;
+import java.io.Serial;
 import java.util.Optional;
 
 public final class TransferException extends RequestException {
+
+  @Serial private static final long serialVersionUID = -1194093232207688694L;
 
   private final Request request;
 

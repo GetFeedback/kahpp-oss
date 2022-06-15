@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 class ResponseHandlerBuilderTest {
 
   @Test
-  public void testConstructor() {
+  void testConstructor() {
     assertThatCode(ResponseHandlerBuilder::new).doesNotThrowAnyException();
 
     Map topics = new LinkedHashMap();

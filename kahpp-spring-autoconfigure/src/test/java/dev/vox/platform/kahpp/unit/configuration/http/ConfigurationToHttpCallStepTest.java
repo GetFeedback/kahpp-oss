@@ -27,7 +27,7 @@ class ConfigurationToHttpCallStepTest {
   }
 
   @Test
-  public void shouldIgnoreOnMissingApiEntry() {
+  void shouldIgnoreOnMissingApiEntry() {
     ConfigBuilder configBuilder = getConfigBuilder("canProvideApiClient", Map.of());
 
     StepConfiguration<HttpCall> stepConfiguration = getHttpCallStepConfiguration(Map.of());
@@ -39,7 +39,7 @@ class ConfigurationToHttpCallStepTest {
   }
 
   @Test
-  public void shouldIgnoreOnMissingApiReference() {
+  void shouldIgnoreOnMissingApiReference() {
     ConfigBuilder configBuilder = getConfigBuilder("canProvideApiClient", Map.of());
 
     Map<String, Object> stepConfig = Map.of("api", "non-existing-api");
@@ -52,7 +52,7 @@ class ConfigurationToHttpCallStepTest {
   }
 
   @Test
-  public void canBuildAndReuseApiClient() {
+  void canBuildAndReuseApiClient() {
     HttpClient httpClient =
         new HttpClient("/path", new Options(new Connection(5, 1), Map.of("x", "y"), null, null));
     Map<String, HttpClient> apis = Map.of("existing-api", httpClient);

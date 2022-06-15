@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 class CopyKeyToPropertyFunctionTest extends JmespathFunctionTest {
   @Test
-  public void copyKeyToProperty() {
+  void copyKeyToProperty() {
     assertEquals(
         parse("{\"foo\":{\"key\":\"foo\",\"bar\":\"baz\",\"hello\":\"world\"}}"),
         evaluate(
@@ -18,12 +18,12 @@ class CopyKeyToPropertyFunctionTest extends JmespathFunctionTest {
   }
 
   @Test
-  public void copyKeyToPropertyForEmptyObject() {
+  void copyKeyToPropertyForEmptyObject() {
     assertEquals(parse("{}"), evaluate("copy_key_to_property(`{}`, `\"key\"`)"));
   }
 
   @Test
-  public void copyKeyToPropertyForMultipleObjects() {
+  void copyKeyToPropertyForMultipleObjects() {
     assertEquals(
         parse(
             "{\"foo\":{\"id\":\"foo\",\"hello\":\"world\"},\"bar\":{\"id\":\"bar\",\"hello\":\"world\"},\"baz\":{\"id\":\"baz\",\"hello\":\"world\"}}"),
@@ -32,7 +32,7 @@ class CopyKeyToPropertyFunctionTest extends JmespathFunctionTest {
   }
 
   @Test
-  public void copyKeyToPropertyThrowsExceptionWhenKeyAlreadyInUse() {
+  void copyKeyToPropertyThrowsExceptionWhenKeyAlreadyInUse() {
     assertThrows(
         IllegalArgumentException.class,
         () ->
@@ -41,13 +41,13 @@ class CopyKeyToPropertyFunctionTest extends JmespathFunctionTest {
   }
 
   @Test
-  public void copyKeyToPropertyThrowsExceptionWhenFirstArgumentIsNotAnObject() {
+  void copyKeyToPropertyThrowsExceptionWhenFirstArgumentIsNotAnObject() {
     assertThrows(
         ArgumentTypeException.class, () -> evaluate("copy_key_to_property(`[]`, `\"foo\"`)"));
   }
 
   @Test
-  public void copyKeyToPropertyThrowsExceptionWhenSecondArgumentIsNotAString() {
+  void copyKeyToPropertyThrowsExceptionWhenSecondArgumentIsNotAString() {
     assertThrows(ArgumentTypeException.class, () -> evaluate("copy_key_to_property(`{}`, `[]`)"));
   }
 

@@ -52,10 +52,12 @@ public final class RecordTransformStepToKStream
     public void process(KaHPPRecord record) {
       TransformRecord transformRecord = step.transform(jacksonRuntime, context(), record);
 
-      LOGGER.debug(
-          "{}: Record transformation {}",
-          step.getTypedName(),
-          transformRecord.getMutations().isEmpty() ? "skipped" : "applied");
+      if (LOGGER.isDebugEnabled()) {
+        LOGGER.debug(
+            "{}: Record transformation {}",
+            step.getTypedName(),
+            transformRecord.getMutations().isEmpty() ? "skipped" : "applied");
+      }
       KaHPPRecord newRecord = TransformRecordApplier.apply(jacksonRuntime, record, transformRecord);
       // These two lines should go away from here soon
       newRecord.getRecordHeaders().forEach(r -> context().headers().remove(r.key()));
@@ -63,11 +65,13 @@ public final class RecordTransformStepToKStream
 
       if (!record.getKey().equals(newRecord.getKey())) {
         MDC.put(Start.MDC_KAFKA_MESSAGE_KEY, newRecord.getKey().toString());
-        LOGGER.debug(
-            "{}: changed Record key from `{}` to `{}`",
-            step.getTypedName(),
-            record.getKey(),
-            newRecord.getKey());
+        if (LOGGER.isDebugEnabled()) {
+          LOGGER.debug(
+              "{}: changed Record key from `{}` to `{}`",
+              step.getTypedName(),
+              record.getKey(),
+              newRecord.getKey());
+        }
       }
 
       forwardToNextStep(newRecord);

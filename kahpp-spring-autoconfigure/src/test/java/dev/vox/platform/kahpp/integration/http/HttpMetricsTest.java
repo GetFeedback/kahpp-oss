@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 @SpringBootTest(classes = HttpForwardAndProduceErrorTest.KStreamsTest.class)
-public class HttpMetricsTest extends AbstractKaHPPTest {
+class HttpMetricsTest extends AbstractKaHPPTest {
 
   private static final String RESPONSE_BODY_VALUE = "{}";
 
