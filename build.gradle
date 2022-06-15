@@ -5,7 +5,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'org.springframework.boot' version '2.7.1' apply false
-    id 'com.github.spotbugs' version '5.0.6'
+    id 'com.github.spotbugs' version '5.0.8'
     id 'com.diffplug.spotless' version '6.8.0'
     id 'com.github.nbaztec.coveralls-jacoco' version '1.2.14'
     id 'org.owasp.dependencycheck' version '7.1.1'
