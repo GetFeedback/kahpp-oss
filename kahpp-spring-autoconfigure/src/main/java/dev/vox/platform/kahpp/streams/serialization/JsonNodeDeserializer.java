@@ -15,6 +15,9 @@ public class JsonNodeDeserializer extends JsonDeserializer<JsonNode> {
   private transient boolean deserializeStringAsTextNode;
 
   @Override
+  @SuppressWarnings(
+      "UnsynchronizedOverridesSynchronized") // Values come from a static configuration and never
+  // change over time
   public void configure(Map<String, ?> configs, boolean isKey) {
     super.configure(configs, isKey);
 
