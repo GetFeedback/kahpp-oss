@@ -50,6 +50,7 @@ class StepBuilderTest {
 
     private final transient String fake;
 
+    @SuppressWarnings("UnusedMethod")
     public ConstructorWithWrongArgumentsStep(String fake) {
       this.fake = fake;
     }
