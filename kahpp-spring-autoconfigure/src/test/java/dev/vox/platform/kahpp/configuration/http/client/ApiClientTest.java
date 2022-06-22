@@ -5,13 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockserver.integration.ClientAndServer.startClientAndServer;
 import static org.mockserver.model.JsonBody.json;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.vox.platform.kahpp.configuration.http.client.configuration.RetryConfig;
 import dev.vox.platform.kahpp.configuration.http.client.exception.ClientException;
 import dev.vox.platform.kahpp.configuration.http.client.exception.RequestException;
 import dev.vox.platform.kahpp.configuration.http.client.exception.ServerException;
 import dev.vox.platform.kahpp.configuration.http.client.exception.TransferException;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.net.SocketTimeoutException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
@@ -259,28 +257,5 @@ class ApiClientTest {
     assertThat(exception.getRequest().isPresent()).isTrue();
     assertThat(exception.getResponse().isPresent()).isFalse();
     assertThat(exception.getCause()).isInstanceOf(SocketTimeoutException.class);
-  }
-
-  private static class ProcessableRequestBody {
-
-    @SuppressFBWarnings("URF_UNREAD_FIELD")
-    @SuppressWarnings({"unused", "PMD.BeanMembersShouldSerialize"})
-    @JsonProperty("key")
-    private String key;
-
-    ProcessableRequestBody(final String value) {
-      this.key = value;
-    }
-  }
-
-  private static class UnprocessableRequestBody {
-
-    @SuppressFBWarnings("URF_UNREAD_FIELD")
-    @SuppressWarnings({"unused", "PMD.BeanMembersShouldSerialize"})
-    private String key;
-
-    UnprocessableRequestBody(final String value) {
-      this.key = value;
-    }
   }
 }

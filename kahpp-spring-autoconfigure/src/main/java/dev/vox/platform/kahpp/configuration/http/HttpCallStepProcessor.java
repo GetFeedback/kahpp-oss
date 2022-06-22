@@ -129,7 +129,7 @@ public class HttpCallStepProcessor extends StepProcessor<HttpCall> {
       var error = recordAction.getLeft();
       context().headers().add(InstanceRuntime.HeaderHelper.forError(step(), error));
 
-      unsuccessfulResponseTimeMs.record(Duration.ofNanos(nanoInterval).toMillis());
+      unsuccessfulResponseTimeMs.record((double) Duration.ofNanos(nanoInterval).toMillis());
       unsuccessfulResponseCounter.increment();
 
       LOGGER.warn(
@@ -160,7 +160,7 @@ public class HttpCallStepProcessor extends StepProcessor<HttpCall> {
 
       context().headers().add(InstanceRuntime.HeaderHelper.forSuccess(step()));
 
-      successfulResponseTimeMs.record(Duration.ofNanos(nanoInterval).toMillis());
+      successfulResponseTimeMs.record((double) Duration.ofNanos(nanoInterval).toMillis());
       successfulResponseCounter.increment();
     }
 

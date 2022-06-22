@@ -157,11 +157,13 @@ public final class InstanceRuntime {
       return Status.SUCCESS.equals(this.getStatus());
     }
 
+    @SuppressWarnings("UnusedMethod")
     @JsonProperty
     public Long getTimestamp() {
       return timestamp;
     }
 
+    @SuppressWarnings("UnusedMethod")
     @JsonProperty
     public Integer getVersion() {
       return version;
@@ -172,6 +174,7 @@ public final class InstanceRuntime {
       return status;
     }
 
+    @SuppressWarnings("UnusedMethod")
     public Optional<Map<String, Object>> getContext() {
       return Optional.ofNullable(context);
     }

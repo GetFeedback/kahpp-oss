@@ -100,14 +100,14 @@ class HttpCallStepProcessorTest {
   @Test
   void testStatusMetric() {
     httpCallStepProcessor.process(createRecord(0, true));
-    assertCountStatus(1L, true);
+    assertCountStatus(1D, true);
 
     httpCallStepProcessor.process(createRecord(0, false));
-    assertCountStatus(1L, false);
+    assertCountStatus(1D, false);
 
     httpCallStepProcessor.process(createRecord(0, true));
-    assertCountStatus(2L, true);
-    assertCountStatus(1L, false);
+    assertCountStatus(2D, true);
+    assertCountStatus(1D, false);
   }
 
   @Test

@@ -18,6 +18,9 @@ public class JsonNodeSerializer extends JsonSerializer<JsonNode> {
   private transient boolean serializeNullNodeAsNull;
 
   @Override
+  @SuppressWarnings(
+      "UnsynchronizedOverridesSynchronized") // Values come from a static configuration and never
+  // change over time
   public void configure(Map<String, ?> configs, boolean isKey) {
     super.configure(configs, isKey);
 
