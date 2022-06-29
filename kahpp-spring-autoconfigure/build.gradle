@@ -11,7 +11,6 @@ configurations {
 
 ext {
     sentryVersion = '6.1.4'
-    micrometerVersion = '1.9.1'
     kafkaVersion = '3.1.0'
     logbackVersion = '1.2.11'
     mockitoVersion = '4.6.1'
@@ -23,10 +22,11 @@ dependencies{
 
     implementation 'org.springframework.boot:spring-boot'
     implementation 'org.springframework.boot:spring-boot-autoconfigure'
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "io.micrometer:micrometer-registry-prometheus:1.9.1"
 
     implementation "io.sentry:sentry-logback:${sentryVersion}"
-    implementation "io.micrometer:micrometer-core:${micrometerVersion}"
-    implementation "io.micrometer:micrometer-registry-jmx:${micrometerVersion}"
     implementation "io.burt:jmespath-core:0.5.1"
     implementation "io.burt:jmespath-jackson:0.5.1"
     implementation "io.vavr:vavr:1.0.0-alpha-4"
