@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  zookeeper:
+    image: zookeeper:3.5
+    networks:
+      - kahpp
+
+  kafka:
+    image: wurstmeister/kafka:2.12-2.5.0
+    restart: always
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_MESSAGE_MAX_BYTES: 20000000
+      KAFKA_CREATE_TOPICS: >-
+        source-topic:1:1:compact,
+        sink-topic:1:1:compact,
+    ports:
+      - "9092:9092"
+    volumes:
+      - ./docker/kafka:/opt/kafka
+    networks:
+      - kahpp
+
+  kahpp:
+    image: ghcr.io/getfeedback/kahpp-oss
+    ports:
+      - "8080:8080"
+    depends_on:
+      - kafka
+    volumes:
+      - ./kahpp/:/kahpp/
+    networks:
+      - kahpp
+
+networks:
+  kahpp:
+    name: kahpp

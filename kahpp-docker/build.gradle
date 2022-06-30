@@ -1,0 +1,22 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation project(':kahpp-spring-starter')
+}
+
+bootJar {
+    mainClass = "dev.vox.platform.kahpp.Application"
+    launchScript {
+        script = file("launch-script.sh")
+    }
+}
+
+bootBuildImage {
+    imageName = "ghcr.io/getfeedback/kahpp-oss:${project.version}"
+    environment = [
+            "BPL_JMX_ENABLED" : "true",
+            "BP_JVM_TYPE": "Adoptium",
+            "BPL_JAVA_NMT_ENABLED": "false",
+            "BP_SPRING_CLOUD_BINDINGS_DISABLED": "true",
+            ]
+}

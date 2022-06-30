@@ -39,7 +39,7 @@ It's possible to override the location using the `KAHPP_CONFIG_LOCATION` environ
 A _Kahpp Instance_ or just _Instance_ is a YAML file, essentially a configuration, but we can think of it as the description of the pipeline.
 
 ## Modules
-There are three main modules in Kahpp.  
+There are various modules in Kahpp.  
 Here is a quick overview:
 
 ### [kahpp-spring-autoconfigure](kahpp-spring-autoconfigure)
@@ -91,6 +91,13 @@ The plugin provides a series of task that help development.
 List all tasks:
 ```
 ./gradlew tasks --group=kahpp
+```
+
+### [kahpp-docker](kahpp-docker)
+It's a Spring Boot app that leverages the task 'bootBuildImage' to build the docker image, it uses [Buildpacks](https://buildpacks.io/) under the hood and uses [paketobuildpacks](https://paketo.io/docs/howto/java/) as the default builder.  
+To build the docker image use:
+```
+./gradlew bootBuildImage
 ```
 
 ## Features
