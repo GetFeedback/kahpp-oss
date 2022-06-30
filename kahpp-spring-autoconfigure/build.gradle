@@ -83,7 +83,7 @@ dependencies{
 
 publishing {
     publications {
-        starter(MavenPublication) {
+        autoconfigure(MavenPublication) {
             groupId = "${groupId}"
             artifactId = 'kahpp-spring-autoconfigure'
             version = "${version}"
