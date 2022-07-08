@@ -7,32 +7,16 @@
         https://mvnrepository.com/artifact/io.spring.gradle/dependency-management-plugin/1.0.11.RELEASE
         ]]></notes>
         <sha1>3de422bc45afcb94a538ba9502984b503c7ae756</sha1>
-        <cve>CVE-2018-1270</cve>
-        <cve>CVE-2018-1272</cve>
-        <cve>CVE-2020-5421</cve>
-        <cve>CVE-2018-1271</cve>
         <cve>CVE-2016-9878</cve>
     </suppress>
     <suppress>
         <notes><![CDATA[
         CVE-2016-1000027
             https://github.com/spring-projects/spring-framework/issues/24434
-            Kahpp doesn't use the spring-web package and never call HttpInvokerServiceExporter
-        CVE-2022-22965
-            https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-22965
-            The specific exploit requires the application to run on Tomcat as a WAR deployment.
-            If the application is deployed as a Spring Boot executable jar, i.e. the default, it is not vulnerable to the exploit.
-        CVE-2022-22968
-            https://spring.io/blog/2022/04/13/spring-framework-data-binding-rules-vulnerability-cve-2022-22968#does-this-affect-my-application
-            Besides using a newer version of Spring, Kahpp doesn't have spring-webmvc or spring-webflux dependency.
-        CVE-2022-22950
-            Kahpp doesn't use spring version 5.3.0 - 5.3.16 or older.
+            Kahpp never call HttpInvokerServiceExporter
         ]]></notes>
         <cpe>cpe:2.3:a:pivotal_software:spring_framework:5.3.16:*:*:*:*:*:*:*</cpe>
         <cve>CVE-2016-1000027</cve>
-        <cve>CVE-2022-22965</cve>
-        <cve>CVE-2022-22968</cve>
-        <cve>CVE-2022-22950</cve>
     </suppress>
     <suppress>
         <notes><![CDATA[
