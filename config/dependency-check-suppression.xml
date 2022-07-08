@@ -27,4 +27,10 @@
         <cpe>cpe:2.3:a:mock-server:mockserver:*:*:*:*:*:*:*:*</cpe>
         <cve>CVE-2021-32827</cve>
     </suppress>
+    <suppress>
+        <notes><![CDATA[
+        Only the tomcat example application is effected.
+        ]]></notes>
+        <cve>CVE-2022-34305</cve>
+    </suppress>
 </suppressions>
