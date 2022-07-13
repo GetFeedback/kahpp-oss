@@ -54,7 +54,7 @@ dependencies{
     implementation "org.apache.kafka:kafka-clients:${kafkaVersion}:test"
     implementation "org.apache.kafka:kafka_2.13:${kafkaVersion}"
     implementation "org.apache.kafka:kafka_2.13:${kafkaVersion}:test"
-    implementation "org.skyscreamer:jsonassert:1.5.0"
+    implementation "org.skyscreamer:jsonassert:1.5.1"
     implementation "org.springframework.kafka:spring-kafka-test"
     implementation "org.apache.kafka:kafka-streams-test-utils:${kafkaVersion}"
     implementation("org.springframework.boot:spring-boot-starter-test") {
