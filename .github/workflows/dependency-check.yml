@@ -12,14 +12,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
-      - name: Setup
-        run: |
-          # due to https://github.com/google/google-java-format/blob/v1.12.0/README.md#jdk-16
-          echo org.gradle.jvmargs=--add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED \
-            --add-exports jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED \
-            --add-exports jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED \
-            --add-exports jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED \
-            --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED >> ./gradle.properties
       - name: Build report overview of the vulnerabilities per dependency
         run: |
           ./gradlew dependencyCheckAggregate
