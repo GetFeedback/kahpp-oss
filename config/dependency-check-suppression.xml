@@ -33,4 +33,12 @@
         ]]></notes>
         <cve>CVE-2022-34305</cve>
     </suppress>
+    <suppress>
+        <notes><![CDATA[
+        False positive
+        file name: dependency-management-plugin-1.0.12.RELEASE.jar
+   ]]></notes>
+        <packageUrl regex="true">^pkg:maven/io\.spring\.gradle/dependency\-management\-plugin@.*$</packageUrl>
+        <cve>CVE-2016-9878</cve>
+    </suppress>
 </suppressions>
