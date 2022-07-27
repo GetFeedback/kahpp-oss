@@ -34,7 +34,7 @@ publishing {
 }
 
 ext {
-    springVersion = '2.7.1'
+    springVersion = '2.7.2'
 }
 
 dependencies {
@@ -44,7 +44,7 @@ dependencies {
     api("io.spring.gradle:dependency-management-plugin:1.0.12.RELEASE")
     compileOnly localGroovy()
     testImplementation gradleTestKit()
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
 
