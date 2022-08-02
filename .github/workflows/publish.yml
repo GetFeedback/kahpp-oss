@@ -30,3 +30,6 @@ jobs:
           PGP_PSW: ${{secrets.OSS_GPG_PASSPHRASE}}
         run: |
           ./gradlew publish -PprojVersion=${{ github.ref_name }} -PgithubRepositoryUsername=${{ secrets.PACKAGE_REGISTRY_GITHUB_USER }} -PgithubRepositoryPassword=${{ secrets.PACKAGE_REGISTRY_GITHUB_TOKEN }} -PsignJar
+      - name: Publish docker image
+        run: |
+          ./gradlew bootBuildImage -PprojVersion=${{ github.ref_name }} --publishImage -PdockerRegistryUsername=${{ secrets.PACKAGE_REGISTRY_GITHUB_USER }} -PdockerRegistryPassword=${{ secrets.PACKAGE_REGISTRY_GITHUB_TOKEN }}
