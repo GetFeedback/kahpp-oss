@@ -78,7 +78,7 @@ dependencies{
     }
 
     developmentOnly "org.springframework.boot:spring-boot-devtools"
-    errorprone "com.google.errorprone:error_prone_core:2.14.0"
+    errorprone "com.google.errorprone:error_prone_core:2.15.0"
 }
 
 publishing {
