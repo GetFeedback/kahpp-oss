@@ -24,7 +24,7 @@ dependencies{
     implementation 'org.springframework.boot:spring-boot-autoconfigure'
     implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "org.springframework.boot:spring-boot-starter-web"
-    implementation "io.micrometer:micrometer-registry-prometheus:1.9.2"
+    implementation "io.micrometer:micrometer-registry-prometheus:1.9.3"
 
     implementation "io.sentry:sentry-logback:${sentryVersion}"
     implementation "io.burt:jmespath-core:0.5.1"
