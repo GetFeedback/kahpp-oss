@@ -1,0 +1,13 @@
+site_name: Kahpp
+site_url: https://getfeedback.github.io/kahpp-oss
+repo_url: https://github.com/getfeedback/kahpp-oss
+theme:
+  name: readthedocs
+markdown_extensions:
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.highlight
+  - pymdownx.emoji
+nav:
+  - Getting Started:
+      - What is Kahpp?: index.md
