@@ -1,10 +1,10 @@
 # Filter
 
-Permits to filter records by specific field (key,value,timestamp) using [`jmespath`](https://jmespath.org/).
+Permits to filter records by specific field (key, value, timestamp, etc.) using [`jmespath`](https://jmespath.org/).  
 
 ### Usage examples
 
-Simple JMESPath evaluation
+A filter-like JMESPath evaluation 
 
 ```yaml
   - name: filterByValueName

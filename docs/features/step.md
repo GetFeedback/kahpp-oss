@@ -16,5 +16,5 @@ steps:
   - name: stepTwoName
     type: step.two.type
     config:
-    ### Configuration here
+      ### Configuration here
 ```

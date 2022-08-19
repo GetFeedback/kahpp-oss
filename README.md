@@ -5,7 +5,7 @@
 
 # A Low-Code Real-Time Kafka Stream Processor
 
-Kahpp is a self-service Kafka Stream processor capable of filtering, transforming and routing Kafka records in real-time with just a YAML file.  
+Kahpp is a self-service Kafka Stream processor capable of filtering, transforming and routing Kafka records in real-time with a YAML file.  
 Its most straightforward configuration lets you consume a topic and trigger HTTP API requests for each received message. At its more complex setup, it can filter, duplicate, route, re-process, and do much more based on a condition.
 
 Take a look at the [reference documentation](https://getfeedback.github.io/kahpp-oss).

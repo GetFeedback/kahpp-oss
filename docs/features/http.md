@@ -33,7 +33,7 @@ Then in the steps, we may decide how to use it and how to handle the response.
 ## Ok or Produce Error
 In case of error, it routes the message to a specific topic.
 
-Simple Http Call
+Simple HTTP Call
 ```yaml
   - name: httpCall
     type: dev.vox.platform.kahpp.configuration.http.OkOrProduceError
@@ -43,7 +43,7 @@ Simple Http Call
       topic: error
 ```
 
-Http Call with response handler
+HTTP Call with response handler
 
 Update the field `name` with the HTTP Response
 ```yaml
