@@ -21,8 +21,6 @@ services:
         sink-topic:1:1:compact,
     ports:
       - "9092:9092"
-    volumes:
-      - ./docker/kafka:/opt/kafka
     networks:
       - kahpp
 
