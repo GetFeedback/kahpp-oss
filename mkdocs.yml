@@ -1,0 +1,25 @@
+site_name: Kahpp
+site_url: https://getfeedback.github.io/kahpp-oss
+repo_url: https://github.com/getfeedback/kahpp-oss
+theme:
+  name: readthedocs
+markdown_extensions:
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.highlight
+  - pymdownx.emoji
+nav:
+  - Getting Started:
+      - What is Kahpp?: index.md
+      - Kahpp instance: getting-started/kahpp-instance.md
+      - Run Kahpp: getting-started/docker.md
+      - Gradle Plugin: getting-started/gradle-plugin.md
+  - Features:
+      - Steps:
+          - What is a Step?: features/step.md
+          - Transformers: features/transformers.md
+          - Filters: features/filters.md
+          - Http: features/http.md
+          - Throttle: features/throttle.md
+  - Developer Guide:
+      - Spring Boot Starter: developer-guide/spring-boot-starter.md
