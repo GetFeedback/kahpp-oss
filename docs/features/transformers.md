@@ -56,15 +56,67 @@ Pulls a field out of a complex value and replaces the entire value with the extr
       field: id
 ```
 
-## Split Value
-Split an array into values.
+## Split array
+Split an array into multiple records.
 
+Let's take as example this record:
+```
+{
+    "customer": "Paolo",
+    "orders": [
+        {
+            "type": "food",
+            "product": "pizza"
+        },
+        {
+            "type": "drink",
+            "product": "cocacola"
+        }
+    ]
+}
+```
+
+We would like to send the order for food and drink in two different places (for example to two different topics).  
+
+So the expected result is to have two records.  
+
+One for the food:
+```
+{
+    "customer": "Paolo",
+    "order": {
+        "type": "food",
+        "product": "pizza"
+    }
+}
+```
+
+Another for the drink:
+```
+{
+    "customer": "Paolo",
+    "order": {
+        "type": "food",
+        "product": "pizza"
+    }
+}
+```
+
+So, our step configuration will look like:
 ```yaml
     - name: splitFooArray
       type: dev.vox.platform.kahpp.configuration.transform.SplitValueTransform
       config:
-        jmesPath: "value.fooArray"
+        jmesPath: "value.orders"
+        to: "value.order" # Optional field
 ```
+
+### Optional configurations
+
+| name | default | description                                                                                                                                                                                                                                                                            |
+|------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| to   | ""      | Defines where to put an extracted array's object as a nested field into the original parent object. If the 'to' field is not configured, the extracted object will go on the 'value' field by default. The existing parent's field under the same 'to' path is going to be overridden. |
+
 
 ## Copy Timestamp To Value
 Copy timestamp of record into value.

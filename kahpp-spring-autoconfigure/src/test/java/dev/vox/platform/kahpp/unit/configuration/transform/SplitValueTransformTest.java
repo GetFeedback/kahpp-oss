@@ -16,6 +16,7 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 class SplitValueTransformTest {
 
   private transient KaHPPRecord record;
@@ -44,6 +45,45 @@ class SplitValueTransformTest {
 
     SplitValueTransform transformStep =
         new SplitValueTransform("splitThis", Map.of("jmesPath", "value"));
+
+    JacksonRuntime runtime = new JacksonRuntime();
+
+    Iterator<KaHPPRecord> records = transformStep.transform(runtime, record).iterator();
+    assertThat(records.hasNext()).isTrue();
+    assertThat(records.next()).isEqualTo(firstExpectedRecord);
+    assertThat(records.hasNext()).isTrue();
+    assertThat(records.next()).isEqualTo(secondExpectedRecord);
+    assertThat(records.hasNext()).isFalse();
+  }
+
+  @Test
+  void shouldDemultiplexARecordIntoMultipleOnesFromValue() {
+    final JsonNode firstExpectedRecordValueWithInfo =
+        MAPPER.createObjectNode().put("info", "foo").set("detail", firstExpectedRecordValue);
+    final JsonNode secondExpectedRecordValueWithInfo =
+        MAPPER.createObjectNode().put("info", "foo").set("detail", secondExpectedRecordValue);
+
+    final JsonNode value =
+        MAPPER
+            .createObjectNode()
+            .put("info", "foo")
+            .set(
+                "array",
+                MAPPER
+                    .createArrayNode()
+                    .add(firstExpectedRecordValue)
+                    .add(secondExpectedRecordValue));
+
+    record = KaHPPRecord.build(recordKey, value, 1584352842123L);
+
+    KaHPPRecord firstExpectedRecord =
+        KaHPPRecord.build(recordKey, firstExpectedRecordValueWithInfo, 1584352842123L);
+    KaHPPRecord secondExpectedRecord =
+        KaHPPRecord.build(recordKey, secondExpectedRecordValueWithInfo, 1584352842123L);
+
+    SplitValueTransform transformStep =
+        new SplitValueTransform(
+            "splitThis", Map.of("jmesPath", "value.array", "to", "value.detail"));
 
     JacksonRuntime runtime = new JacksonRuntime();
 
