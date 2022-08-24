@@ -96,8 +96,8 @@ Another for the drink:
 {
     "customer": "Paolo",
     "order": {
-        "type": "food",
-        "product": "pizza"
+        "type": "drink",
+        "product": "cocacola"
     }
 }
 ```
