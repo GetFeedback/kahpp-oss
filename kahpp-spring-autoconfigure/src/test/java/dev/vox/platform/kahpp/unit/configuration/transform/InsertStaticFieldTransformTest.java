@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import dev.vox.platform.kahpp.configuration.TransformRecord;
+import dev.vox.platform.kahpp.configuration.TransformRecordApplier;
 import dev.vox.platform.kahpp.configuration.transform.InsertStaticFieldTransform;
 import dev.vox.platform.kahpp.streams.KaHPPRecord;
 import io.burt.jmespath.jackson.JacksonRuntime;
@@ -25,6 +26,7 @@ class InsertStaticFieldTransformTest {
   private static final String NEW_KEY = "newKey";
   private static final String STEP_NAME = "name";
   private static final String FORMAT_FIELD = "format";
+  private static final String CONFIG_OVERRIDE = "overrideIfExists";
 
   private transient KaHPPRecord record;
 
@@ -123,5 +125,36 @@ class InsertStaticFieldTransformTest {
                         "json")))
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Failed to parse [[\"foo\", \"bar\"] value to JSON");
+  }
+
+  @Test
+  void shouldOverrideFieldIfExists() {
+    KaHPPRecord record =
+        KaHPPRecord.build(
+            NullNode.getInstance(),
+            MAPPER.createObjectNode().put("foo", "bar").put("overrideThis", "oldValue"),
+            1584352842123L);
+
+    final InsertStaticFieldTransform insertStaticFieldTransform =
+        new InsertStaticFieldTransform(
+            STEP_NAME,
+            Map.of(CONFIG_FIELD, "overrideThis", CONFIG_VALUE, NEW_VALUE, CONFIG_OVERRIDE, true));
+
+    JacksonRuntime runtime = new JacksonRuntime();
+    final TransformRecord transformation =
+        insertStaticFieldTransform.transform(runtime, new MockProcessorContext(), record);
+
+    assertThat(transformation.getMutations().size()).isEqualTo(1);
+    assertThat(transformation.getMutations())
+        .contains(TransformRecord.JmesPathMutation.pair("@", "value.overrideThis"));
+    assertThat(transformation.getDataSource()).isEqualTo(TextNode.valueOf(NEW_VALUE));
+
+    TransformRecordApplier.apply(runtime, record, transformation);
+    assertThat(record.build().toString())
+        .isEqualTo(
+            """
+        {"key":null,"value":{"foo":"bar","overrideThis":"newValue"},"timestamp":1584352842123,"headers":null}
+        """
+                .trim());
   }
 }
