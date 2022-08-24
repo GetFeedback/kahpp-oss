@@ -96,8 +96,8 @@ Another for the drink:
 {
     "customer": "Paolo",
     "order": {
-        "type": "food",
-        "product": "pizza"
+        "type": "drink",
+        "product": "cocacola"
     }
 }
 ```
@@ -150,12 +150,35 @@ Wraps the current content in a single field.
 
 ## Insert Static Value
 
+Insert a static value in a chosen field of the value object; if the field exists, the action will be skipped, and eventually is possible to configure the step with `overrideIfExists: true` to permit the override.
+
+Let's take as example this record:
+
+```yaml
+{
+    "name": "Paolo",
+    "email": "paolo@him.com"
+}
+```
+
+We want to add a new field `type`, so our record will look like this:
+
+```yaml
+{
+    "name": "Paolo",
+    "email": "paolo@him.com",
+    "type": "customer"
+}
+```
+
+So, our step configuration will look like this:
+
 ```yaml
   - name: addNewField
     type: dev.vox.platform.kahpp.configuration.transform.InsertStaticFieldTransform
     config:
-      field: newField
-      value: foo
+      field: type
+      value: customer
 ```
 
 ### Insert JSON Value 
@@ -169,6 +192,19 @@ Eventually, we can also add a static JSON value.
       value: '[{"foo":"bar"}]'
       format: json
  
+```
+
+### Override an existing field
+
+It's also possible to override an existent field.
+
+```yaml
+  - name: addNewJsonField
+    type: dev.vox.platform.kahpp.configuration.transform.InsertStaticFieldTransform
+    config:
+      field: email
+      value: '*****'
+      overrideIfExists: true
 ```
 
 ## Conditional 

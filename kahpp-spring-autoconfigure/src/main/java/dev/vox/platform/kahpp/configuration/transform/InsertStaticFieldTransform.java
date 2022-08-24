@@ -26,11 +26,16 @@ public final class InsertStaticFieldTransform extends AbstractRecordTransform {
   @NotBlank private final transient String field;
   @NotBlank private transient JsonNode value;
   @NotBlank private transient Format format = Format.STRING;
+  @NotBlank private final boolean overrideIfExist;
 
   public InsertStaticFieldTransform(String name, Map<String, ?> config) {
     super(name, config);
     this.field = String.format("value.%s", config.get("field").toString());
     this.value = getValue(config);
+    this.overrideIfExist =
+        config.containsKey("overrideIfExists")
+            ? Boolean.valueOf(config.get("overrideIfExists").toString())
+            : false;
   }
 
   private JsonNode getValue(Map<String, ?> config) {
@@ -58,7 +63,8 @@ public final class InsertStaticFieldTransform extends AbstractRecordTransform {
 
     // If the field exists, this step won't change it's value
     if (jmesPathExpression.search(record.build()) != null
-        && !jmesPathExpression.search(record.build()).isNull()) {
+        && !jmesPathExpression.search(record.build()).isNull()
+        && !overrideIfExist) {
       if (LOGGER.isDebugEnabled()) {
         LOGGER.debug(getTypedName() + ": field `" + field + "` is not empty");
       }
