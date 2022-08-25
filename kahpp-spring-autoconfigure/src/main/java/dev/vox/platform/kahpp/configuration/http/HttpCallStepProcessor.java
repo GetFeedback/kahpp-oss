@@ -120,7 +120,7 @@ public class HttpCallStepProcessor extends StepProcessor<HttpCall> {
   public void process(KaHPPRecord sourceRecord) {
     final Timer.Sample sample = Timer.start(meterRegistry);
 
-    Either<Throwable, RecordAction> recordAction = step().call(sourceRecord);
+    Either<Throwable, RecordAction> recordAction = step().call(sourceRecord, jacksonRuntime);
     RecordAction action = null;
 
     if (recordAction.isLeft()) {
