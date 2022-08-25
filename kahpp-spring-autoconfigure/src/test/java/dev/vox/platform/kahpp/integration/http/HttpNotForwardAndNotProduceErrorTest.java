@@ -37,7 +37,8 @@ class HttpNotForwardAndNotProduceErrorTest extends AbstractKaHPPTest {
   @Test
   void successfulHttpCallShouldProduceRecordOnlyOnSinkTopic() throws JsonProcessingException {
     Fixture fixture = loadFixture("collection", "collection_6");
-    KaHPPMockServer.mockHttpResponse(fixture.getValue(), 200, "{\"new_value\":\"beautiful\"}");
+    KaHPPMockServer.mockHttpResponse(
+        "/enrich", fixture.getValue(), 200, "{\"new_value\":\"beautiful\"}");
     sendFixture(TOPIC_SOURCE, fixture);
 
     ConsumerRecord<String, String> recordSink =
@@ -55,7 +56,7 @@ class HttpNotForwardAndNotProduceErrorTest extends AbstractKaHPPTest {
   @Test
   void erroredHttpCallShouldNotProduceRecord() {
     Fixture fixture = loadFixture("collection", "collection_6");
-    KaHPPMockServer.mockHttpResponse(fixture.getValue(), 500);
+    KaHPPMockServer.mockHttpResponse("/enrich", fixture.getValue(), 500);
     sendFixture(TOPIC_SOURCE, fixture);
 
     assertThatThrownBy(

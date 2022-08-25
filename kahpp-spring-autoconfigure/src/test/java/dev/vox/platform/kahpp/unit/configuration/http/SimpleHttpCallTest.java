@@ -25,6 +25,7 @@ import org.junit.jupiter.api.Test;
 
 class SimpleHttpCallTest {
 
+  public static final String HTTP_CALL_PATH = "/enrich";
   private static final String FIXTURE_KEY = "key";
   private static final String FIXTURE_VALUE = "value";
 
@@ -75,7 +76,7 @@ class SimpleHttpCallTest {
     JsonNode key = getJsonNodeFromFile(FIXTURE_KEY);
     JsonNode value = getJsonNodeFromFile(FIXTURE_VALUE);
 
-    KaHPPMockServer.mockHttpResponse(value.toString(), 200, "{}");
+    KaHPPMockServer.mockHttpResponse(HTTP_CALL_PATH, value.toString(), 200, "{}");
 
     Either<Throwable, RecordAction> afterCall =
         httpCall.call(KaHPPRecord.build(key, value, 1584352842123L));
@@ -90,7 +91,7 @@ class SimpleHttpCallTest {
     JsonNode key = getJsonNodeFromFile(FIXTURE_KEY);
     JsonNode value = getJsonNodeFromFile(FIXTURE_VALUE);
 
-    KaHPPMockServer.mockHttpResponse(value.toString(), 200, "{'bad': 'json'}");
+    KaHPPMockServer.mockHttpResponse(HTTP_CALL_PATH, value.toString(), 200, "{'bad': 'json'}");
 
     Either<Throwable, RecordAction> transformRecord =
         httpCall.call(KaHPPRecord.build(key, value, 1584352842123L));
@@ -104,7 +105,7 @@ class SimpleHttpCallTest {
     JsonNode key = getJsonNodeFromFile(FIXTURE_KEY);
     JsonNode value = getJsonNodeFromFile(FIXTURE_VALUE);
 
-    KaHPPMockServer.mockHttpResponse(value.toString(), 500);
+    KaHPPMockServer.mockHttpResponse(HTTP_CALL_PATH, value.toString(), 500);
 
     Either<Throwable, RecordAction> transformRecord =
         httpCall.call(KaHPPRecord.build(key, value, 1584352842123L));
@@ -117,7 +118,7 @@ class SimpleHttpCallTest {
     JsonNode key = getJsonNodeFromFile(FIXTURE_KEY);
     JsonNode value = getJsonNodeFromFile(FIXTURE_VALUE);
 
-    KaHPPMockServer.mockHttpResponse(value.toString(), 400);
+    KaHPPMockServer.mockHttpResponse(HTTP_CALL_PATH, value.toString(), 400);
 
     Either<Throwable, RecordAction> transformRecord =
         httpCall.call(KaHPPRecord.build(key, value, 1584352842123L));
