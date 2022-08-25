@@ -11,6 +11,7 @@ import dev.vox.platform.kahpp.configuration.http.HttpCall;
 import dev.vox.platform.kahpp.configuration.http.HttpClient;
 import dev.vox.platform.kahpp.configuration.http.ResponseHandlerRecordUpdate;
 import dev.vox.platform.kahpp.configuration.http.SimpleHttpCall;
+import dev.vox.platform.kahpp.configuration.http.client.ApiClient;
 import dev.vox.platform.kahpp.integration.KaHPPMockServer;
 import dev.vox.platform.kahpp.streams.KaHPPRecord;
 import io.vavr.control.Either;
@@ -30,6 +31,7 @@ class SimpleHttpCallTest {
   private static final String FIXTURE_VALUE = "value";
 
   private transient HttpCall httpCall;
+  private ApiClient apiClient;
 
   @BeforeAll
   static void setupMockServer() {
@@ -52,6 +54,7 @@ class SimpleHttpCallTest {
         new HttpClient(
             String.format("http://localhost:%s/", KaHPPMockServer.getLocalPort()), options);
 
+    apiClient = httpClient.buildApiClient();
     httpCall =
         new SimpleHttpCall(
             "http_test",
@@ -61,7 +64,7 @@ class SimpleHttpCallTest {
                 "path",
                 "enrich",
                 "apiClient",
-                httpClient.buildApiClient(),
+                apiClient,
                 "responseHandler",
                 ResponseHandlerRecordUpdate.RECORD_VALUE_REPLACE));
   }
