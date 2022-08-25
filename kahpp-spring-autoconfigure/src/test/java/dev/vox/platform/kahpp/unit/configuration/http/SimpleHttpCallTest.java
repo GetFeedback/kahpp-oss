@@ -11,8 +11,10 @@ import dev.vox.platform.kahpp.configuration.http.HttpCall;
 import dev.vox.platform.kahpp.configuration.http.HttpClient;
 import dev.vox.platform.kahpp.configuration.http.ResponseHandlerRecordUpdate;
 import dev.vox.platform.kahpp.configuration.http.SimpleHttpCall;
+import dev.vox.platform.kahpp.configuration.http.client.ApiClient;
 import dev.vox.platform.kahpp.integration.KaHPPMockServer;
 import dev.vox.platform.kahpp.streams.KaHPPRecord;
+import io.burt.jmespath.jackson.JacksonRuntime;
 import io.vavr.control.Either;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -25,10 +27,14 @@ import org.junit.jupiter.api.Test;
 
 class SimpleHttpCallTest {
 
+  public static final String HTTP_CALL_PATH = "/enrich";
   private static final String FIXTURE_KEY = "key";
   private static final String FIXTURE_VALUE = "value";
 
   private transient HttpCall httpCall;
+  private ApiClient apiClient;
+
+  private final JacksonRuntime jacksonRuntime = new JacksonRuntime();
 
   @BeforeAll
   static void setupMockServer() {
@@ -51,6 +57,7 @@ class SimpleHttpCallTest {
         new HttpClient(
             String.format("http://localhost:%s/", KaHPPMockServer.getLocalPort()), options);
 
+    apiClient = httpClient.buildApiClient();
     httpCall =
         new SimpleHttpCall(
             "http_test",
@@ -60,7 +67,7 @@ class SimpleHttpCallTest {
                 "path",
                 "enrich",
                 "apiClient",
-                httpClient.buildApiClient(),
+                apiClient,
                 "responseHandler",
                 ResponseHandlerRecordUpdate.RECORD_VALUE_REPLACE));
   }
@@ -75,7 +82,7 @@ class SimpleHttpCallTest {
     JsonNode key = getJsonNodeFromFile(FIXTURE_KEY);
     JsonNode value = getJsonNodeFromFile(FIXTURE_VALUE);
 
-    KaHPPMockServer.mockHttpResponse(value.toString(), 200, "{}");
+    KaHPPMockServer.mockHttpResponse(HTTP_CALL_PATH, value.toString(), 200, "{}");
 
     Either<Throwable, RecordAction> afterCall =
         httpCall.call(KaHPPRecord.build(key, value, 1584352842123L));
@@ -90,7 +97,7 @@ class SimpleHttpCallTest {
     JsonNode key = getJsonNodeFromFile(FIXTURE_KEY);
     JsonNode value = getJsonNodeFromFile(FIXTURE_VALUE);
 
-    KaHPPMockServer.mockHttpResponse(value.toString(), 200, "{'bad': 'json'}");
+    KaHPPMockServer.mockHttpResponse(HTTP_CALL_PATH, value.toString(), 200, "{'bad': 'json'}");
 
     Either<Throwable, RecordAction> transformRecord =
         httpCall.call(KaHPPRecord.build(key, value, 1584352842123L));
@@ -104,7 +111,7 @@ class SimpleHttpCallTest {
     JsonNode key = getJsonNodeFromFile(FIXTURE_KEY);
     JsonNode value = getJsonNodeFromFile(FIXTURE_VALUE);
 
-    KaHPPMockServer.mockHttpResponse(value.toString(), 500);
+    KaHPPMockServer.mockHttpResponse(HTTP_CALL_PATH, value.toString(), 500);
 
     Either<Throwable, RecordAction> transformRecord =
         httpCall.call(KaHPPRecord.build(key, value, 1584352842123L));
@@ -117,7 +124,7 @@ class SimpleHttpCallTest {
     JsonNode key = getJsonNodeFromFile(FIXTURE_KEY);
     JsonNode value = getJsonNodeFromFile(FIXTURE_VALUE);
 
-    KaHPPMockServer.mockHttpResponse(value.toString(), 400);
+    KaHPPMockServer.mockHttpResponse(HTTP_CALL_PATH, value.toString(), 400);
 
     Either<Throwable, RecordAction> transformRecord =
         httpCall.call(KaHPPRecord.build(key, value, 1584352842123L));
@@ -130,5 +137,64 @@ class SimpleHttpCallTest {
         Files.readString(
             Paths.get("src/test/resources/Fixtures/collection/collection_6/" + file + ".json"));
     return new ObjectMapper().readTree(keyString);
+  }
+
+  @Test
+  void shouldReplacePathWithValue() throws IOException {
+
+    httpCall =
+        new SimpleHttpCall(
+            "http_test",
+            Map.of(
+                "api",
+                "suchNiceApi",
+                "path",
+                HTTP_CALL_PATH + "/${value.payload.id}",
+                "apiClient",
+                apiClient,
+                "responseHandler",
+                ResponseHandlerRecordUpdate.RECORD_VALUE_REPLACE));
+
+    JsonNode key = getJsonNodeFromFile(FIXTURE_KEY);
+    JsonNode value = getJsonNodeFromFile(FIXTURE_VALUE);
+
+    KaHPPMockServer.mockHttpResponse(
+        HTTP_CALL_PATH + "/" + value.get("payload").get("id").textValue(),
+        value.toString(),
+        200,
+        "{}");
+
+    Either<Throwable, RecordAction> afterCall =
+        httpCall.call(KaHPPRecord.build(key, value, 1584352842123L), jacksonRuntime);
+
+    assertTrue(afterCall.isRight());
+    assertThat(afterCall.get()).isExactlyInstanceOf(TransformRecord.class);
+    assertThat(((TransformRecord) afterCall.get()).getDataSource().toString()).isEqualTo("{}");
+  }
+
+  @Test
+  void shouldEndCallIfPlaceholderValueNotExists() throws IOException {
+
+    httpCall =
+        new SimpleHttpCall(
+            "http_test_with_placeholder",
+            Map.of(
+                "api",
+                "suchNiceApi",
+                "path",
+                HTTP_CALL_PATH + "/${value.notExistsThisField}",
+                "apiClient",
+                apiClient,
+                "responseHandler",
+                ResponseHandlerRecordUpdate.RECORD_VALUE_REPLACE));
+
+    JsonNode key = getJsonNodeFromFile(FIXTURE_KEY);
+    JsonNode value = getJsonNodeFromFile(FIXTURE_VALUE);
+
+    Either<Throwable, RecordAction> afterCall =
+        httpCall.call(KaHPPRecord.build(key, value, 1584352842123L), jacksonRuntime);
+
+    assertTrue(afterCall.isLeft());
+    assertThat(afterCall.getLeft().getClass().getSimpleName()).isEqualTo("RuntimeException");
   }
 }

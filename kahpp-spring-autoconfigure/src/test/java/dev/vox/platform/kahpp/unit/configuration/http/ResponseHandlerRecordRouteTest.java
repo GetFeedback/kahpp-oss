@@ -73,7 +73,7 @@ class ResponseHandlerRecordRouteTest {
     JsonNode key = objectMapper.createObjectNode().put("key", 1);
     JsonNode value = objectMapper.createObjectNode().put("value", "foo");
 
-    KaHPPMockServer.mockHttpResponse(value.toString(), 410, "{\"foo\":\"bar\"}");
+    KaHPPMockServer.mockHttpResponse("/enrich", value.toString(), 410, "{\"foo\":\"bar\"}");
 
     Either<Throwable, RecordAction> afterCall =
         httpCall.call(KaHPPRecord.build(key, value, 1584352842123L));
@@ -92,7 +92,7 @@ class ResponseHandlerRecordRouteTest {
     JsonNode key = objectMapper.createObjectNode().put("key", 1);
     JsonNode value = objectMapper.createObjectNode().put("value", "foo");
 
-    KaHPPMockServer.mockHttpResponse(value.toString(), 200, "{\"foo\":\"bar\"}");
+    KaHPPMockServer.mockHttpResponse("/enrich", value.toString(), 200, "{\"foo\":\"bar\"}");
 
     Either<Throwable, RecordAction> afterCall =
         httpCall.call(KaHPPRecord.build(key, value, 1584352842123L));

@@ -36,7 +36,7 @@ class HttpConditionalTest extends AbstractKaHPPTest {
   void shouldExecuteHttpCall() {
     Fixture fixture = loadFixture("conditional", "true");
 
-    KaHPPMockServer.mockHttpResponse(fixture.getValue(), 200, "{}");
+    KaHPPMockServer.mockHttpResponse("/enrich", fixture.getValue(), 200, "{}");
     sendFixture(TOPIC_SOURCE, fixture);
 
     ConsumerRecord<String, String> recordSink =

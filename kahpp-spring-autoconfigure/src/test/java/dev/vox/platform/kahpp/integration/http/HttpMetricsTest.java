@@ -18,6 +18,7 @@ import org.springframework.kafka.test.utils.KafkaTestUtils;
 class HttpMetricsTest extends AbstractKaHPPTest {
 
   private static final String RESPONSE_BODY_VALUE = "{}";
+  public static final String HTTP_CALL_PATH = "/enrich";
 
   @Autowired private transient MeterRegistry meterRegistry;
 
@@ -35,17 +36,17 @@ class HttpMetricsTest extends AbstractKaHPPTest {
   void httpMetricsWithSuccessfulTagAreCreated() {
     Fixture fixture = loadFixture("collection", "collection_6");
 
-    KaHPPMockServer.mockHttpResponse(fixture.getValue(), 200, RESPONSE_BODY_VALUE);
+    KaHPPMockServer.mockHttpResponse(HTTP_CALL_PATH, fixture.getValue(), 200, RESPONSE_BODY_VALUE);
     sendFixture(TOPIC_SOURCE, fixture);
     KafkaTestUtils.getSingleRecord(sinkTopicConsumer, TOPIC_SINK);
     assertStepMetricsCount(1.0, true);
 
-    KaHPPMockServer.mockHttpResponse(fixture.getValue(), 500);
+    KaHPPMockServer.mockHttpResponse(HTTP_CALL_PATH, fixture.getValue(), 500);
     sendFixture(TOPIC_SOURCE, fixture);
     KafkaTestUtils.getSingleRecord(sinkTopicConsumer, TOPIC_SINK);
     assertStepMetricsCount(1.0, false);
 
-    KaHPPMockServer.mockHttpResponse(fixture.getValue(), 200, RESPONSE_BODY_VALUE);
+    KaHPPMockServer.mockHttpResponse(HTTP_CALL_PATH, fixture.getValue(), 200, RESPONSE_BODY_VALUE);
     sendFixture(TOPIC_SOURCE, fixture);
     KafkaTestUtils.getSingleRecord(sinkTopicConsumer, TOPIC_SINK);
     assertStepMetricsCount(2.0, true);
@@ -56,19 +57,19 @@ class HttpMetricsTest extends AbstractKaHPPTest {
   void httpDurationMetricsWithSuccessfulTagAreCreated() {
     Fixture fixture = loadFixture("collection", "collection_6");
 
-    KaHPPMockServer.mockHttpResponse(fixture.getValue(), 200, RESPONSE_BODY_VALUE);
+    KaHPPMockServer.mockHttpResponse(HTTP_CALL_PATH, fixture.getValue(), 200, RESPONSE_BODY_VALUE);
     sendFixture(TOPIC_SOURCE, fixture);
     KafkaTestUtils.getSingleRecord(sinkTopicConsumer, TOPIC_SINK);
 
     assertTimeMetric(true, 1L);
 
-    KaHPPMockServer.mockHttpResponse(fixture.getValue(), 429, RESPONSE_BODY_VALUE);
+    KaHPPMockServer.mockHttpResponse(HTTP_CALL_PATH, fixture.getValue(), 429, RESPONSE_BODY_VALUE);
     sendFixture(TOPIC_SOURCE, fixture);
     KafkaTestUtils.getSingleRecord(errorTopicConsumer, TOPIC_ERROR);
 
     assertTimeMetric(false, 1L);
 
-    KaHPPMockServer.mockHttpResponse(fixture.getValue(), 200, RESPONSE_BODY_VALUE);
+    KaHPPMockServer.mockHttpResponse(HTTP_CALL_PATH, fixture.getValue(), 200, RESPONSE_BODY_VALUE);
     sendFixture(TOPIC_SOURCE, fixture);
     KafkaTestUtils.getSingleRecord(sinkTopicConsumer, TOPIC_SINK);
 

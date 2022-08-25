@@ -40,11 +40,12 @@ public class KaHPPMockServer {
     mockServer.close();
   }
 
-  public static void mockHttpResponse(String body, int statusCode) {
-    mockHttpResponse(body, statusCode, null);
+  public static void mockHttpResponse(String path, String body, int statusCode) {
+    mockHttpResponse(path, body, statusCode, null);
   }
 
-  public static void mockHttpResponse(String body, int statusCode, String responseBody) {
+  public static void mockHttpResponse(
+      String path, String body, int statusCode, String responseBody) {
     int requestTimes = REQUEST_WITHOUT_RETRIES;
     if (statusCode >= HTTP_STATUS_CODE_SERVER_ERROR) {
       requestTimes = REQUEST_WITH_RETRIES;
@@ -52,10 +53,7 @@ public class KaHPPMockServer {
 
     new MockServerClient("localhost", mockServer.getLocalPort())
         .when(
-            HttpRequest.request()
-                .withMethod("POST")
-                .withPath("/enrich")
-                .withBody(new JsonBody(body)),
+            HttpRequest.request().withMethod("POST").withPath(path).withBody(new JsonBody(body)),
             Times.exactly(requestTimes))
         .respond(HttpResponse.response().withStatusCode(statusCode).withBody(responseBody));
   }

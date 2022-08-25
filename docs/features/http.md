@@ -100,3 +100,27 @@ The response can also be handled in different ways based on the status code.
 | RECORD_UPDATE        | Replace record field with the HTTP Response body | jmesPath             | Field to replace with the HTTP Response |
 | RECORD_TERMINATE     | Don't forward record to the next step            |                      |                                         |
 | RECORD_ROUTE         | Route record to specific topics                  | topics               | List of topics to route the record to   |
+
+## Configure dynamic path
+
+It's possible to configure the path dynamically using placeholders.  
+The value correspondent to the placeholder need to be available inside the record.
+
+Example:
+```yaml
+    config:
+      api: my-dummy-api
+      path: /my/path/${value.myDynamic.field}
+      topic: error
+```
+
+So record value needs to look like this:
+```json
+{
+    "myDynamic": {
+        "field": 1234
+    }
+}
+```
+
+If the value is not there, the call will fail, and the record will be routed to the error topic.
