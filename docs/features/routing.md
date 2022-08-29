@@ -4,9 +4,26 @@ Permits routing records to specific topic using [`jmespath`](https://jmespath.or
 The routes are declared under `routes` with `jmesPath` as a matching condition and `topic` as the name for the topic to route the message to.
 
 If no route is matched, the record lands in `errorTopic`
+
+### Usage
+
+First, we need to declare the `topics` on the Kahpp instance.
+
+It is mandatory to have one source topic named `source`
+
+For example:
+```yaml
+kahpp:
+  topics:
+    source: response
+    sport-outdoors: football
+    sport-indoors: bowling
+    error: action-discovery.error
+```
+
 ### Usage examples
 
-A filter-like JMESPath evaluation 
+A filter-like JMESPath evaluation using declared topics for routing
 
 ```yaml
   - name: produceActionToSinkTopic
