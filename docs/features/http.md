@@ -35,6 +35,90 @@ kahpp:
 | connectTimeoutMillis | 500     | Determines the timeout in milliseconds until a connection is established.                                                                                                   |
 | socketTimeoutMs      | 2000    | Defines the socket timeout in milliseconds, which is the timeout for waiting for data or, put differently, a maximum period inactivity between two consecutive data packets |
 
+
+### Request headers
+
+Set HTTP headers necessary for HTTP requests.
+
+```yaml
+kahpp:
+  apis:
+    my-dummy-api:
+      basePath: http://my-dummy-api
+      options:
+        headers:
+          Accept: text/html
+          User-Agent: Mozilla/5.0
+          Connection: keep-alive
+```
+
+Default header is `Accept:application/json`.
+
+### Rate Limit
+
+Configure rate limiter for HTTP requests.  
+If unset, no http request rate limit will be in place.  
+
+```yaml
+kahpp:
+  apis:
+    my-dummy-api:
+      basePath: http://my-dummy-api
+      options:
+        rateLimit:
+          requestsPerSecond: 10
+          warmUpMillis: 100
+```
+
+| name              | required | description                                                                                                     |
+|-------------------|----------|-----------------------------------------------------------------------------------------------------------------|
+| requestsPerSecond | yes      | set how many request are available per second.                                                                  |
+| warmUpMillis      | no       | the duration in milliseconds of the period where the RateLimiter ramps up its rate, before reaching its stable. |
+
+
+### Retry configuration
+
+If unset, the default retry policy will be in place.
+
+```yaml
+kahpp:
+  apis:
+    my-dummy-api:
+      basePath: http://my-dummy-api
+      options:
+        retries:
+          retryOnTimeout: true
+          statusCodeRetryTimeSeedInMs: 1000
+          statusCodeRetryTimeCapInMs: 10000
+          statusCodes:
+            - statusCodeStart: 500
+              statusCodeInclusiveEnd: 599
+              retries: 10
+```
+
+| name                        | default                                                                                                                                             | description                                                             |
+|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| connectionRetryCount        | 3                                                                                                                                                   | The amount of times to retry when the connection fails.                 |
+| retryIdempotentRequests     | true                                                                                                                                                | True if it's OK to retry non-idempotent requests that have been sent.   |
+| retryOnTimeout              | false                                                                                                                                               | True if it should retry timeout errors.                                 |
+| statusCodeRetryTimeSeedInMs | 50                                                                                                                                                  | A seed in milliseconds used to calculate the backoff time.              |
+| statusCodeRetryTimeCapInMs  | 1000                                                                                                                                                | The cap of the backoff time                                             |
+| statusCodeRetryMemory       | 25                                                                                                                                                  | The amount of requests that contribute to the backoff time calculation. |
+| statusCodes                 | - statusCodeStart: 500 <br/>&nbsp;&nbsp;statusCodeInclusiveEnd: 599 <br/>&nbsp;&nbsp;retries: 3 <br/>- statusCode: 429 <br/>&nbsp;&nbsp;retries: 10 | Strategy to retry responses with specific status codes.                 |
+
+
+## Simple HTTP Call
+
+This is the most straightforward HTTP call step.  
+
+```yaml
+  - name: simpleHttpCall
+    type: dev.vox.platform.kahpp.configuration.http.SimpleHttpCall
+    config:
+      api: my-dummy-api
+      path: /my/path
+```
+
 ## Ok or Produce Error
 In case of error, it routes the message to a specific topic.
 
@@ -92,10 +176,11 @@ The response can also be handled in different ways based on the status code.
 
 ## Optional parameters
 
-| name                 | default | description                                                                                |
-|----------------------|---------|--------------------------------------------------------------------------------------------|
-| forwardRecordOnError | false   | In case of error, don't stop the pipeline, so the record will be forward to the next step. |
-| condition            |         | JMESPath expression, if false the step will be skipped                                     |
+| name                 | default | type               | description                                                                                |
+|----------------------|---------|--------------------|--------------------------------------------------------------------------------------------|
+| forwardRecordOnError | false   | boolean            | In case of error, don't stop the pipeline, so the record will be forward to the next step. |
+| condition            |         | JMESPath           | JMESPath expression, if false the step will be skipped                                     |
+| method               | POST    | POST,PUT,GET,PATCH | HTTP method to use for the request.                                                        |
 
 ## Response Handlers
 
@@ -129,3 +214,7 @@ So record value needs to look like this:
 ```
 
 If the value is not there, the call will fail, and the record will be routed to the error topic.
+
+## HTTP response errors
+
+If in an HTTP call an error occurs, it will be saved as a header on the record.
