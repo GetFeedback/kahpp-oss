@@ -22,7 +22,7 @@ public final class HttpClient {
 
   public HttpClient(String basePath, Options options) {
     this.basePath = basePath;
-    this.options = options;
+    this.options = options != null ? options : Options.buildDefault();
   }
 
   public ApiClient buildApiClient() {
@@ -64,6 +64,14 @@ public final class HttpClient {
           retries != null ? retries : new Retries(null, null, null, null, null, null, null);
     }
 
+    public static Options buildDefault() {
+      return new Options(
+          new Connection(null, null),
+          null,
+          null,
+          new Retries(null, null, null, null, null, null, null));
+    }
+
     public Connection getConnection() {
       return connection;
     }
@@ -84,9 +92,14 @@ public final class HttpClient {
       @Positive private final Integer socketTimeoutMs;
       @Positive private final Integer connectTimeoutMillis;
 
+      private static final Integer DEFAULT_SOCKET_TIMEOUT_MS = 2000;
+      private static final Integer DEFAULT_CONNECT_TIMEOUT_MS = 500;
+
       public Connection(Integer socketTimeoutMs, Integer connectTimeoutMillis) {
-        this.socketTimeoutMs = socketTimeoutMs;
-        this.connectTimeoutMillis = connectTimeoutMillis;
+        this.socketTimeoutMs =
+            socketTimeoutMs != null ? socketTimeoutMs : DEFAULT_SOCKET_TIMEOUT_MS;
+        this.connectTimeoutMillis =
+            connectTimeoutMillis != null ? connectTimeoutMillis : DEFAULT_CONNECT_TIMEOUT_MS;
       }
 
       public Integer getSocketTimeoutMs() {

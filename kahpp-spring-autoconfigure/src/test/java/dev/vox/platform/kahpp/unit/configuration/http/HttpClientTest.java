@@ -184,4 +184,13 @@ class HttpClientTest {
   protected HttpResponse createResponse(int statusCode) {
     return new BasicHttpResponse(new ProtocolVersion("http", 2, 0), statusCode, "");
   }
+
+  @Test
+  void canBuildWithoutOptions() {
+    final HttpClient httpClient = new HttpClient(HTTP_BASE_PATH, null);
+    assertThat(httpClient.buildApiClient()).isNotNull();
+    assertThat(httpClient.getOptions()).isNotNull();
+    assertThat(httpClient.getOptions().getConnection().getSocketTimeoutMs()).isEqualTo(2000);
+    assertThat(httpClient.getOptions().getConnection().getConnectTimeoutMillis()).isEqualTo(500);
+  }
 }

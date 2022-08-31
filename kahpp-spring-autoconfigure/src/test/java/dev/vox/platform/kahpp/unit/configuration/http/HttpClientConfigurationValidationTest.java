@@ -107,4 +107,13 @@ class HttpClientConfigurationValidationTest extends ConstraintViolationTestAbstr
                 "options.headers[my-empty-header].<map value>", List.of("must not be blank"),
                 "options.connection.socketTimeoutMs", List.of("must be greater than 0")));
   }
+
+  @Test
+  void connectionDefaultValidation() {
+    Connection connection = new Connection(null, null);
+    Set<ConstraintViolation<Connection>> violations = validator.validate(connection);
+    assertThat(violations).hasSize(0);
+    assertThat(connection.getConnectTimeoutMillis()).isEqualTo(500);
+    assertThat(connection.getSocketTimeoutMs()).isEqualTo(2000);
+  }
 }

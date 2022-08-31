@@ -2,33 +2,38 @@
 
 Kahpp makes it possible to reach one or more HTTP Endpoints.  
 
-### Usage
+## Declare API client
 
-First, we need to declare the API on the Kahpp instance to do that.
+First, we need to declare the API client on the Kahpp instance.
 
 For example:
 ```yaml
 kahpp:
   apis:
-    my-dummy-api:
+    my-dummy-api: # Logical name of the client
       basePath: http://my-dummy-api
-      options: # Optional
-        rateLimit:
-          requestsPerSecond: 20
-          warmUpMillis: 2000
+```
+Then in the steps, we may decide how to use it and how to handle the response.
+
+### Connection configurations
+
+Set the connection configuration based on connect and socket timeouts.
+
+```yaml
+kahpp:
+  apis:
+    my-dummy-api: # Logical name of the client
+      basePath: http://my-dummy-api
+      options:
         connection:
           connectTimeoutMillis: 300
           socketTimeoutMs: 1500
-        retries:
-          retryOnTimeout: true
-          statusCodeRetryTimeSeedInMs: 500
-          statusCodeRetryTimeCapInMs: 5000
-          statusCodes:
-            - statusCodeStart: 500
-              statusCodeInclusiveEnd: 599
-              retries: 10
 ```
-Then in the steps, we may decide how to use it and how to handle the response.
+
+| name                 | default | description                                                                                                                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| connectTimeoutMillis | 500     | Determines the timeout in milliseconds until a connection is established.                                                                                                   |
+| socketTimeoutMs      | 2000    | Defines the socket timeout in milliseconds, which is the timeout for waiting for data or, put differently, a maximum period inactivity between two consecutive data packets |
 
 ## Ok or Produce Error
 In case of error, it routes the message to a specific topic.
