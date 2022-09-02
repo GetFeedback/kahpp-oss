@@ -39,10 +39,14 @@ public abstract class AbstractHttpCall implements HttpCall, Conditional {
 
   @NotBlank private transient String path;
 
+  // This path could change due to the placeholder
+  private String actualPath;
+
   protected AbstractHttpCall(String name, Map<String, ?> config) {
     this.name = name;
     if (config.containsKey("path")) {
       this.path = config.get("path").toString();
+      this.actualPath = path;
     }
 
     if (config.containsKey("method")) {
@@ -79,7 +83,7 @@ public abstract class AbstractHttpCall implements HttpCall, Conditional {
   public Either<Throwable, RecordAction> call(KaHPPRecord record) {
     ResponseHandler responseHandler = this.responseHandler;
 
-    return Try.of(() -> apiClient.sendRequest(method, path, record.getValue().toString()))
+    return Try.of(() -> apiClient.sendRequest(method, actualPath, record.getValue().toString()))
         .mapTry(responseHandler::handle)
         .toEither();
   }
@@ -94,7 +98,7 @@ public abstract class AbstractHttpCall implements HttpCall, Conditional {
         LOGGER.warn("No value found inside the record for this placeholder {}", m.group(0));
         return Either.left(new RuntimeException("Placeholder value not found"));
       }
-      path = path.replace(m.group(0), value);
+      actualPath = path.replace(m.group(0), value);
     }
     return call(record);
   }

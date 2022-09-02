@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import dev.vox.platform.kahpp.configuration.RecordAction;
 import dev.vox.platform.kahpp.configuration.TransformRecord;
 import dev.vox.platform.kahpp.configuration.http.HttpCall;
@@ -35,6 +36,7 @@ class SimpleHttpCallTest {
   private ApiClient apiClient;
 
   private final JacksonRuntime jacksonRuntime = new JacksonRuntime();
+  private static final JsonMapper JSON_MAPPER = new JsonMapper();
 
   @BeforeAll
   static void setupMockServer() {
@@ -170,6 +172,20 @@ class SimpleHttpCallTest {
     assertTrue(afterCall.isRight());
     assertThat(afterCall.get()).isExactlyInstanceOf(TransformRecord.class);
     assertThat(((TransformRecord) afterCall.get()).getDataSource().toString()).isEqualTo("{}");
+
+    JsonNode extraKey = JSON_MAPPER.createObjectNode().put("extra", "record");
+    JsonNode extraValue =
+        JSON_MAPPER
+            .createObjectNode()
+            .set("payload", JSON_MAPPER.createObjectNode().put("id", "extraCall"));
+    KaHPPMockServer.mockHttpResponse(
+        HTTP_CALL_PATH + "/extraCall", extraValue.toString(), 200, "{}");
+
+    Either<Throwable, RecordAction> extraCall =
+        httpCall.call(KaHPPRecord.build(extraKey, extraValue, 1584352842124L), jacksonRuntime);
+    assertTrue(extraCall.isRight());
+    assertThat(extraCall.get()).isExactlyInstanceOf(TransformRecord.class);
+    assertThat(((TransformRecord) extraCall.get()).getDataSource().toString()).isEqualTo("{}");
   }
 
   @Test
