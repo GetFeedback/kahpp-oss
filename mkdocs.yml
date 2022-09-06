@@ -21,6 +21,6 @@ nav:
           - Filters: features/filters.md
           - Http: features/http.md
           - Throttle: features/throttle.md
-          - Routing: features/routing.md
+          - Produce: features/produce.md
   - Developer Guide:
       - Spring Boot Starter: developer-guide/spring-boot-starter.md
