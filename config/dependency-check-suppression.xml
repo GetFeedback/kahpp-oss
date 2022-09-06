@@ -41,4 +41,12 @@
         <packageUrl regex="true">^pkg:maven/io\.spring\.gradle/dependency\-management\-plugin@.*$</packageUrl>
         <cve>CVE-2016-9878</cve>
     </suppress>
+    <suppress>
+        <notes><![CDATA[
+        Kahpp could be vulnerable on this, but Yaml files are fixed, so pretty safe for us.
+        ]]></notes>
+        <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
+        <cve>CVE-2022-25857</cve>
+        <cve>CVE-2022-38752</cve>
+    </suppress>
 </suppressions>
