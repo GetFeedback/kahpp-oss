@@ -29,8 +29,12 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.SystemDefaultRoutePlanner;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class ApiClient {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ApiClient.class);
 
   private final HttpClient httpClient;
   private final String basePath;
@@ -59,6 +63,7 @@ public final class ApiClient {
     try {
       response = transformHttpResponse(httpClient.execute(httpRequest));
     } catch (IOException exception) {
+      LOGGER.error("Request {} failed because {}", httpRequest, exception.getMessage());
       throw new TransferException(exception, request);
     }
 
