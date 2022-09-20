@@ -11,7 +11,7 @@ configurations {
 
 ext {
     sentryVersion = '6.4.2'
-    kafkaVersion = '3.1.0'
+    kafkaVersion = '3.2.3'
     logbackVersion = '1.2.11'
     mockitoVersion = '4.6.1'
 }
