@@ -32,7 +32,7 @@ class HelmCopyTest {
   }
 
   @Test
-  void canDetectDriftFromHelmToTestsState() {
+  void canDetectUntestedInstanceDeclaredInHelmChart() {
     BuildResult result =
         GradleRunner.create()
             .withPluginClasspath()
