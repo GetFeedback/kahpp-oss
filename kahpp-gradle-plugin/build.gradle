@@ -38,7 +38,7 @@ ext {
 }
 
 dependencies {
-    api "org.yaml:snakeyaml:1.32"
+    api "org.yaml:snakeyaml:1.33"
     api "org.assertj:assertj-core:3.23.1"
     api "org.springframework.boot:spring-boot-gradle-plugin:${springVersion}"
     api("io.spring.gradle:dependency-management-plugin:1.0.13.RELEASE")
