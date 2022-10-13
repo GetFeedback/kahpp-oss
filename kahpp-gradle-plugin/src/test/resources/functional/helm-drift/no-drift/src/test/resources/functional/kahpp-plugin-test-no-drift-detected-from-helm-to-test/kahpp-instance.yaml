@@ -1,0 +1,18 @@
+kahpp:
+  group: kahpp-plugin
+  name: test-no-drift-detected-from-helm-to-test
+  topics:
+    source: my-source-topic
+    sink: my-other-sink-topic
+  streamsConfig:
+    bootstrapServers:
+      - kafka:9092
+  steps:
+    - name: myNewStep
+      type: dev.vox.platform.kahpp.configuration.filter.FilterTombstone
+      config:
+        filterNot: true
+    - name: produceRecordToSinkTopic
+      type: dev.vox.platform.kahpp.configuration.topic.ProduceToTopic
+      config:
+        topic: sink

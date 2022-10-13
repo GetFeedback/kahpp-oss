@@ -32,7 +32,7 @@ abstract class KaHPPDetectHelmToTestDrift extends KaHPPHelmYamlAbstractTask {
                     .as("Instance '%s' was not tested", instanceName)
                     .isFile()
 
-            KaHPPInstance actualInstance = yaml.loadAs(actualInstanceFile.newDataInputStream(), KaHPPInstance.class)
+            Object actualInstance = yaml.load(actualInstanceFile.newDataInputStream());
             assertThat(yaml.dump(actualInstance))
                     .as("Instance '%s' has drifted from Helm", instanceName)
                     .isEqualTo(yaml.dump(expectedInstance))
