@@ -45,7 +45,7 @@ dependencies {
     compileOnly localGroovy()
     testImplementation gradleTestKit()
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
 }
 
 project.dependencies.add( "implementation", project.dependencies.create("org.springframework.boot:spring-boot-starter-validation:${springVersion}"))
