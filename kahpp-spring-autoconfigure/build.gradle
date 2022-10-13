@@ -69,7 +69,7 @@ dependencies{
         because "due to ClassNotFoundException after bump mockserver-netty-5.12.0"
     }
     implementation "com.google.guava:guava:31.1-jre"
-    implementation "org.testcontainers:testcontainers:1.17.3"
+    implementation "org.testcontainers:testcontainers:1.17.5"
     implementation "org.assertj:assertj-core:3.23.1"
     implementation "org.mockito:mockito-core:${mockitoVersion}"
     implementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
