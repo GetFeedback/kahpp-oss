@@ -2,21 +2,46 @@
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
     <suppress>
         <notes><![CDATA[
-        file name: dependency-management-plugin-1.0.11.RELEASE.jar
-        This is a false positive. No vulnerability found in this package
-        https://mvnrepository.com/artifact/io.spring.gradle/dependency-management-plugin/1.0.11.RELEASE
+        file name: dependency-management-plugin-1.0.14.RELEASE.jar
+        False positive: the versioning of the Spring dependency management Gradle plugin has no relation to the
+        versioning of Spring Framework, old versions of which have this vulnerability.
+        https://tanzu.vmware.com/security/cve-2016-9878
         ]]></notes>
-        <sha1>3de422bc45afcb94a538ba9502984b503c7ae756</sha1>
+        <packageUrl regex="true">^pkg:maven/io\.spring\.gradle/dependency\-management\-plugin@.*$</packageUrl>
         <cve>CVE-2016-9878</cve>
     </suppress>
     <suppress>
         <notes><![CDATA[
-        CVE-2016-1000027
-            https://github.com/spring-projects/spring-framework/issues/24434
-            Kahpp never call HttpInvokerServiceExporter
+        file name: spring-web-5.3.23.jar
+        https://github.com/spring-projects/spring-framework/issues/24434
+        Kahpp never calls HttpInvokerServiceExporter
         ]]></notes>
-        <cpe>cpe:2.3:a:pivotal_software:spring_framework:5.3.16:*:*:*:*:*:*:*</cpe>
+        <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-web@.*$</packageUrl>
         <cve>CVE-2016-1000027</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[file name: jackson-databind-2.13.4.jar]]></notes>
+        <packageUrl regex="true">^pkg:maven/com\.fasterxml\.jackson\.core/jackson\-databind@.*$</packageUrl>
+        <cve>CVE-2022-42003</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+        Kahpp could be vulnerable on this, but Yaml files are fixed, so pretty safe for us.
+        ]]></notes>
+        <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
+        <cve>CVE-2022-25857</cve>
+        <cve>CVE-2022-38752</cve>
+        <cve>CVE-2022-38749</cve>
+        <cve>CVE-2022-38751</cve>
+        <cve>CVE-2022-38750</cve>
+    </suppress>
+    <suppress>
+        <notes><![CDATA[
+        file names: scala-library-2.13.6.jar, scala-reflect-2.13.6.jar
+        Pulled in by Apache Kafka (org.apache.kafka:kafka_2.13) which does not yet support a newer, invulnerable Scala version.
+        ]]></notes>
+        <packageUrl regex="true">^pkg:maven/org\.scala\-lang/scala\-(library|reflect)@.*$</packageUrl>
+        <cve>CVE-2022-36944</cve>
     </suppress>
     <suppress>
         <notes><![CDATA[
@@ -29,27 +54,18 @@
     </suppress>
     <suppress>
         <notes><![CDATA[
-        Only the tomcat example application is effected.
+        file name: mockito-junit-jupiter-4.8.0.jar
+        False positive: mockito-junit-jupiter is an add-on to mockito itself and is versioned with mockito, not JUnit.
         ]]></notes>
-        <cve>CVE-2022-34305</cve>
+        <packageUrl regex="true">^pkg:maven/org\.mockito/mockito\-junit\-jupiter@.*$</packageUrl>
+        <cve>CVE-2020-15250</cve>
     </suppress>
     <suppress>
         <notes><![CDATA[
-        False positive
-        file name: dependency-management-plugin-1.0.12.RELEASE.jar
-   ]]></notes>
-        <packageUrl regex="true">^pkg:maven/io\.spring\.gradle/dependency\-management\-plugin@.*$</packageUrl>
-        <cve>CVE-2016-9878</cve>
-    </suppress>
-    <suppress>
-        <notes><![CDATA[
-        Kahpp could be vulnerable on this, but Yaml files are fixed, so pretty safe for us.
+        file name: protobuf-java-3.19.2.jar
+        This dependency is pulled in by Error Prone, which is only used for code analysis
         ]]></notes>
-        <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
-        <cve>CVE-2022-25857</cve>
-        <cve>CVE-2022-38752</cve>
-        <cve>CVE-2022-38749</cve>
-        <cve>CVE-2022-38751</cve>
-        <cve>CVE-2022-38750</cve>
+        <packageUrl regex="true">^pkg:maven/com\.google\.protobuf/protobuf\-java@.*$</packageUrl>
+        <vulnerabilityName>CVE-2022-3171</vulnerabilityName>
     </suppress>
 </suppressions>
