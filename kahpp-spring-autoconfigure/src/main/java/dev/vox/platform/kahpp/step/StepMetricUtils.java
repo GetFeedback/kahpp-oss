@@ -8,7 +8,7 @@ import java.util.List;
 
 public class StepMetricUtils {
 
-  private static final String KAHPP_METRIC_PREFIX = "kahppMetricPrefix";
+  private static final String KAHPP_METRIC_PREFIX = "kahpp";
   private static final String METRIC_TAG_STEP_CLASS = "step";
   private static final String METRIC_TAG_STEP_NAME = "step_name";
 

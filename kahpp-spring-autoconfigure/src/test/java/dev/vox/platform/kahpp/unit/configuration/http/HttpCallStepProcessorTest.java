@@ -152,7 +152,7 @@ class HttpCallStepProcessorTest {
 
   private Timer getTimerMetric(boolean successful) {
     return meterRegistry
-        .get("kahppMetricPrefix.http.duration")
+        .get("kahpp.http.duration")
         .tag("step", HTTP_STEP_CLASS)
         .tag("step_name", HTTP_STEP_NAME)
         .tag("successful", Boolean.toString(successful))
@@ -161,7 +161,7 @@ class HttpCallStepProcessorTest {
 
   private DistributionSummary getDistributionSummary() {
     return meterRegistry
-        .get("kahppMetricPrefix.http.response_time_ms")
+        .get("kahpp.http.response_time_ms")
         .tag("step", HTTP_STEP_CLASS)
         .tag("step_name", HTTP_STEP_NAME)
         .tag("successful", Boolean.toString(true))
@@ -182,7 +182,7 @@ class HttpCallStepProcessorTest {
   private void assertCountStatus(double expected, boolean successful) {
     assertThat(
             meterRegistry
-                .get("kahppMetricPrefix.http.status")
+                .get("kahpp.http.status")
                 .tag("step", HTTP_STEP_CLASS)
                 .tag("step_name", HTTP_STEP_NAME)
                 .tag("successful", Boolean.toString(successful))

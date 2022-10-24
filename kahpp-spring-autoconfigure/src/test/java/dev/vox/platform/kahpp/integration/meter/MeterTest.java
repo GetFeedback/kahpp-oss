@@ -13,8 +13,7 @@ import org.springframework.kafka.test.utils.KafkaTestUtils;
 
 final class MeterTest extends AbstractKaHPPTest {
 
-  private static final String METRIC_COLLECTION_PER_CHANNEL =
-      "kahppMetricPrefix.collectionPerChannel";
+  private static final String METRIC_COLLECTION_PER_CHANNEL = "kahpp.collectionPerChannel";
 
   @Autowired private transient MeterRegistry meterRegistry;
 
