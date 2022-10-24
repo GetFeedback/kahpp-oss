@@ -70,7 +70,7 @@ class FilterTombstoneTest extends AbstractKaHPPTest {
   private void assertFilterTombstoneMetric(double expected, boolean forwarded) {
     assertThat(
             meterRegistry
-                .get("kahppMetricPrefix.filter")
+                .get("kahpp.filter")
                 .tag("step", "FilterTombstone")
                 .tag("step_name", "dropTombstoneRecords")
                 .tag("forwarded", Boolean.toString(forwarded))

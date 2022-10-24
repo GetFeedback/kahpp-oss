@@ -84,7 +84,7 @@ class HttpCallStepProcessorRecordActionTest {
 
   private Double getProduceCountOnTopic(String topic) {
     return meterRegistry
-        .get("kahppMetricPrefix.produce")
+        .get("kahpp.produce")
         .tag("step_name", STEP_NAME)
         .tag("topic", topic)
         .counter()

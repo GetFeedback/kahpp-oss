@@ -42,7 +42,7 @@ class FilterTest extends AbstractKaHPPTest {
     assertThat(actual)
         .isEqualTo(
             meterRegistry
-                .get("kahppMetricPrefix.filter")
+                .get("kahpp.filter")
                 .tag("step", "FilterValue")
                 .tag("step_name", "getSupportedProducts")
                 .tag("forwarded", Boolean.toString(forwarded))

@@ -63,16 +63,14 @@ class StepMetricUtilsTest {
 
   @Test
   void formatMetricName() {
-    assertThat(StepMetricUtils.formatMetricName("awesome")).isEqualTo("kahppMetricPrefix.awesome");
+    assertThat(StepMetricUtils.formatMetricName("awesome")).isEqualTo("kahpp.awesome");
 
-    assertThat(StepMetricUtils.formatMetricName(httpCall)).isEqualTo("kahppMetricPrefix.http");
-    assertThat(StepMetricUtils.formatMetricName(predicateBranch))
-        .isEqualTo("kahppMetricPrefix.filter");
+    assertThat(StepMetricUtils.formatMetricName(httpCall)).isEqualTo("kahpp.http");
+    assertThat(StepMetricUtils.formatMetricName(predicateBranch)).isEqualTo("kahpp.filter");
 
-    assertThat(StepMetricUtils.formatMetricName(httpCall, "last"))
-        .isEqualTo("kahppMetricPrefix.http.last");
+    assertThat(StepMetricUtils.formatMetricName(httpCall, "last")).isEqualTo("kahpp.http.last");
     assertThat(StepMetricUtils.formatMetricName(predicateBranch, "last"))
-        .isEqualTo("kahppMetricPrefix.filter.last");
+        .isEqualTo("kahpp.filter.last");
 
     assertThatThrownBy(() -> StepMetricUtils.formatMetricName(() -> "notMapped"))
         .isInstanceOf(RuntimeException.class);

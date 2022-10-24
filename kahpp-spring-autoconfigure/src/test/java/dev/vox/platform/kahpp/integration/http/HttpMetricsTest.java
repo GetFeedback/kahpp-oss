@@ -80,7 +80,7 @@ class HttpMetricsTest extends AbstractKaHPPTest {
   private void assertTimeMetric(boolean successful, long expected) {
     assertThat(
             meterRegistry
-                .get("kahppMetricPrefix.http.duration")
+                .get("kahpp.http.duration")
                 .tag("step", "OkOrProduceError")
                 .tag("step_name", "doAnAPICall")
                 .tag("successful", Boolean.toString(successful))
@@ -92,7 +92,7 @@ class HttpMetricsTest extends AbstractKaHPPTest {
   private void assertStepMetricsCount(double expected, boolean successful) {
     assertThat(
             meterRegistry
-                .get("kahppMetricPrefix.http.status")
+                .get("kahpp.http.status")
                 .tag("step", "OkOrProduceError")
                 .tag("step_name", "doAnAPICall")
                 .tag("successful", Boolean.toString(successful))

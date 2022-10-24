@@ -87,7 +87,7 @@ class StepProcessorTest {
   private void assertCountForward(int expected, boolean forwarded) {
     assertThat(
             meterRegistry
-                .get("kahppMetricPrefix.forward")
+                .get("kahpp.forward")
                 .tag(STEP_NAME, "SimpleStep")
                 .tag("step_name", STEP_NAME)
                 .tag("forwarded", Boolean.toString(forwarded))
@@ -133,7 +133,7 @@ class StepProcessorTest {
   private void assertCountProduce(int expected) {
     assertThat(
             meterRegistry
-                .get("kahppMetricPrefix.produce")
+                .get("kahpp.produce")
                 .tag(STEP_NAME, "SimpleProduceStep")
                 .tag("step_name", STEP_NAME)
                 .tag("topic", "mock")
@@ -206,7 +206,7 @@ class StepProcessorTest {
   private void assertCountConditional(int expected) {
     assertThat(
             meterRegistry
-                .get("kahppMetricPrefix.conditional_skip")
+                .get("kahpp.conditional_skip")
                 .tag(STEP_NAME, "SimpleConditional")
                 .tag("step_name", STEP_NAME)
                 .counters()
