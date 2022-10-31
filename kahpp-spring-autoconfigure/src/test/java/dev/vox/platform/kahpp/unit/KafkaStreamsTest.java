@@ -10,6 +10,10 @@ import dev.vox.platform.kahpp.streams.Instance;
 import dev.vox.platform.kahpp.streams.Instance.ConfigBuilder;
 import dev.vox.platform.kahpp.streams.StepBuilderConfiguration.StepBuilderMap;
 import dev.vox.platform.kahpp.streams.serialization.Serdes;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.MockClock;
+import io.micrometer.core.instrument.simple.SimpleConfig;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import java.lang.reflect.Field;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.List;
@@ -43,7 +47,11 @@ class KafkaStreamsTest {
 
     simpleStreams =
         new KafkaStreams(
-            instance, stepBuilderMap, serdes.getJsonNodeKeySerde(), serdes.getJsonNodeValueSerde());
+            instance,
+            stepBuilderMap,
+            serdes.getJsonNodeKeySerde(),
+            serdes.getJsonNodeValueSerde(),
+            meterRegistry());
   }
 
   @AfterEach
@@ -83,5 +91,9 @@ class KafkaStreamsTest {
         .doesNotThrowAnyException();
 
     assertThat(actualCustomizer.get()).isSameAs(simpleStreams.getTopologyBuilder());
+  }
+
+  public MeterRegistry meterRegistry() {
+    return new SimpleMeterRegistry(SimpleConfig.DEFAULT, new MockClock());
   }
 }

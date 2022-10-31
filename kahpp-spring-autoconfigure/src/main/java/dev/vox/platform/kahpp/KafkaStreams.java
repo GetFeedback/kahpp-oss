@@ -12,6 +12,7 @@ import dev.vox.platform.kahpp.step.ChildStep;
 import dev.vox.platform.kahpp.streams.Instance;
 import dev.vox.platform.kahpp.streams.InstanceRuntime;
 import dev.vox.platform.kahpp.streams.StepBuilderConfiguration;
+import io.micrometer.core.instrument.MeterRegistry;
 import io.vavr.control.Try;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,8 @@ public class KafkaStreams implements AutoCloseable {
       Instance instance,
       StepBuilderConfiguration.StepBuilderMap stepBuilderMap,
       @Qualifier("SerdeJsonNodeKey") Serde<JsonNode> serdeKey,
-      @Qualifier("SerdeJsonNodeValue") Serde<JsonNode> serdeValue) {
+      @Qualifier("SerdeJsonNodeValue") Serde<JsonNode> serdeValue,
+      MeterRegistry meterRegistry) {
     // In order to keep it standard among the whole application, streams applications won't use
     // timezones, also the kafka record timestamp is in ms UTC, while formatting dates we were
     // seeing different results on different systems, this can be a real problem in cases
@@ -51,6 +53,15 @@ public class KafkaStreams implements AutoCloseable {
 
     this.config = instance.getConfig();
     InstanceRuntime.init(this.config);
+    meterRegistry
+        .config()
+        .commonTags(
+            "app",
+            "kahpp",
+            "kahpp_group",
+            this.config.getGroup(),
+            "kahpp_name",
+            this.config.getName());
 
     this.topologyBuilder = new TopologyBuilder(instance, stepBuilderMap, serdeKey, serdeValue);
   }
