@@ -53,7 +53,7 @@ public class KafkaStreamsTest {
       @Autowired StepBuilderMap stepBuilderMap,
       @Qualifier("SerdeJsonNodeKey") Serde<JsonNode> serdeKey,
       @Qualifier("SerdeJsonNodeValue") Serde<JsonNode> serdeValue) {
-    return new KafkaStreams(configuration, stepBuilderMap, serdeKey, serdeValue);
+    return new KafkaStreams(configuration, stepBuilderMap, serdeKey, serdeValue, meterRegistry());
   }
 
   @Bean(name = KafkaStreamsDefaultConfiguration.DEFAULT_STREAMS_CONFIG_BEAN_NAME)

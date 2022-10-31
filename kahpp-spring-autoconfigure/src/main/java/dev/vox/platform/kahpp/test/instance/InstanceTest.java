@@ -16,6 +16,7 @@ import dev.vox.platform.kahpp.test.instance.pact.PactConfigurationToHttpCallStep
 import dev.vox.platform.kahpp.test.instance.pact.PactMockServiceRegistry;
 import dev.vox.platform.kahpp.test.instance.test.KaHPPTestRecord;
 import dev.vox.platform.kahpp.test.instance.test.KaHPPTestScenario;
+import io.micrometer.core.instrument.MeterRegistry;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -100,6 +101,8 @@ public class InstanceTest {
   @Qualifier("SerdeJsonNodeValue")
   private transient Serde<JsonNode> serdeValue;
 
+  @Autowired private MeterRegistry meterRegistry;
+
   private transient Path pactsDir;
 
   private transient TopologyTestDriver testDriver;
@@ -121,7 +124,7 @@ public class InstanceTest {
 
     topology = new Topology();
 
-    kahpp = new KafkaStreams(configuration, stepBuilderMap, serdeKey, serdeValue);
+    kahpp = new KafkaStreams(configuration, stepBuilderMap, serdeKey, serdeValue, meterRegistry);
 
     // Re-instantiate in order to freeze the Clock
     InstanceRuntime.close();
