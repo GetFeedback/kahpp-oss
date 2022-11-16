@@ -73,6 +73,7 @@ class FilterNotTest extends AbstractKaHPPTest {
                 .sum());
   }
 
+  @SuppressWarnings("PMD.TestClassWithoutTestCases")
   @Configuration
   static class KafkaStreamsFilterNotTest extends KafkaStreamsTest {
     @Override
