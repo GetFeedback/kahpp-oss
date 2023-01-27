@@ -58,9 +58,9 @@ class KafkaStreamsStateTest {
             state -> {
               when(kafkaStreams.state()).thenReturn(state);
               kafkaStreamsState.doHealthCheck(builder);
-
-              assertThat(builder.build().getStatus()).as("Testing %s Kafka Stream State", state).isEqualTo(kafkaStateMapping.get(state));
+              assertThat(builder.build().getStatus())
+                  .as("Testing %s Kafka Stream State", state)
+                  .isEqualTo(kafkaStateMapping.get(state));
             });
   }
-
 }
