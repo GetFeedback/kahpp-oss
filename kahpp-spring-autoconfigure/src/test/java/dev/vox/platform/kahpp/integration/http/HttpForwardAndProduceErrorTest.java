@@ -72,6 +72,7 @@ class HttpForwardAndProduceErrorTest extends AbstractKaHPPTest {
     HttpRecordAssert.assertThat(recordOnSink).hasHeaderWithStatus("ERROR_UNKNOWN");
   }
 
+  @SuppressWarnings("PMD.TestClassWithoutTestCases")
   @Configuration
   static class KStreamsTest extends KafkaStreamsTest {
 

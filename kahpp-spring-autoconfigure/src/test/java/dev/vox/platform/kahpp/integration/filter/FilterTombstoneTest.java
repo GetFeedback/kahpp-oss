@@ -81,6 +81,7 @@ class FilterTombstoneTest extends AbstractKaHPPTest {
         .isEqualTo(expected);
   }
 
+  @SuppressWarnings("PMD.TestClassWithoutTestCases")
   @Configuration
   static class KStreamsTest extends KafkaStreamsTest {
     @Override

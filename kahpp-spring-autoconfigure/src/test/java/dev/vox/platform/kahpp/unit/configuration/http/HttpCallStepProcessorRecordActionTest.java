@@ -109,6 +109,7 @@ class HttpCallStepProcessorRecordActionTest {
     }
   }
 
+  @SuppressWarnings("PMD.TestClassWithoutTestCases")
   private class RecordActionTest implements RecordActionRoute {
     @Override
     public boolean shouldForward() {

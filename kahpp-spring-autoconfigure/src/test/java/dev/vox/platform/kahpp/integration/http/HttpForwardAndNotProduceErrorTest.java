@@ -71,6 +71,7 @@ class HttpForwardAndNotProduceErrorTest extends AbstractKaHPPTest {
         .isInstanceOf(IllegalStateException.class);
   }
 
+  @SuppressWarnings("PMD.TestClassWithoutTestCases")
   @Configuration
   static class KStreamsTest extends KafkaStreamsTest {
 

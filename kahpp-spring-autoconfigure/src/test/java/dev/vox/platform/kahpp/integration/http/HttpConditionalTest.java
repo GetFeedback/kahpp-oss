@@ -55,6 +55,7 @@ class HttpConditionalTest extends AbstractKaHPPTest {
     HttpRecordAssert.assertThat(recordSink).hasNoHeaders();
   }
 
+  @SuppressWarnings("PMD.TestClassWithoutTestCases")
   @Configuration
   static class KStreamsTest extends KafkaStreamsTest {
 

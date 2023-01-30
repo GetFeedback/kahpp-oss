@@ -38,6 +38,7 @@ import org.springframework.kafka.config.KafkaStreamsConfiguration;
 import org.springframework.kafka.config.StreamsBuilderFactoryBeanConfigurer;
 import org.springframework.kafka.test.EmbeddedKafkaBroker;
 
+@SuppressWarnings("PMD.TestClassWithoutTestCases")
 @Configuration
 @EnableKafkaStreams
 @Import({Serdes.class, StepBuilderConfiguration.class, StepBuilder.class})
