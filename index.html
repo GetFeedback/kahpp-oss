@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://getfeedback.github.io/kahpp-oss/" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>What is Kahpp? - Kahpp</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "What is Kahpp?";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = "/kahpp-oss/";
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> Kahpp
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href=".">What is Kahpp?</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#powered-by">Powered By</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="getting-started/kahpp-instance/">Kahpp instance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="getting-started/docker/">Run Kahpp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="getting-started/gradle-plugin/">Gradle Plugin</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="#">Steps</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="features/step/">What is a Step?</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="features/transformers/">Transformers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="features/filters/">Filters</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="features/http/">Http</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="features/throttle/">Throttle</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="features/produce/">Produce</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="developer-guide/spring-boot-starter/">Spring Boot Starter</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">Kahpp</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Getting Started &raquo;</li>
+      <li>What is Kahpp?</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/getfeedback/kahpp-oss/edit/master/docs/index.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p align="center"><img height="100" src="assets/kahpp-logo.svg"/></p>
+
+<h1 id="a-low-code-real-time-kafka-stream-processor">A Low-Code Real-Time Kafka Stream Processor</h1>
+<p>Kahpp is a self-service Kafka Stream processor capable of filtering, transforming and routing Kafka records in real-time with a YAML file.<br />
+Its most straightforward configuration lets you consume a topic and trigger HTTP API requests for each received message. At its more complex setup, it can filter, duplicate, route, re-process, and do much more based on a condition.</p>
+<h2 id="motivation">Motivation</h2>
+<p>Everything Kahpp does is achievable with Kafka Streams, but that comes with an overhead of code and knowledge.<br />
+The motivation of this project is to simplify this process by using only a configuration file.<br />
+Offering a centrally deployed configuration based service allows teams to quickly bridge the gap from starting a project to consuming a topic and running their code. In addition, from an infrastructure perspective, it allows more stability and gains the benefits of using Java for Kafka interactions.</p>
+<h2 id="powered-by">Powered By</h2>
+<p><a href="https://www.momentive.ai/"><img height="100" src="assets/momentive-logo.svg"/></a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="getting-started/kahpp-instance/" class="btn btn-neutral float-right" title="Kahpp instance">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/getfeedback/kahpp-oss" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+      <span><a href="getting-started/kahpp-instance/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

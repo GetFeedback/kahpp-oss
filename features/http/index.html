@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://getfeedback.github.io/kahpp-oss/features/http/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Http - Kahpp</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Http";
+        var mkdocs_page_input_path = "features/http.md";
+        var mkdocs_page_url = "/kahpp-oss/features/http/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Kahpp
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">What is Kahpp?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/kahpp-instance/">Kahpp instance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/docker/">Run Kahpp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/gradle-plugin/">Gradle Plugin</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Steps</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../step/">What is a Step?</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../transformers/">Transformers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../filters/">Filters</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Http</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#declare-api-client">Declare API client</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#connection-configurations">Connection configurations</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#request-headers">Request headers</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#rate-limit">Rate Limit</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#retry-configuration">Retry configuration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#simple-http-call">Simple HTTP Call</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ok-or-produce-error">Ok or Produce Error</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#handle-by-status-code">Handle by Status Code</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#optional-parameters">Optional parameters</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#response-handlers">Response Handlers</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configure-dynamic-path">Configure dynamic path</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#http-response-errors">HTTP response errors</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../throttle/">Throttle</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../produce/">Produce</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guide/spring-boot-starter/">Spring Boot Starter</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Kahpp</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Features &raquo;</li>
+          <li>Steps &raquo;</li>
+      <li>Http</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/getfeedback/kahpp-oss/edit/master/docs/features/http.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="http-step">HTTP Step</h1>
+<p>Kahpp makes it possible to reach one or more HTTP Endpoints.  </p>
+<h2 id="declare-api-client">Declare API client</h2>
+<p>First, we need to declare the API client on the Kahpp instance.</p>
+<p>For example:</p>
+<pre><code class="language-yaml">kahpp:
+  apis:
+    my-dummy-api: # Logical name of the client
+      basePath: http://my-dummy-api
+</code></pre>
+<p>Then in the steps, we may decide how to use it and how to handle the response.</p>
+<h3 id="connection-configurations">Connection configurations</h3>
+<p>Set the connection configuration based on connect and socket timeouts.</p>
+<pre><code class="language-yaml">kahpp:
+  apis:
+    my-dummy-api: # Logical name of the client
+      basePath: http://my-dummy-api
+      options:
+        connection:
+          connectTimeoutMillis: 300
+          socketTimeoutMs: 1500
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>default</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>connectTimeoutMillis</td>
+<td>500</td>
+<td>Determines the timeout in milliseconds until a connection is established.</td>
+</tr>
+<tr>
+<td>socketTimeoutMs</td>
+<td>2000</td>
+<td>Defines the socket timeout in milliseconds, which is the timeout for waiting for data or, put differently, a maximum period inactivity between two consecutive data packets</td>
+</tr>
+</tbody>
+</table>
+<h3 id="request-headers">Request headers</h3>
+<p>Set HTTP headers necessary for HTTP requests.</p>
+<pre><code class="language-yaml">kahpp:
+  apis:
+    my-dummy-api:
+      basePath: http://my-dummy-api
+      options:
+        headers:
+          Accept: text/html
+          User-Agent: Mozilla/5.0
+          Connection: keep-alive
+</code></pre>
+<p>Default header is <code>Accept:application/json</code>.</p>
+<h3 id="rate-limit">Rate Limit</h3>
+<p>Configure rate limiter for HTTP requests.<br />
+If unset, no http request rate limit will be in place.  </p>
+<pre><code class="language-yaml">kahpp:
+  apis:
+    my-dummy-api:
+      basePath: http://my-dummy-api
+      options:
+        rateLimit:
+          requestsPerSecond: 10
+          warmUpMillis: 100
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>required</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>requestsPerSecond</td>
+<td>yes</td>
+<td>set how many request are available per second.</td>
+</tr>
+<tr>
+<td>warmUpMillis</td>
+<td>no</td>
+<td>the duration in milliseconds of the period where the RateLimiter ramps up its rate, before reaching its stable.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="retry-configuration">Retry configuration</h3>
+<p>If unset, the default retry policy will be in place.</p>
+<pre><code class="language-yaml">kahpp:
+  apis:
+    my-dummy-api:
+      basePath: http://my-dummy-api
+      options:
+        retries:
+          retryOnTimeout: true
+          statusCodeRetryTimeSeedInMs: 1000
+          statusCodeRetryTimeCapInMs: 10000
+          statusCodes:
+            - statusCodeStart: 500
+              statusCodeInclusiveEnd: 599
+              retries: 10
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>default</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>connectionRetryCount</td>
+<td>3</td>
+<td>The amount of times to retry when the connection fails.</td>
+</tr>
+<tr>
+<td>retryIdempotentRequests</td>
+<td>true</td>
+<td>True if it's OK to retry non-idempotent requests that have been sent.</td>
+</tr>
+<tr>
+<td>retryOnTimeout</td>
+<td>false</td>
+<td>True if it should retry timeout errors.</td>
+</tr>
+<tr>
+<td>statusCodeRetryTimeSeedInMs</td>
+<td>50</td>
+<td>A seed in milliseconds used to calculate the backoff time.</td>
+</tr>
+<tr>
+<td>statusCodeRetryTimeCapInMs</td>
+<td>1000</td>
+<td>The cap of the backoff time</td>
+</tr>
+<tr>
+<td>statusCodeRetryMemory</td>
+<td>25</td>
+<td>The amount of requests that contribute to the backoff time calculation.</td>
+</tr>
+<tr>
+<td>statusCodes</td>
+<td>- statusCodeStart: 500 <br/>&nbsp;&nbsp;statusCodeInclusiveEnd: 599 <br/>&nbsp;&nbsp;retries: 3 <br/>- statusCode: 429 <br/>&nbsp;&nbsp;retries: 10</td>
+<td>Strategy to retry responses with specific status codes.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="simple-http-call">Simple HTTP Call</h2>
+<p>This is the most straightforward HTTP call step.  </p>
+<pre><code class="language-yaml">  - name: simpleHttpCall
+    type: dev.vox.platform.kahpp.configuration.http.SimpleHttpCall
+    config:
+      api: my-dummy-api
+      path: /my/path
+</code></pre>
+<h2 id="ok-or-produce-error">Ok or Produce Error</h2>
+<p>In case of error, it routes the message to a specific topic.</p>
+<p>Simple HTTP Call</p>
+<pre><code class="language-yaml">  - name: httpCall
+    type: dev.vox.platform.kahpp.configuration.http.OkOrProduceError
+    config:
+      api: my-dummy-api
+      path: /my/path
+      topic: error
+</code></pre>
+<p>HTTP Call with response handler</p>
+<p>Update the field <code>name</code> with the HTTP Response</p>
+<pre><code class="language-yaml">  - name: httpCall
+    type: dev.vox.platform.kahpp.configuration.http.OkOrProduceError
+    config:
+      api: my-dummy-api
+      path: /my/path
+      topic: error
+      responseHandler:
+        type: RECORD_UPDATE
+        jmesPath: value.name
+</code></pre>
+<h2 id="handle-by-status-code">Handle by Status Code</h2>
+<p>The response can also be handled in different ways based on the status code.</p>
+<pre><code class="language-yaml">  - name: httpCall
+    type: dev.vox.platform.kahpp.configuration.http.HandleByStatusCode
+    config:
+      api: my-dummy-api
+      path: /my/path
+      topic: error
+      responseHandlers:
+        - statusCodeStart: 412
+          statusCodeInclusiveEnd: 412
+          responseHandler:
+            type: RECORD_ROUTE
+            topics:
+              - retriableErrors
+              - error
+        - statusCodeStart: 422
+          statusCodeInclusiveEnd: 422
+          responseHandler:
+            type: RECORD_ROUTE
+            topics:
+              - unretriableErrors
+              - error
+</code></pre>
+<h2 id="optional-parameters">Optional parameters</h2>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>default</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>forwardRecordOnError</td>
+<td>false</td>
+<td>boolean</td>
+<td>In case of error, don't stop the pipeline, so the record will be forward to the next step.</td>
+</tr>
+<tr>
+<td>condition</td>
+<td></td>
+<td>JMESPath</td>
+<td>JMESPath expression, if false the step will be skipped</td>
+</tr>
+<tr>
+<td>method</td>
+<td>POST</td>
+<td>POST,PUT,GET,PATCH</td>
+<td>HTTP method to use for the request.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="response-handlers">Response Handlers</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Additional Parameter</th>
+<th>Parameter description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RECORD_FORWARD_AS_IS</td>
+<td>Forward record to the next step</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RECORD_UPDATE</td>
+<td>Replace record field with the HTTP Response body</td>
+<td>jmesPath</td>
+<td>Field to replace with the HTTP Response</td>
+</tr>
+<tr>
+<td>RECORD_TERMINATE</td>
+<td>Don't forward record to the next step</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RECORD_ROUTE</td>
+<td>Route record to specific topics</td>
+<td>topics</td>
+<td>List of topics to route the record to</td>
+</tr>
+</tbody>
+</table>
+<h2 id="configure-dynamic-path">Configure dynamic path</h2>
+<p>It's possible to configure the path dynamically using placeholders.<br />
+The value correspondent to the placeholder need to be available inside the record.</p>
+<p>Example:</p>
+<pre><code class="language-yaml">    config:
+      api: my-dummy-api
+      path: /my/path/${value.myDynamic.field}
+      topic: error
+</code></pre>
+<p>So record value needs to look like this:</p>
+<pre><code class="language-json">{
+    &quot;myDynamic&quot;: {
+        &quot;field&quot;: 1234
+    }
+}
+</code></pre>
+<p>If the value is not there, the call will fail, and the record will be routed to the error topic.</p>
+<h2 id="http-response-errors">HTTP response errors</h2>
+<p>If in an HTTP call an error occurs, it will be saved as a header on the record.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../filters/" class="btn btn-neutral float-left" title="Filters"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../throttle/" class="btn btn-neutral float-right" title="Throttle">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/getfeedback/kahpp-oss" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../filters/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../throttle/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

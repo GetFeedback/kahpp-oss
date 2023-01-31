@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://getfeedback.github.io/kahpp-oss/features/transformers/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Transformers - Kahpp</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Transformers";
+        var mkdocs_page_input_path = "features/transformers.md";
+        var mkdocs_page_url = "/kahpp-oss/features/transformers/";
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Kahpp
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">What is Kahpp?</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/kahpp-instance/">Kahpp instance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/docker/">Run Kahpp</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/gradle-plugin/">Gradle Plugin</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Features</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Steps</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="../step/">What is a Step?</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="./">Transformers</a>
+    <ul class="current">
+    <li class="toctree-l3"><a class="reference internal" href="#move-field">Move Field</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#copy-field">Copy Field</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#drop-field">Drop Field</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#convert-zoneddatetime-field">Convert ZonedDateTime Field</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#extract-field">Extract Field</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#split-array">Split array</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#optional-configurations">Optional configurations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#copy-timestamp-to-value">Copy Timestamp To Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#unwrap-value">Unwrap Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#wrap-value">Wrap Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#insert-static-value">Insert Static Value</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#insert-json-value">Insert JSON Value</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#override-an-existing-field">Override an existing field</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#conditional">Conditional</a>
+    </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../filters/">Filters</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../http/">Http</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../throttle/">Throttle</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../produce/">Produce</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Developer Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../developer-guide/spring-boot-starter/">Spring Boot Starter</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Kahpp</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Features &raquo;</li>
+          <li>Steps &raquo;</li>
+      <li>Transformers</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/getfeedback/kahpp-oss/edit/master/docs/features/transformers.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="transformers">Transformers</h1>
+<p>These <em>steps</em> make it possible to re-shape records on your need.</p>
+<h2 id="move-field">Move Field</h2>
+<p>Permits to move a field.</p>
+<pre><code class="language-yaml">  - name: moveBarToNewBar
+    type: dev.vox.platform.kahpp.configuration.transform.MoveFieldRecordTransform
+    config:
+      from: value.bar
+      to: value.newBar
+</code></pre>
+<h2 id="copy-field">Copy Field</h2>
+<p>Permits to copy a field.</p>
+<pre><code class="language-yaml">  - name: copyKeyToValue
+    type: dev.vox.platform.kahpp.configuration.transform.CopyFieldRecordTransform
+    config:
+      from: key
+      to: value.key
+</code></pre>
+<h2 id="drop-field">Drop Field</h2>
+<p>Permits to remove a field.</p>
+<pre><code class="language-yaml">  - name: removeThisField
+    type: dev.vox.platform.kahpp.configuration.transform.DropFieldRecordTransform
+    config:
+      jmesPath: value.unlike
+</code></pre>
+<h2 id="convert-zoneddatetime-field">Convert ZonedDateTime Field</h2>
+<p>Converts a date from one format to another.</p>
+<pre><code class="language-yaml">  - name: ensureCreatedAtDateIsRFC3339
+    type: dev.vox.platform.kahpp.configuration.transform.ConvertZonedDateTimeFieldTransform
+    config:
+      field: value.createdAt
+      inputFormat: RFC_3339_LENIENT_MS_FORMATTER
+      outputFormat: RFC_3339
+</code></pre>
+<h2 id="extract-field">Extract Field</h2>
+<p>Pulls a field out of a complex value and replaces the entire value with the extracted field.</p>
+<pre><code class="language-yaml">  - name: extractId
+    type: dev.vox.platform.kahpp.configuration.transform.ExtractFieldValueTransform
+    config:
+      field: id
+</code></pre>
+<h2 id="split-array">Split array</h2>
+<p>Split an array into multiple records.</p>
+<p>Let's take as example this record:</p>
+<pre><code>{
+    &quot;customer&quot;: &quot;Paolo&quot;,
+    &quot;orders&quot;: [
+        {
+            &quot;type&quot;: &quot;food&quot;,
+            &quot;product&quot;: &quot;pizza&quot;
+        },
+        {
+            &quot;type&quot;: &quot;drink&quot;,
+            &quot;product&quot;: &quot;cocacola&quot;
+        }
+    ]
+}
+</code></pre>
+<p>We would like to send the order for food and drink in two different places (for example to two different topics).  </p>
+<p>So the expected result is to have two records.  </p>
+<p>One for the food:</p>
+<pre><code>{
+    &quot;customer&quot;: &quot;Paolo&quot;,
+    &quot;order&quot;: {
+        &quot;type&quot;: &quot;food&quot;,
+        &quot;product&quot;: &quot;pizza&quot;
+    }
+}
+</code></pre>
+<p>Another for the drink:</p>
+<pre><code>{
+    &quot;customer&quot;: &quot;Paolo&quot;,
+    &quot;order&quot;: {
+        &quot;type&quot;: &quot;drink&quot;,
+        &quot;product&quot;: &quot;cocacola&quot;
+    }
+}
+</code></pre>
+<p>So, our step configuration will look like:</p>
+<pre><code class="language-yaml">    - name: splitFooArray
+      type: dev.vox.platform.kahpp.configuration.transform.SplitValueTransform
+      config:
+        jmesPath: &quot;value.orders&quot;
+        to: &quot;value.order&quot; # Optional field
+</code></pre>
+<h3 id="optional-configurations">Optional configurations</h3>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>default</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>to</td>
+<td>""</td>
+<td>Defines where to put an extracted array's object as a nested field into the original parent object. If the 'to' field is not configured, the extracted object will go on the 'value' field by default. The existing parent's field under the same 'to' path is going to be overridden.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="copy-timestamp-to-value">Copy Timestamp To Value</h2>
+<p>Copy timestamp of record into value.</p>
+<pre><code class="language-yaml">  - name: timestampToValue
+    type: dev.vox.platform.kahpp.configuration.transform.TimestampToValueTransform
+    config:
+      field: publication_date
+</code></pre>
+<h2 id="unwrap-value">Unwrap Value</h2>
+<p>Unwraps the content of one field to root value.</p>
+<pre><code class="language-yaml">  - name: payloadUnwrap
+    type: dev.vox.platform.kahpp.configuration.transform.UnwrapValueTransform
+    config:
+      field: payload
+</code></pre>
+<h2 id="wrap-value">Wrap Value</h2>
+<p>Wraps the current content in a single field.</p>
+<pre><code class="language-yaml">  - name: wrapPayload
+    type: dev.vox.platform.kahpp.configuration.transform.WrapValueTransform
+    config:
+      field: payload
+</code></pre>
+<h2 id="insert-static-value">Insert Static Value</h2>
+<p>Insert a static value in a chosen field of the value object; if the field exists, the action will be skipped, and eventually is possible to configure the step with <code>overrideIfExists: true</code> to permit the override.</p>
+<p>Let's take as example this record:</p>
+<pre><code class="language-yaml">{
+    &quot;name&quot;: &quot;Paolo&quot;,
+    &quot;email&quot;: &quot;paolo@him.com&quot;
+}
+</code></pre>
+<p>We want to add a new field <code>type</code>, so our record will look like this:</p>
+<pre><code class="language-yaml">{
+    &quot;name&quot;: &quot;Paolo&quot;,
+    &quot;email&quot;: &quot;paolo@him.com&quot;,
+    &quot;type&quot;: &quot;customer&quot;
+}
+</code></pre>
+<p>So, our step configuration will look like this:</p>
+<pre><code class="language-yaml">  - name: addNewField
+    type: dev.vox.platform.kahpp.configuration.transform.InsertStaticFieldTransform
+    config:
+      field: type
+      value: customer
+</code></pre>
+<h3 id="insert-json-value">Insert JSON Value</h3>
+<p>Eventually, we can also add a static JSON value.</p>
+<pre><code class="language-yaml">  - name: addNewJsonField
+    type: dev.vox.platform.kahpp.configuration.transform.InsertStaticFieldTransform
+    config:
+      field: newJsonField
+      value: '[{&quot;foo&quot;:&quot;bar&quot;}]'
+      format: json
+
+</code></pre>
+<h3 id="override-an-existing-field">Override an existing field</h3>
+<p>It's also possible to override an existent field.</p>
+<pre><code class="language-yaml">  - name: addNewJsonField
+    type: dev.vox.platform.kahpp.configuration.transform.InsertStaticFieldTransform
+    config:
+      field: email
+      value: '*****'
+      overrideIfExists: true
+</code></pre>
+<h2 id="conditional">Conditional</h2>
+<p>All transformer steps can be triggered conditionally using the parameter <code>condition</code>.<br />
+If the expression is true, the action will be started.</p>
+<p>Example:</p>
+<pre><code class="language-yaml">  - name: moveBarToNewBar
+    type: dev.vox.platform.kahpp.configuration.transform.MoveFieldRecordTransform
+    config:
+      condition: &quot;value.bar != null&quot;
+      from: value.bar
+      to: value.newBar
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../step/" class="btn btn-neutral float-left" title="What is a Step?"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../filters/" class="btn btn-neutral float-right" title="Filters">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/getfeedback/kahpp-oss" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../step/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../filters/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
