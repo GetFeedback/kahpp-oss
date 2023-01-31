@@ -61,7 +61,7 @@ dependencies{
         exclude group: "org.junit.vintage", module: "junit-vintage-engine"
         exclude group: "junit", module: "junit"
     }
-    implementation "org.mock-server:mockserver-netty:5.14.0"
+    implementation "org.mock-server:mockserver-netty:5.15.0"
     implementation ("org.bouncycastle:bcprov-jdk15on:1.70") {
         because "due to ClassNotFoundException after bump mockserver-netty-5.12.0"
     }
