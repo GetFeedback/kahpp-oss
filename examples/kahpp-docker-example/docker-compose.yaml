@@ -25,7 +25,7 @@ services:
       - kahpp
 
   kahpp:
-    image: ghcr.io/getfeedback/kahpp-oss
+    image: ghcr.io/kahpp/kahpp
     ports:
       - "8080:8080"
     depends_on:

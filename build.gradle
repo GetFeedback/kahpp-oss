@@ -132,7 +132,7 @@ subprojects {
         repositories {
             maven {
                 name = 'githubRepository'
-                url = uri('https://maven.pkg.github.com/getfeedback/kahpp-oss')
+                url = uri('https://maven.pkg.github.com/kahpp/kahpp')
                 credentials(PasswordCredentials)
             }
         }

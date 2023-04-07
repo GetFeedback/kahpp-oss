@@ -14,11 +14,11 @@ publishing {
             pom {
                 name = artifactId
                 description = "Everything you need for Kahpp as Spring Boot application"
-                url = "https://github.com/GetFeedback/kahpp-oss"
+                url = "https://github.com/kahpp/kahpp"
                 licenses {
                     license {
                         name = 'The MIT License'
-                        url = 'https://github.com/GetFeedback/kahpp-oss/blob/main/LICENSE'
+                        url = 'https://github.com/kahpp/kahpp/blob/main/LICENSE'
                         distribution = 'repo'
                     }
                 }

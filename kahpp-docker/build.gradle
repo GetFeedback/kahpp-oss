@@ -12,7 +12,7 @@ bootJar {
 }
 
 bootBuildImage {
-    imageName = "ghcr.io/getfeedback/kahpp-oss"
+    imageName = "ghcr.io/kahpp/kahpp"
     tags = ["${imageName}:${project.version}"]
     environment = [
             "BPL_JMX_ENABLED" : "true",

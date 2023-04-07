@@ -20,11 +20,11 @@ publishing {
             pom {
                 name = artifactId
                 description = "The Gradle Plugin to maximize the usage of Kahpp"
-                url = "https://github.com/GetFeedback/kahpp-oss"
+                url = "https://github.com/kahpp/kahpp"
                 licenses {
                     license {
                         name = 'The MIT License'
-                        url = 'https://github.com/GetFeedback/kahpp-oss/blob/main/LICENSE'
+                        url = 'https://github.com/kahpp/kahpp/blob/main/LICENSE'
                         distribution = 'repo'
                     }
                 }

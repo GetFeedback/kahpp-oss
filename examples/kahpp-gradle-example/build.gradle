@@ -2,7 +2,7 @@ buildscript {
     repositories {
         mavenCentral()
         maven {
-            url "https://maven.pkg.github.com/GetFeedback/kahpp-oss"
+            url "https://maven.pkg.github.com/kahpp/kahpp"
         }
     }
 
@@ -20,7 +20,7 @@ apply plugin: 'dev.vox.platform.kahpp'
 repositories {
     mavenCentral()
     maven {
-        url "https://maven.pkg.github.com/GetFeedback/kahpp-oss"
+        url "https://maven.pkg.github.com/kahpp/kahpp"
     }
 }
 
