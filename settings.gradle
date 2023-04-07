@@ -1,4 +1,4 @@
-rootProject.name = 'kahpp-oss'
+rootProject.name = 'kahpp'
 include 'kahpp-spring-autoconfigure'
 include 'kahpp-spring-starter'
 include 'kahpp-gradle-plugin'
