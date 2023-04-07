@@ -2,14 +2,12 @@
 
 # A Low-Code Real-Time Kafka Stream Processor
 
-Kahpp is a self-service Kafka Stream processor capable of filtering, transforming and routing Kafka records in real-time with a YAML file.  
-Its most straightforward configuration lets you consume a topic and trigger HTTP API requests for each received message. At its more complex setup, it can filter, duplicate, route, re-process, and do much more based on a condition.
+Kahpp is a user-friendly Kafka Stream processor that enables you to filter, transform, and route Kafka records in real-time using a simple YAML configuration file.   
+With Kahpp, you can easily configure your setup to consume a topic and trigger HTTP API requests for each received message, or apply more complex operations such as filtering, duplication, routing, and re-processing based on specific conditions.
 
 ## Motivation
 
-Everything Kahpp does is achievable with Kafka Streams, but that comes with an overhead of code and knowledge.  
-The motivation of this project is to simplify this process by using only a configuration file.  
-Offering a centrally deployed configuration based service allows teams to quickly bridge the gap from starting a project to consuming a topic and running their code. In addition, from an infrastructure perspective, it allows more stability and gains the benefits of using Java for Kafka interactions.
-
-## Powered By
-<a href="https://www.momentive.ai/"><img height="100" src="assets/momentive-logo.svg"/></a>
+While Kafka Streams is a powerful tool for real-time stream processing, it can be challenging for developers who lack the required knowledge and expertise.  
+Kahpp was created to simplify this process by eliminating the need for complex code and instead using a configuration file to specify the processing logic.  
+This approach allows teams to quickly set up and deploy a Kafka Stream processor, without the need for deep knowledge of Kafka Streams and its associated code.    
+Furthermore, by offering a centrally deployed configuration-based service, Kahpp provides greater stability and leverages the benefits of using Java for Kafka interactions.

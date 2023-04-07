@@ -1,6 +1,6 @@
 site_name: Kahpp
-site_url: https://getfeedback.github.io/kahpp-oss
-repo_url: https://github.com/getfeedback/kahpp-oss
+site_url: https://kahpp.github.io/kahpp
+repo_url: https://github.com/kahpp/kahpp
 theme:
   name: readthedocs
 markdown_extensions:

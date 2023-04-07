@@ -1,8 +1,12 @@
 # Gradle Plugin
 
-Using the plugin to run a Kahpp instance is not required.  
-Kahpp Plugin adds a set of tools useful to manage the cases.  
-Here you can find a [Gradle example project](https://github.com/GetFeedback/kahpp-oss/tree/main/examples/kahpp-gradle-example).  
+While using the Kahpp plugin can be helpful for managing cases, it is not required to run a Kahpp instance.  
+The plugin provides additional tools that can be useful in certain scenarios, but it is not necessary for basic use of the platform.
+
+If you prefer to use Kahpp without the plugin, we've provided a sample Gradle project on our GitHub page that shows you how to set up and run a Kahpp instance without the plugin.  
+The project includes a sample YAML file and detailed instructions on how to configure and deploy your Kahpp instance using Gradle.
+
+To access the full example, please visit the following link on our GitHub repository: https://github.com/kahpp/kahpp/tree/main/examples/kahpp-gradle-example. 
 
 ``` yaml
 --8<-- "./examples/kahpp-gradle-example/build.gradle"

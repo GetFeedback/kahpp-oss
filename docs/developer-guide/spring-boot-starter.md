@@ -15,7 +15,7 @@ We publish this starter on Github so you need to use the correct repository to b
 repositories {
     mavenCentral()
     maven {
-        url "https://maven.pkg.github.com/GetFeedback/kahpp-oss"
+        url "https://maven.pkg.github.com/kahpp/kahpp"
     }
 }
 ```
