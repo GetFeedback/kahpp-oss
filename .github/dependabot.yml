@@ -8,7 +8,7 @@ updates:
     labels:
       - "Dependencies"
     reviewers:
-      - "GetFeedback/platform-java"
+      - "kahpp/mainteiners"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -16,4 +16,4 @@ updates:
     labels:
       - "CI"
     reviewers:
-      - "GetFeedback/platform-java"
+      - "kahpp/mainteiners"

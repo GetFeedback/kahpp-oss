@@ -1,2 +1,2 @@
 
-Reviewers: @GetFeedback/platform-java
+Reviewers: @kahpp/mainteiners
