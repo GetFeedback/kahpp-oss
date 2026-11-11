@@ -14,8 +14,12 @@ bootJar {
 bootBuildImage {
     imageName = "ghcr.io/getfeedback/kahpp-oss"
     tags = ["${imageName}:${project.version}"]
+    // Spring Boot 2.7's default builder is Ubuntu 18.04 based (end of life, stale CA bundle).
+    // A current builder ships a current JRE and CA bundle, without the compromised eMudhra/AAA roots.
+    builder = "paketobuildpacks/builder-jammy-base"
     environment = [
             "BPL_JMX_ENABLED" : "true",
+            "BP_JVM_VERSION": "17",
             "BP_JVM_TYPE": "Adoptium",
             "BPL_JAVA_NMT_ENABLED": "false",
             "BP_SPRING_CLOUD_BINDINGS_DISABLED": "true",
