@@ -22,4 +22,5 @@ jobs:
         env:
           COVERALLS_REPO_TOKEN: ${{secrets.COVERALLS_REPO_TOKEN}}
         with:
-          arguments: check coverallsJacoco
+          # coverallsJacoco disabled: Coveralls subscription is paused (HTTP 402)
+          arguments: check
